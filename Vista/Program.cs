@@ -1,3 +1,4 @@
+using Biblioteca.Presentadores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,14 @@ namespace Vista
         [STAThread]
         static void Main()
         {
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            PresentadorPrincipal presentadorPrincipal = new PresentadorPrincipal();
+
+            FormPrincipal vistaPrincipal = new FormPrincipal();
+            Application.Run();
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vista.Properties;
 
 namespace Vista
 {
@@ -35,7 +36,7 @@ namespace Vista
             {
                 this.partida.JugadorB.TurnoDeJugador += PedirJugada;
             }
-            this.partida.DatosDeJuegoActualizados += Actualizarv2;
+            this.partida.DatosDeJuegoActualizados += MostrarCartas;
         }
 
         public Partida<Truco> Partida
@@ -48,15 +49,15 @@ namespace Vista
 
         private void FrmTruco_Load(object sender, EventArgs e)
         {
-            Actualizarv2(null!, null!);
+            MostrarCartas(null!, (EventArgs)null!);
             this.label1.Text = "";
         }
 
-        private void Actualizarv2(object sender, EventArgs e)
+        private void MostrarCartas(object sender, EventArgs e)
         {
             if (InvokeRequired)
             {
-                EventHandler delegado = Actualizarv2;
+                EventHandler delegado = MostrarCartas;
                 Invoke(delegado, sender, e);
             }
             else
@@ -84,8 +85,8 @@ namespace Vista
 
         private void PedirJugada()
         {
-            Actualizarv2(null!, null!);
-            FrmJugarMano formMano = new FrmJugarMano(datosDeJuego);
+            MostrarCartas(null!, (EventArgs)null!);
+            FrmJugarManoTruco formMano = new FrmJugarManoTruco(datosDeJuego);
             if (formMano.ShowDialog() == DialogResult.OK)
             {
                 datosDeJuego.SetSeleccionJugador(datosDeJuego.JugadorTurnoActual, formMano.IndiceCartaJugada);
@@ -112,8 +113,16 @@ namespace Vista
 
         private void FrmTruco_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.partida.JugadorA.TurnoDeJugador -= PedirJugada;
-            this.partida.DatosDeJuegoActualizados -= Actualizarv2;
+            if (!datosDeJuego.HayGanador)
+            {
+                e.Cancel = true;
+                this.Hide();
+            } else
+            {
+                this.partida.JugadorA.TurnoDeJugador -= PedirJugada;
+                this.partida.JugadorB.TurnoDeJugador -= PedirJugada;
+                this.partida.DatosDeJuegoActualizados -= MostrarCartas;
+            }
         }
     }
 }

@@ -15,14 +15,12 @@ namespace Biblioteca.Presentadores
         private IVistaMenuTruco vistaMenuTruco;
         private Jugador jugadorHumano;
         private List<Jugador> jugadoresSimulados;
-        private ManejadorPartida<Truco> manejadorPartidaTruco;
-        private List<Partida<Truco>> partidasTrucoActivas;
+        private ManejadorPartida<Truco> manejadorPartidasTruco;
 
         public PresentadorMenuTruco(IVistaMenuTruco vistaMenuTruco)
         {
-            this.partidasTrucoActivas = new List<Partida<Truco>>();
             this.vistaMenuTruco = vistaMenuTruco;
-            this.manejadorPartidaTruco = new ManejadorPartida<Truco>();
+            this.manejadorPartidasTruco = new ManejadorPartida<Truco>();
             List<Jugador> jugadoresBBDD = new JugadorADO().ObtenerListaJugadores();
             this.jugadorHumano = jugadoresBBDD[0];
             this.jugadoresSimulados = new List<Jugador>(jugadoresBBDD.GetRange(1, jugadoresBBDD.Count - 1));
@@ -32,19 +30,21 @@ namespace Biblioteca.Presentadores
 
         private async void NuevaPartida(object sender, EventArgs e)
         {
-            Partida<Truco> partidaNueva = this.manejadorPartidaTruco.NuevaPartida(this.vistaMenuTruco.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
+            Partida<Truco> partidaNueva = this.manejadorPartidasTruco.NuevaPartida(this.vistaMenuTruco.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
             //partida.DatosDeJuegoActualizados += ActualizarDatosBoton;
             partidaNueva.TerminarPartida += EliminarComponentePartida;
             this.vistaMenuTruco.CrearComponentePartida(partidaNueva);
-            this.vistaMenuTruco.AbrirComponentePartida(partidaNueva);
-            this.partidasTrucoActivas.Add(partidaNueva);
+            if (!this.vistaMenuTruco.EsPartidaSimulada)
+            {
+                this.vistaMenuTruco.AbrirComponentePartida(partidaNueva);
+            }
             await partidaNueva.JugarPartida();
         }
 
         private void AbrirComponentePartida(object sender, EventArgs e)
         {
             int idPartida = int.Parse((string)sender);
-            foreach (Partida<Truco> partida in this.partidasTrucoActivas)
+            foreach (Partida<Truco> partida in this.manejadorPartidasTruco.PartidasActivas)
             {
                 if(partida.Id == idPartida)
                 {

@@ -17,10 +17,12 @@ namespace Vista
     public partial class FrmMenuTruco : Form, IVistaMenuTruco
     {
         private readonly PresentadorMenuTruco presentadorMenuTruco;
+        private Dictionary<Partida<Truco>, FrmPartidaTruco> formsPartidas;
         public FrmMenuTruco()
         {
             InitializeComponent();
             this.presentadorMenuTruco = new PresentadorMenuTruco(this);
+            this.formsPartidas = new Dictionary<Partida<Truco>, FrmPartidaTruco>();
         }
 
         public bool EsPartidaSimulada
@@ -36,7 +38,14 @@ namespace Vista
 
         public void AbrirComponentePartida(Partida<Truco> partida)
         {
-            new FrmPartidaTruco(partida).Show();
+            if (!formsPartidas.ContainsKey(partida))
+            {
+                new FrmPartidaTruco(partida).Show();
+            }
+            else
+            {
+                formsPartidas[partida].Show();
+            }
         }
 
         public void CrearComponentePartida(Partida<Truco> partida)

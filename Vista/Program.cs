@@ -19,10 +19,7 @@ namespace Vista
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            PresentadorPrincipal presentadorPrincipal = new PresentadorPrincipal();
-
-            FormPrincipal vistaPrincipal = new FormPrincipal();
-            Application.Run();
+            Application.Run(new FrmPrincipal());
         }
     }
 }

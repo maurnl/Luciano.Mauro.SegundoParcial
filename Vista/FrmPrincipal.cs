@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FormPrincipal : Form
+    public partial class FrmPrincipal : Form
     {
         private PresentadorPrincipal presentadorPrincipal;
         private FrmMenuTruco formMenuTruco;
 
-        public FormPrincipal()
+        public FrmPrincipal()
         {
             InitializeComponent();
         }

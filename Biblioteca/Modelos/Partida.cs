@@ -31,6 +31,14 @@ namespace Entidades.Entidades
             this.juego = new T();
         }
 
+        public int Id
+        {
+            get
+            {
+                return this.id;
+            }
+        }
+
         public Jugador JugadorA
         {
             get
@@ -63,7 +71,7 @@ namespace Entidades.Entidades
 
         public async Task<bool> JugarPartida()
         {
-            await new Task(() =>
+            await Task.Run(() =>
             {
                 IDatosDeJuego datosDeJuego = juego.ObtenerDatosDeJuego();
                 datosDeJuego.Inicializar();

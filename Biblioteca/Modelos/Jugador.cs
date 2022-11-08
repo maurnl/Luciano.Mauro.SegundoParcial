@@ -120,7 +120,7 @@ namespace Entidades.Entidades
                         datosDeJuego.SetSeleccionTruco(this, new Random().Next(0,2) == 0);
                     }
                     datosDeJuego.SetSeleccionJugador(this, indiceRandom);
-                    Thread.Sleep(1500);
+                    Thread.Sleep(100);
                 }
             }
         }

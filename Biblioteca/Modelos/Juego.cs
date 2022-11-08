@@ -2,11 +2,8 @@
 
 namespace Biblioteca.Modelos
 {
-    public class Juego : IJuego
+    public abstract class Juego : IJuego
     {
-        public IDatosDeJuego ObtenerDatosDeJuego()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract IDatosDeJuego ObtenerDatosDeJuego();
     }
 }

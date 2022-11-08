@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using Entidades.Entidades;
 using System.Reflection;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace Entidades.ADO
 {
@@ -16,7 +16,7 @@ namespace Entidades.ADO
 
         static JugadorADO()
         {
-            cadena_conexion = @"Server=DESKTOP-A0OU09N\SQLEXPRESS;Database=Parcial_Db;Trusted_Connection=True;";
+            cadena_conexion = @"Server=DESKTOP-A0OU09N\SQLEXPRESS;Database=Parcial_Db;Trusted_Connection=True;Encrypt=False";
         }
 
         public JugadorADO()

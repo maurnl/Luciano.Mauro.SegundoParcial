@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FormPrincipal
+    partial class FrmPrincipal
     {
         /// <summary>
         ///  Required designer variable.

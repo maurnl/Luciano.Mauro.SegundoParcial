@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Biblioteca.Modelos
 {
     public interface IJuego
     {
+        IDatosDeJuego ObtenerDatosDeJuego();
     }
 }

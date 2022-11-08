@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vista
+namespace Biblioteca.Modelos
 {
-    public interface IVista
+    public class Truco : Juego
     {
-        void Show();
-        void Close();
     }
 }

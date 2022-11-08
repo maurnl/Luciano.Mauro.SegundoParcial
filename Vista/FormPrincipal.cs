@@ -12,30 +12,24 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FormPrincipal : Form, IFormPrincipal
+    public partial class FormPrincipal : Form
     {
-        private IVistaPartidas vistaPartidas;
-        private IVistaJuego vistaJuego;
+        private PresentadorPrincipal presentadorPrincipal;
+        private FrmMenuTruco formMenuTruco;
 
         public FormPrincipal()
         {
             InitializeComponent();
         }
 
-        public FormPrincipal(IVistaPartidas vistaPartidas, IVistaJuego vistaJuego) : this()
+        private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            this.vistaPartidas = vistaPartidas;
-            this.vistaJuego = vistaJuego;
+            this.formMenuTruco = new FrmMenuTruco();
         }
 
-        public void MostrarVistaJuego(IJuego juego)
+        private void btnTruco_Click(object sender, EventArgs e)
         {
-            this.vistaJuego.Show();
-        }
-
-        public void MostrarVistaPartidas()
-        {
-            this.vistaPartidas.Show();
+            this.formMenuTruco.Show();
         }
     }
 }

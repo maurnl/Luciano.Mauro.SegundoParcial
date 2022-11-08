@@ -39,14 +39,6 @@ namespace Vista
             this.partida.DatosDeJuegoActualizados += MostrarCartas;
         }
 
-        public Partida<Truco> Partida
-        {
-            get
-            {
-                return this.partida;
-            }
-        }
-
         private void FrmTruco_Load(object sender, EventArgs e)
         {
             MostrarCartas(null!, (EventArgs)null!);

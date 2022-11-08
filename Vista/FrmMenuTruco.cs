@@ -48,7 +48,6 @@ namespace Vista
             }
         }
 
-
         public void CrearComponentePartida(Partida<Truco> partida)
         {
             Button boton = new Button
@@ -60,15 +59,16 @@ namespace Vista
             this.flowPanelPartidas.Controls.Add(boton);
             boton.Click += (sender, e) => this.ClickeoAbrirPartida?.Invoke(((Button)sender!).Name, e);
         }
+
         public void ActualizarComponentePartida(Partida<Truco> partida)
         {
-            BuscarComponentePorPartida(partida, out int indice);
+            int indice = BuscarComponentePorPartida(partida);
             ActualizarBoton(partida, indice);
         }
 
         public void EliminarComponentePartida(Partida<Truco> partida)
         {
-            BuscarComponentePorPartida(partida, out int indice);
+            int indice = BuscarComponentePorPartida(partida);
             EliminarBoton(indice);
         }
 
@@ -88,10 +88,10 @@ namespace Vista
             this.Invoke(new Action(() => this.flowPanelPartidas.Controls[indiceBoton].Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando la mano {(partida.RondaActual == 3 ? "3" : $"{partida.RondaActual + 1}")} de {partida.Juego.GetType().Name}!"));
         }
 
-        private Button? BuscarComponentePorPartida(Partida<Truco> partida, out int indice)
+        private int BuscarComponentePorPartida(Partida<Truco> partida)
         {
             int cantidadItems = this.flowPanelPartidas.Controls.Count;
-            indice = -1;
+            int indice = -1;
             for (int i = cantidadItems - 1; i >= 0; i--)
             {
                 Control item = this.flowPanelPartidas.Controls[i];
@@ -100,11 +100,11 @@ namespace Vista
                     if (boton.Name == partida.Id.ToString())
                     {
                         indice = i;
-                        return boton;
+                        break;
                     }
                 }
             }
-            return null;
+            return indice;
         }
     }
 }

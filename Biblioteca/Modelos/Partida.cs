@@ -61,19 +61,23 @@ namespace Entidades.Entidades
             }
         }
 
-        public void JugarPartida()
+        public async Task<bool> JugarPartida()
         {
-            IDatosDeJuego datosDeJuego = juego.ObtenerDatosDeJuego();
-            datosDeJuego.Inicializar();
-            while(!datosDeJuego.HayGanador)
+            await new Task(() =>
             {
-                Task turnoJugador = new Task(() => datosDeJuego.JugadorTurnoActual.JugarTurno(juego));
-                turnoJugador.Start();
-                turnoJugador.Wait();
-                datosDeJuego.Actualizar();
-                DatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
-            }
-            TerminarPartida?.Invoke(this, EventArgs.Empty);
+                IDatosDeJuego datosDeJuego = juego.ObtenerDatosDeJuego();
+                datosDeJuego.Inicializar();
+                while (!datosDeJuego.HayGanador)
+                {
+                    Task turnoJugador = new Task(() => datosDeJuego.JugadorTurnoActual.JugarTurno(juego));
+                    turnoJugador.Start();
+                    turnoJugador.Wait();
+                    datosDeJuego.Actualizar();
+                    DatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
+                }
+                TerminarPartida?.Invoke(this, EventArgs.Empty);
+            });
+            return true;
         }
 
         public void SetJugadores(Jugador jugadorA, Jugador jugadorB)

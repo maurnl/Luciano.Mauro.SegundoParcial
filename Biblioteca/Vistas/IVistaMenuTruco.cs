@@ -9,7 +9,8 @@ namespace Biblioteca.Vistas
         public bool EsPartidaSimulada { get; }
 
         public event EventHandler ClickeoNuevaPartida;
-        void CrearComponentePartida(object sender, EventArgs e);
-        void EliminarComponentePartida(object sender, EventArgs e);
+        void CrearComponentePartida(Partida<Truco> partida);
+        void EliminarComponentePartida(Partida<Truco> partida);
+        void AbrirComponentePartida(Partida<Truco> partida);
     }
 }

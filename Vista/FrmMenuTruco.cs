@@ -48,37 +48,63 @@ namespace Vista
             }
         }
 
+
         public void CrearComponentePartida(Partida<Truco> partida)
         {
             Button boton = new Button
             {
                 Size = new Size(200, 200),
-                Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando...",
+                Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan por comenzar a jugar...",
                 Name = $"{partida.Id}"
             };
             this.flowPanelPartidas.Controls.Add(boton);
             boton.Click += (sender, e) => this.ClickeoAbrirPartida?.Invoke(((Button)sender!).Name, e);
         }
+        public void ActualizarComponentePartida(Partida<Truco> partida)
+        {
+            BuscarComponentePorPartida(partida, out int indice);
+            ActualizarBoton(partida, indice);
+        }
 
         public void EliminarComponentePartida(Partida<Truco> partida)
         {
-            int cantidadItems = this.flowPanelPartidas.Controls.Count;
-            for (int i = cantidadItems - 1; i >= 0; i--)
-            {
-                Control item = this.flowPanelPartidas.Controls[i];
-                if(item is Button boton)
-                {
-                    if(boton.Name == partida.Id.ToString())
-                    {
-                        this.Invoke(new Action(() => this.flowPanelPartidas.Controls.RemoveAt(i)));
-                    }
-                }
-            }
+            BuscarComponentePorPartida(partida, out int indice);
+            EliminarBoton(indice);
         }
+
 
         private void btnCrearPartida_Click(object sender, EventArgs e)
         {
             this.ClickeoNuevaPartida?.Invoke(this, e);
+        }
+
+        private void EliminarBoton(int indiceBoton)
+        {
+            this.Invoke(new Action(() => this.flowPanelPartidas.Controls.RemoveAt(indiceBoton)));
+        }
+
+        private void ActualizarBoton(Partida<Truco> partida, int indiceBoton)
+        {
+            this.Invoke(new Action(() => this.flowPanelPartidas.Controls[indiceBoton].Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando la mano {(partida.RondaActual == 3 ? "3" : $"{partida.RondaActual + 1}")} de {partida.Juego.GetType().Name}!"));
+        }
+
+        private Button? BuscarComponentePorPartida(Partida<Truco> partida, out int indice)
+        {
+            int cantidadItems = this.flowPanelPartidas.Controls.Count;
+            indice = -1;
+            for (int i = cantidadItems - 1; i >= 0; i--)
+            {
+                Control item = this.flowPanelPartidas.Controls[i];
+                if (item is Button boton)
+                {
+                    if (boton.Name == partida.Id.ToString())
+                    {
+                        indice = i;
+                        return boton;
+                    }
+                }
+            }
+            return null;
         }
     }
 }

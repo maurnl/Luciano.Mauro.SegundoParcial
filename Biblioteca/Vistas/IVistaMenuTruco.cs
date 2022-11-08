@@ -13,5 +13,6 @@ namespace Biblioteca.Vistas
         void CrearComponentePartida(Partida<Truco> partida);
         void EliminarComponentePartida(Partida<Truco> partida);
         void AbrirComponentePartida(Partida<Truco> partida);
+        void ActualizarComponentePartida(Partida<Truco> partica);
     }
 }

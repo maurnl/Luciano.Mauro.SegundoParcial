@@ -31,7 +31,7 @@ namespace Biblioteca.Presentadores
         private async void NuevaPartida(object sender, EventArgs e)
         {
             Partida<Truco> partidaNueva = this.manejadorPartidasTruco.NuevaPartida(this.vistaMenuTruco.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
-            //partida.DatosDeJuegoActualizados += ActualizarDatosBoton;
+            partidaNueva.DatosDeJuegoActualizados += ActualizarComponentePartida;
             partidaNueva.TerminarPartida += EliminarComponentePartida;
             this.vistaMenuTruco.CrearComponentePartida(partidaNueva);
             if (!this.vistaMenuTruco.EsPartidaSimulada)
@@ -52,6 +52,11 @@ namespace Biblioteca.Presentadores
                     break;
                 }
             }
+        }
+
+        private void ActualizarComponentePartida(object sender, EventArgs e)
+        {
+            this.vistaMenuTruco.ActualizarComponentePartida((Partida<Truco>)sender);
         }
 
         private void EliminarComponentePartida(object sender, EventArgs e)

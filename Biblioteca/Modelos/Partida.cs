@@ -34,7 +34,7 @@ namespace Entidades.Entidades
             this.juego = new T();
             this.fuenteCancelacion = new CancellationTokenSource();
             this.tokenCancelacion = fuenteCancelacion.Token;
-            this.taskPartida = new Task(() => BucleDelJuego(this.tokenCancelacion), this.tokenCancelacion);
+            this.taskPartida = new Task(() =>  BucleDelJuego(this.tokenCancelacion), this.tokenCancelacion);
         }
 
         public Task TareaPartida

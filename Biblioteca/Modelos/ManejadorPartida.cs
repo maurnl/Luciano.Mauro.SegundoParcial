@@ -12,16 +12,12 @@ namespace Biblioteca.Modelos
     {
         private List<Partida<T>> partidasActivas;
         private List<Task> tasksPartidas;
-        private CancellationTokenSource fuenteCancelacion;
-        private CancellationToken tokenCancelacion;
         private Action delegadoCancelacion;
 
         public ManejadorPartida()
         {
             this.partidasActivas = new List<Partida<T>>();
             this.tasksPartidas = new List<Task>();
-            this.fuenteCancelacion = new CancellationTokenSource();
-            this.tokenCancelacion = fuenteCancelacion.Token;
         }
 
         public List<Partida<T>> PartidasActivas

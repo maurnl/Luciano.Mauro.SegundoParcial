@@ -143,7 +143,7 @@ namespace Vista
         protected override void btnCerrar_Click(object sender, EventArgs e)
         {
             this.OnCierreVista?.Invoke(this, EventArgs.Empty);
-            this.Dispose();
+            this.Close();
         }
     }
 

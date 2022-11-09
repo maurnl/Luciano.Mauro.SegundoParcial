@@ -14,8 +14,6 @@ namespace Vista
 {
     public partial class FrmPrincipal : Form
     {
-        private PresentadorPrincipal presentadorPrincipal;
-
         public FrmPrincipal()
         {
             InitializeComponent();

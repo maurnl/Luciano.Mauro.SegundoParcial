@@ -26,6 +26,7 @@ namespace Biblioteca.Presentadores
             this.jugadoresSimulados = new List<Jugador>(jugadoresBBDD.GetRange(1, jugadoresBBDD.Count - 1));
             this.vistaMenuTruco.ClickeoNuevaPartida += NuevaPartida;
             this.vistaMenuTruco.ClickeoAbrirPartida += AbrirComponentePartida;
+            this.vistaMenuTruco.OnCierreVista += LimpiarEventosVista;
         }
 
         private void NuevaPartida(object sender, EventArgs e)
@@ -38,8 +39,7 @@ namespace Biblioteca.Presentadores
             {
                 this.vistaMenuTruco.AbrirComponentePartida(partidaNueva);
             }
-            Task tarea = new Task(partidaNueva.JugarPartida);
-            tarea.Start();
+            partidaNueva.JugarPartida();
         }
 
         private void AbrirComponentePartida(object sender, EventArgs e)
@@ -62,7 +62,20 @@ namespace Biblioteca.Presentadores
 
         private void EliminarComponentePartida(object sender, EventArgs e)
         {
+            Partida<Truco> partida = (Partida<Truco>)sender;
+            partida.NotificarDatosDeJuegoActualizados -= ActualizarComponentePartida;
+            partida.NotificarTerminarPartida -= EliminarComponentePartida;
             this.vistaMenuTruco.EliminarComponentePartida((Partida<Truco>)sender);
+        }
+
+        public void LimpiarEventosVista(object sender, EventArgs e)
+        {
+            foreach (Partida<Truco> partida in this.manejadorPartidasTruco.PartidasActivas)
+            {
+                partida.NotificarDatosDeJuegoActualizados -= ActualizarComponentePartida;
+                partida.NotificarTerminarPartida -= ActualizarComponentePartida;
+            }
+            this.manejadorPartidasTruco.CancelarPartidasEnCurso();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Vista
             }
         }
 
-        public event EventHandler VistaCerrada;
+        public event EventHandler OnCierreVista;
         public event EventHandler ClickeoNuevaPartida;
         public event EventHandler ClickeoAbrirPartida;
 
@@ -124,7 +124,7 @@ namespace Vista
 
         private void FrmMenuTruco_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.VistaCerrada?.Invoke(this, EventArgs.Empty);
+            this.OnCierreVista?.Invoke(this, EventArgs.Empty);
         }
     }
 }

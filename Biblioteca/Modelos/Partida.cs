@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Entidades.Entidades
 {
-    public class Partida<T> where T : IJuego, new()
+    public class Partida<T> where T : Juego, new()
     {
         private static int contador;
         private int id;
@@ -18,9 +18,10 @@ namespace Entidades.Entidades
         private Jugador jugadorB;
         private CancellationToken tokenCancelacion;
         private CancellationTokenSource fuenteCancelacion;
+        private Task taskPartida;
 
-        public event EventHandler TerminarPartida;
-        public event EventHandler DatosDeJuegoActualizados;
+        public event EventHandler NotificarTerminarPartida;
+        public event EventHandler NotificarDatosDeJuegoActualizados;
 
         static Partida()
         {
@@ -32,7 +33,16 @@ namespace Entidades.Entidades
             this.id = contador++;
             this.juego = new T();
             this.fuenteCancelacion = new CancellationTokenSource();
+            this.tokenCancelacion = fuenteCancelacion.Token;
+            this.taskPartida = new Task(() => BucleDelJuego(this.tokenCancelacion), this.tokenCancelacion);
+        }
 
+        public Task TareaPartida
+        {
+            get
+            {
+                return this.taskPartida;
+            }
         }
 
         public CancellationToken TokenCancelacion
@@ -82,30 +92,25 @@ namespace Entidades.Entidades
 
         public void CancelarPartida()
         {
-            this.fuenteCancelacion.Cancel();
-            TerminarPartida?.Invoke(this, EventArgs.Empty);
+            this.fuenteCancelacion.CancelAfter(0);
         }
 
         public void JugarPartida()
         {
-            this.tokenCancelacion = fuenteCancelacion.Token;
-            Task tarea = new Task(() =>
+            this.taskPartida.Start();
+        }
+
+        private void BucleDelJuego(CancellationToken tokenCancelacion)
+        {
+            IDatosDeJuego<Juego> datosDeJuego = juego.ObtenerDatosDeJuego();
+            datosDeJuego.Inicializar();
+            while (!datosDeJuego.HayGanador && !tokenCancelacion.IsCancellationRequested)
             {
-                IDatosDeJuego datosDeJuego = juego.ObtenerDatosDeJuego();
-                datosDeJuego.Inicializar();
-                while (!datosDeJuego.HayGanador)
-                {
-                    if (tokenCancelacion.IsCancellationRequested)
-                    {
-                        break;
-                    }
-                    datosDeJuego.JugadorTurnoActual.JugarTurno(juego);
-                    datosDeJuego.Actualizar();
-                    DatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
-                }
-                TerminarPartida?.Invoke(this, EventArgs.Empty);
-            }, tokenCancelacion);
-            tarea.Start();
+                datosDeJuego.JugadorTurnoActual.JugarTurno(juego);
+                datosDeJuego.Actualizar();
+                NotificarDatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
+            }
+            NotificarTerminarPartida?.Invoke(this, EventArgs.Empty);
         }
 
         public void SetJugadores(Jugador jugadorA, Jugador jugadorB)

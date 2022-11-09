@@ -36,7 +36,7 @@ namespace Vista
             {
                 this.partida.JugadorB.TurnoDeJugador += PedirJugada;
             }
-            this.partida.DatosDeJuegoActualizados += MostrarCartas;
+            this.partida.NotificarDatosDeJuegoActualizados += MostrarCartas;
         }
 
         private void FrmTruco_Load(object sender, EventArgs e)
@@ -113,7 +113,7 @@ namespace Vista
             {
                 this.partida.JugadorA.TurnoDeJugador -= PedirJugada;
                 this.partida.JugadorB.TurnoDeJugador -= PedirJugada;
-                this.partida.DatosDeJuegoActualizados -= MostrarCartas;
+                this.partida.NotificarDatosDeJuegoActualizados -= MostrarCartas;
             }
         }
     }

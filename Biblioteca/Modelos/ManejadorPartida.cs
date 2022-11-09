@@ -11,6 +11,7 @@ namespace Biblioteca.Modelos
     public class ManejadorPartida<T> where T : Juego, new()
     {
         private List<Partida<T>> partidasActivas;
+        private List<Task> tasksPartidas;
         private CancellationTokenSource fuenteCancelacion;
         private CancellationToken tokenCancelacion;
         private Action delegadoCancelacion;
@@ -18,6 +19,7 @@ namespace Biblioteca.Modelos
         public ManejadorPartida()
         {
             this.partidasActivas = new List<Partida<T>>();
+            this.tasksPartidas = new List<Task>();
             this.fuenteCancelacion = new CancellationTokenSource();
             this.tokenCancelacion = fuenteCancelacion.Token;
         }
@@ -30,14 +32,12 @@ namespace Biblioteca.Modelos
             }
         }
 
-        public async void CancelarPartidasEnCurso()
+        public void CancelarPartidasEnCurso()
         {
-            this.tokenCancelacion.Register(delegadoCancelacion);
-            await Task.Run(() =>
+            foreach (Partida<T> partida in this.partidasActivas)
             {
-                this.tokenCancelacion.WaitHandle.WaitOne();
-            });
-            this.fuenteCancelacion.Cancel();
+                partida.CancelarPartida();
+            }
         }
 
         public Partida<T> NuevaPartida(Jugador jugadorA, Jugador jugadorB)
@@ -49,6 +49,7 @@ namespace Biblioteca.Modelos
             Partida<T> partida = new Partida<T>();
             partida.SetJugadores(jugadorA, jugadorB);
             this.partidasActivas.Add(partida);
+            this.tasksPartidas.Add(partida.TareaPartida);
             delegadoCancelacion += () => partida.CancelarPartida();
             return partida;
         }

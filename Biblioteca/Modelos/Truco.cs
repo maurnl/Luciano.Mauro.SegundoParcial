@@ -16,7 +16,7 @@ namespace Biblioteca.Modelos
             this.datosDeJuego = new TrucoDatosDeJuego(GenerarMazo());
         }
 
-        public override IDatosDeJuego ObtenerDatosDeJuego()
+        public override IDatosDeJuego<Truco> ObtenerDatosDeJuego()
         {
             return this.datosDeJuego;
         }

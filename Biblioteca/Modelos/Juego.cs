@@ -2,8 +2,8 @@
 
 namespace Biblioteca.Modelos
 {
-    public abstract class Juego : IJuego
+    public abstract class Juego
     {
-        public abstract IDatosDeJuego ObtenerDatosDeJuego();
+        public abstract IDatosDeJuego<Juego> ObtenerDatosDeJuego();
     }
 }

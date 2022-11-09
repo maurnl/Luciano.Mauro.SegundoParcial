@@ -76,6 +76,7 @@ namespace Entidades.Entidades
                 this.esHumano = value;
             }
         }
+
         public int CantidadVictorias
         {
             get
@@ -88,8 +89,7 @@ namespace Entidades.Entidades
             }
         }
 
-
-        public virtual void JugarTurno(IJuego juego)
+        public virtual void JugarTurno(Juego juego)
         {
             if(juego is Truco)
             {

@@ -33,15 +33,14 @@ namespace Biblioteca.Presentadores
         private void NuevaPartida(object sender, EventArgs e)
         {
             Partida<JanKenPon> partidaNueva = this.manejadorPartidasJankenpon.NuevaPartida(this.vistaMenuJankenpon.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
-            partidaNueva.DatosDeJuegoActualizados += ActualizarComponentePartida;
-            partidaNueva.TerminarPartida += EliminarComponentePartida;
+            partidaNueva.NotificarDatosDeJuegoActualizados += ActualizarComponentePartida;
+            partidaNueva.NotificarTerminarPartida += EliminarComponentePartida;
             this.vistaMenuJankenpon.CrearComponentePartida(partidaNueva);
             if (!this.vistaMenuJankenpon.EsPartidaSimulada)
             {
                 this.vistaMenuJankenpon.AbrirComponentePartida(partidaNueva);
             }
             partidaNueva.JugarPartida();
-
         }
 
         private void AbrirComponentePartida(object sender, EventArgs e)
@@ -65,13 +64,18 @@ namespace Biblioteca.Presentadores
         private void EliminarComponentePartida(object sender, EventArgs e)
         {
             Partida<JanKenPon> partida = (Partida<JanKenPon>)sender;
-            partida.DatosDeJuegoActualizados -= ActualizarComponentePartida;
-            partida.TerminarPartida -= EliminarComponentePartida;
+            partida.NotificarDatosDeJuegoActualizados -= ActualizarComponentePartida;
+            partida.NotificarTerminarPartida -= EliminarComponentePartida;
             this.vistaMenuJankenpon.EliminarComponentePartida(partida);
         }
 
         public void LimpiarEventosVista(object sender, EventArgs e)
         {
+            foreach (Partida<JanKenPon> partida in this.manejadorPartidasJankenpon.PartidasActivas)
+            {
+                partida.NotificarDatosDeJuegoActualizados -= ActualizarComponentePartida;
+                partida.NotificarTerminarPartida -= ActualizarComponentePartida;
+            }
             this.manejadorPartidasJankenpon.CancelarPartidasEnCurso();
         }
     }

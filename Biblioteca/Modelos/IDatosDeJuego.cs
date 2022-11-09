@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace Entidades.Interfaces
 {
-    public interface IDatosDeJuego
+    public interface IDatosDeJuego<out T> where T : Juego
     {
         List<Jugador> Jugadores { get; set; }
         bool HayGanador { get; }

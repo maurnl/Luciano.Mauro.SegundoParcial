@@ -9,14 +9,14 @@ namespace Biblioteca.Modelos
 {
     public class JanKenPon : Juego
     {
-        private IDatosDeJuego datosDeJuego;
+        private JanKenPonDatosDeJuego datosDeJuego;
 
         public JanKenPon()
         {
             this.datosDeJuego = new JanKenPonDatosDeJuego();
         }
 
-        public override IDatosDeJuego ObtenerDatosDeJuego()
+        public override IDatosDeJuego<JanKenPon> ObtenerDatosDeJuego()
         {
             return this.datosDeJuego;
         }

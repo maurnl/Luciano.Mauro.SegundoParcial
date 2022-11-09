@@ -31,8 +31,8 @@ namespace Biblioteca.Presentadores
         private void NuevaPartida(object sender, EventArgs e)
         {
             Partida<Truco> partidaNueva = this.manejadorPartidasTruco.NuevaPartida(this.vistaMenuTruco.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
-            partidaNueva.DatosDeJuegoActualizados += ActualizarComponentePartida;
-            partidaNueva.TerminarPartida += EliminarComponentePartida;
+            partidaNueva.NotificarDatosDeJuegoActualizados += ActualizarComponentePartida;
+            partidaNueva.NotificarTerminarPartida += EliminarComponentePartida;
             this.vistaMenuTruco.CrearComponentePartida(partidaNueva);
             if (!this.vistaMenuTruco.EsPartidaSimulada)
             {

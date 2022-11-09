@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vista", "Vista.csproj", "{D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Biblioteca", "..\Biblioteca\Biblioteca.csproj", "{ED9ACD6F-F2C5-46EE-B995-9711ECCD1486}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcialTest", "..\ParcialTest\ParcialTest.csproj", "{1E16CBC6-91E7-4D75-A013-699D3B52BEC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParcialTest", "..\ParcialTest\ParcialTest.csproj", "{1E16CBC6-91E7-4D75-A013-699D3B52BEC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

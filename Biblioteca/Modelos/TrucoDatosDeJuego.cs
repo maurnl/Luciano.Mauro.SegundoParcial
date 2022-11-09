@@ -1,11 +1,12 @@
-﻿using Entidades.Interfaces;
+﻿using Biblioteca.Modelos;
+using Entidades.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 
 namespace Entidades.Entidades
 {
-    public class TrucoDatosDeJuego : IDatosDeJuego
+    public class TrucoDatosDeJuego : IDatosDeJuego<Truco>
     {
         private static Random random;
         private bool banderaTurnoJugadorB;

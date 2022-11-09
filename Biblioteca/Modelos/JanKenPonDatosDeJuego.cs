@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.Modelos
 {
-    public class JanKenPonDatosDeJuego : IDatosDeJuego
+    public class JanKenPonDatosDeJuego : IDatosDeJuego<JanKenPon>
     {
         private bool hayGanador;
         private List<Jugador> jugadores;
@@ -168,11 +168,11 @@ namespace Biblioteca.Modelos
             }
             if (puntajeJugadorA == 3)
             {
-                Ganador = this.Jugadores[0];
+                //Ganador = this.Jugadores[0];
             }
             else if (puntajeJugadorB == 3)
             {
-                Ganador = this.Jugadores[1];
+                //Ganador = this.Jugadores[1];
             }
         }
 

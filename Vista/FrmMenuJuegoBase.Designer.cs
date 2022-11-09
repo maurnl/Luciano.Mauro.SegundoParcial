@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FrmMenuTruco
+    partial class FrmMenuJuegoBase
     {
         /// <summary>
         /// Required designer variable.
@@ -38,6 +38,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkSimulada = new System.Windows.Forms.CheckBox();
             this.flowPanelPartidas = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -61,6 +62,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowPanelPartidas, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnCerrar, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -154,15 +156,27 @@
             this.flowPanelPartidas.Size = new System.Drawing.Size(620, 474);
             this.flowPanelPartidas.TabIndex = 3;
             // 
-            // FrmMenuTruco
+            // btnCerrar
+            // 
+            this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCerrar.Location = new System.Drawing.Point(764, 3);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(72, 36);
+            this.btnCerrar.TabIndex = 4;
+            this.btnCerrar.Text = "Salir";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // FrmMenuJuegoBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 572);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "FrmMenuTruco";
+            this.Name = "FrmMenuJuegoBase";
             this.Text = "VistaJuego";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMenuTruco_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMenuJuegoBase_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMenuJuego_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -174,15 +188,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnCrearPartida;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox chkSimulada;
-        private System.Windows.Forms.ListBox lstJugadores;
-        private System.Windows.Forms.ListBox lstPartidas;
-        private System.Windows.Forms.FlowLayoutPanel flowPanelPartidas;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        protected System.Windows.Forms.Button btnCrearPartida;
+        protected System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        protected System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        protected System.Windows.Forms.Panel panel1;
+        protected System.Windows.Forms.CheckBox chkSimulada;
+        protected System.Windows.Forms.ListBox lstJugadores;
+        protected System.Windows.Forms.ListBox lstPartidas;
+        protected System.Windows.Forms.FlowLayoutPanel flowPanelPartidas;
+        protected System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }

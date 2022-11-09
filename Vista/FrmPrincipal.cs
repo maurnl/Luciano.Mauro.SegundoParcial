@@ -30,5 +30,10 @@ namespace Vista
         {
             new FrmMenuTruco().Show();
         }
+
+        private void btnJankenpon_Click(object sender, EventArgs e)
+        {
+            new FrmMenuJanKenPon().Show();
+        }
     }
 }

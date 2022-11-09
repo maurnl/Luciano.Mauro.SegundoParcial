@@ -28,7 +28,7 @@ namespace Biblioteca.Presentadores
             this.vistaMenuTruco.ClickeoAbrirPartida += AbrirComponentePartida;
         }
 
-        private async void NuevaPartida(object sender, EventArgs e)
+        private void NuevaPartida(object sender, EventArgs e)
         {
             Partida<Truco> partidaNueva = this.manejadorPartidasTruco.NuevaPartida(this.vistaMenuTruco.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
             partidaNueva.DatosDeJuegoActualizados += ActualizarComponentePartida;
@@ -38,7 +38,8 @@ namespace Biblioteca.Presentadores
             {
                 this.vistaMenuTruco.AbrirComponentePartida(partidaNueva);
             }
-            await partidaNueva.JugarPartida();
+            Task tarea = new Task(partidaNueva.JugarPartida);
+            tarea.Start();
         }
 
         private void AbrirComponentePartida(object sender, EventArgs e)

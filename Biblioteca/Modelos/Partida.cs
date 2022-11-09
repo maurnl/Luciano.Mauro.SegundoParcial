@@ -16,6 +16,8 @@ namespace Entidades.Entidades
         private T juego;
         private Jugador jugadorA;
         private Jugador jugadorB;
+        private CancellationToken tokenCancelacion;
+        private CancellationTokenSource fuenteCancelacion;
 
         public event EventHandler TerminarPartida;
         public event EventHandler DatosDeJuegoActualizados;
@@ -29,8 +31,17 @@ namespace Entidades.Entidades
         {
             this.id = contador++;
             this.juego = new T();
+            this.fuenteCancelacion = new CancellationTokenSource();
+
         }
 
+        public CancellationToken TokenCancelacion
+        {
+            get
+            {
+                return this.tokenCancelacion;
+            }
+        }
         public int Id
         {
             get
@@ -69,23 +80,32 @@ namespace Entidades.Entidades
             }
         }
 
-        public async Task<bool> JugarPartida()
+        public void CancelarPartida()
         {
-            await Task.Run(() =>
+            this.fuenteCancelacion.Cancel();
+            TerminarPartida?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void JugarPartida()
+        {
+            this.tokenCancelacion = fuenteCancelacion.Token;
+            Task tarea = new Task(() =>
             {
                 IDatosDeJuego datosDeJuego = juego.ObtenerDatosDeJuego();
                 datosDeJuego.Inicializar();
                 while (!datosDeJuego.HayGanador)
                 {
-                    Task turnoJugador = new Task(() => datosDeJuego.JugadorTurnoActual.JugarTurno(juego));
-                    turnoJugador.Start();
-                    turnoJugador.Wait();
+                    if (tokenCancelacion.IsCancellationRequested)
+                    {
+                        break;
+                    }
+                    datosDeJuego.JugadorTurnoActual.JugarTurno(juego);
                     datosDeJuego.Actualizar();
                     DatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
                 }
                 TerminarPartida?.Invoke(this, EventArgs.Empty);
-            });
-            return true;
+            }, tokenCancelacion);
+            tarea.Start();
         }
 
         public void SetJugadores(Jugador jugadorA, Jugador jugadorB)

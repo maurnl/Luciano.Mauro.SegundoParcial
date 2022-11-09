@@ -1,6 +1,7 @@
 ﻿using Entidades.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Entidades.Entidades
 {
@@ -31,6 +32,7 @@ namespace Entidades.Entidades
         private List<Carta> cartasEnJuegoJugadorA;
         private List<Carta> cartasEnJuegoJugadorB;
         private List<Carta> cartasJugadorB;
+        private CancellationTokenSource tokenCancelacion;
 
         static TrucoDatosDeJuego()
         {
@@ -58,6 +60,15 @@ namespace Entidades.Entidades
             this.hayTrucoCantado = false;
             this.estadoTruco = EstadoTruco.NoDecidio;
             this.valorDeRonda = 1;
+            this.tokenCancelacion = new CancellationTokenSource();
+        }
+
+        public CancellationToken TokenCancelacion
+        {
+            get
+            {
+                return this.tokenCancelacion.Token;
+            }
         }
 
         public Jugador JugadorTurnoActual
@@ -210,6 +221,11 @@ namespace Entidades.Entidades
             {
                 return this.logPartida;
             }
+        }
+
+        public void CancelarPartida()
+        {
+            this.tokenCancelacion.Cancel();
         }
 
         public void SetSeleccionJugador(Jugador jugador, int seleccion)

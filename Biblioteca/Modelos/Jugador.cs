@@ -91,9 +91,9 @@ namespace Entidades.Entidades
 
         public virtual void JugarTurno(IJuego juego)
         {
-            if(juego is Truco truco)
+            if(juego is Truco)
             {
-                TrucoDatosDeJuego datosDeJuego = (TrucoDatosDeJuego) truco.ObtenerDatosDeJuego();
+                TrucoDatosDeJuego datosDeJuego = (TrucoDatosDeJuego) juego.ObtenerDatosDeJuego();
                 // Jugar en base al tipo de juego...
                 if(this.esHumano)
                 {
@@ -120,8 +120,13 @@ namespace Entidades.Entidades
                         datosDeJuego.SetSeleccionTruco(this, new Random().Next(0,2) == 0);
                     }
                     datosDeJuego.SetSeleccionJugador(this, indiceRandom);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(800);
                 }
+            } else if(juego is JanKenPon)
+            {
+                Thread.Sleep(800);
+                JanKenPonDatosDeJuego datosDeJuego = (JanKenPonDatosDeJuego) juego.ObtenerDatosDeJuego();
+                datosDeJuego.SetSeleccionJugador(this, new Random().Next(0, 3));
             }
         }
     }

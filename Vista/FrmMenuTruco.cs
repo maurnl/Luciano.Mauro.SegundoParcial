@@ -33,6 +33,7 @@ namespace Vista
             }
         }
 
+        public event EventHandler VistaCerrada;
         public event EventHandler ClickeoNuevaPartida;
         public event EventHandler ClickeoAbrirPartida;
 
@@ -80,12 +81,26 @@ namespace Vista
 
         private void EliminarBoton(int indiceBoton)
         {
-            this.Invoke(new Action(() => this.flowPanelPartidas.Controls.RemoveAt(indiceBoton)));
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<int>(EliminarBoton), indiceBoton);
+            }
+            else
+            {
+                this.flowPanelPartidas.Controls.RemoveAt(indiceBoton);
+            }
         }
 
         private void ActualizarBoton(Partida<Truco> partida, int indiceBoton)
         {
-            this.Invoke(new Action(() => this.flowPanelPartidas.Controls[indiceBoton].Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando la mano {(partida.RondaActual == 3 ? "3" : $"{partida.RondaActual + 1}")} de {partida.Juego.GetType().Name}!"));
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<Partida<Truco>, int>(ActualizarBoton), partida, indiceBoton);
+            }
+            else
+            {
+                this.flowPanelPartidas.Controls[indiceBoton].Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando la mano {(partida.RondaActual == 3 ? "3" : $"{partida.RondaActual + 1}")} de {partida.Juego.GetType().Name}!";
+            }
         }
 
         private int BuscarComponentePorPartida(Partida<Truco> partida)
@@ -105,6 +120,11 @@ namespace Vista
                 }
             }
             return indice;
+        }
+
+        private void FrmMenuTruco_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.VistaCerrada?.Invoke(this, EventArgs.Empty);
         }
     }
 }

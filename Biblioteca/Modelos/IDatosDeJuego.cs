@@ -1,6 +1,7 @@
 ﻿using Biblioteca.Modelos;
 using Entidades.Entidades;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Entidades.Interfaces
 {

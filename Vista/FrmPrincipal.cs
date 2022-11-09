@@ -14,6 +14,8 @@ namespace Vista
 {
     public partial class FrmPrincipal : Form
     {
+        FrmMenuTruco formTruco;
+        FrmMenuJanKenPon formJankenpon;
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -21,17 +23,20 @@ namespace Vista
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
+            this.formTruco = new FrmMenuTruco();
+            this.formJankenpon = new FrmMenuJanKenPon();
+
             this.Text = "Eligir sala de juego...";
         }
 
         private void btnTruco_Click(object sender, EventArgs e)
         {
-            new FrmMenuTruco().Show();
+            formTruco.Show();
         }
 
         private void btnJankenpon_Click(object sender, EventArgs e)
         {
-            new FrmMenuJanKenPon().Show();
+            formJankenpon.Show();
         }
     }
 }

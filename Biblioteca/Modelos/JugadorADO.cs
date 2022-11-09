@@ -57,7 +57,7 @@ namespace Entidades.ADO
                 comando = new SqlCommand();
 
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "SELECT * FROM dbo.Jugadores";
+                comando.CommandText = "SELECT id, esHumano, nombre, apellido, partidasTrucoGanadas, partidasTrucoPerdidas, partidasJanKenPonGanadas, partidasJanKenPonPerdidas FROM dbo.Jugadores AS jug INNER JOIN dbo.Estadisticas AS est ON jug.id = est.idJugador";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -71,7 +71,10 @@ namespace Entidades.ADO
                     item.EsHumano = lector.GetBoolean(1);
                     item.Nombre = lector.GetString(2);
                     item.Apellido = lector.GetString(3);
-                    item.CantidadVictorias = lector.GetInt32(4);
+                    item.CantidadVictoriasTruco = lector.GetInt32(4);
+                    item.CantidadDerrotasTruco = lector.GetInt32(5);
+                    item.CantidadVictoriasJanKenPon = lector.GetInt32(6);
+                    item.CantidadDerrotasJanKenPon = lector.GetInt32(7);
 
                     lista.Add(item);
                 }
@@ -111,7 +114,7 @@ namespace Entidades.ADO
                 comando.Parameters.AddWithValue("@esHumano", param.EsHumano);
                 comando.Parameters.AddWithValue("@nombre", param.Nombre);
                 comando.Parameters.AddWithValue("@apellido", param.Apellido);
-                comando.Parameters.AddWithValue("@cantidadVictorias", param.CantidadVictorias);
+                //comando.Parameters.AddWithValue("@cantidadVictorias", param.CantidadVictorias);
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -151,7 +154,7 @@ namespace Entidades.ADO
                 comando.Parameters.AddWithValue("@esHumano", param.EsHumano);
                 comando.Parameters.AddWithValue("@nombre", param.Nombre);
                 comando.Parameters.AddWithValue("@apellido", param.Apellido);
-                comando.Parameters.AddWithValue("@cantidadVictorias", param.CantidadVictorias);
+                //comando.Parameters.AddWithValue("@cantidadVictorias", param.CantidadVictorias);
 
                 string sql = "UPDATE dbo.Jugadores ";
                 sql += "SET esHumano = @esHumano, nombre = @nombre, apellido = @apellido, cantidadVictorias = @cantidadVictorias";

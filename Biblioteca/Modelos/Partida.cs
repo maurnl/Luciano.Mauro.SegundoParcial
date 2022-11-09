@@ -19,6 +19,7 @@ namespace Entidades.Entidades
         private CancellationToken tokenCancelacion;
         private CancellationTokenSource fuenteCancelacion;
         private Task taskPartida;
+        private bool partidaTerminada;
 
         public event EventHandler NotificarTerminarPartida;
         public event EventHandler NotificarDatosDeJuegoActualizados;
@@ -34,6 +35,7 @@ namespace Entidades.Entidades
             this.juego = new T();
             this.fuenteCancelacion = new CancellationTokenSource();
             this.tokenCancelacion = fuenteCancelacion.Token;
+            this.partidaTerminada = false;
             this.taskPartida = new Task(() =>  BucleDelJuego(this.tokenCancelacion), this.tokenCancelacion);
         }
 
@@ -42,6 +44,14 @@ namespace Entidades.Entidades
             get
             {
                 return this.taskPartida;
+            }
+        }
+
+        public bool PartidaTerminada
+        {
+            get
+            {
+                return this.partidaTerminada;
             }
         }
 
@@ -93,11 +103,13 @@ namespace Entidades.Entidades
         public void CancelarPartida()
         {
             this.fuenteCancelacion.CancelAfter(0);
+            while (!this.partidaTerminada);
         }
 
         public void JugarPartida()
         {
             this.taskPartida.Start();
+            this.partidaTerminada = true;
         }
 
         private void BucleDelJuego(CancellationToken tokenCancelacion)

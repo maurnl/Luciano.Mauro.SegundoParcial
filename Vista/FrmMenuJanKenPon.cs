@@ -17,7 +17,7 @@ namespace Vista
 {
     public partial class FrmMenuJanKenPon : FrmMenuJuegoBase, IVistaMenuJanKenPon
     {
-        private PresentadorMenuJanKenPon presentadorMenuTruco;
+        private readonly PresentadorMenuJanKenPon presentadorMenuTruco;
         private Dictionary<Partida<JanKenPon>, FrmPartidaTruco> formsPartidas;
         public FrmMenuJanKenPon()
         {
@@ -103,7 +103,7 @@ namespace Vista
             }
             else
             {
-                if(indiceBoton == -1)
+                if(indiceBoton < 0 || indiceBoton > flowPanelPartidas.Controls.Count)
                 {
                     return;
                 }
@@ -130,20 +130,11 @@ namespace Vista
             return indice;
         }
 
-        protected override void FrmMenuJuego_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        }
-
         protected override void FrmMenuJuegoBase_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-        }
-
-        protected override void btnCerrar_Click(object sender, EventArgs e)
-        {
+            e.Cancel = true;
             this.OnCierreVista?.Invoke(this, EventArgs.Empty);
-            this.Close();
+            this.Hide();
         }
     }
 

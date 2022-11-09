@@ -33,6 +33,10 @@ namespace Biblioteca.Presentadores
         private void NuevaPartida(object sender, EventArgs e)
         {
             Partida<JanKenPon> partidaNueva = this.manejadorPartidasJankenpon.NuevaPartida(this.vistaMenuJankenpon.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
+            if(partidaNueva is null)
+            {
+                return;
+            }
             partidaNueva.NotificarDatosDeJuegoActualizados += ActualizarComponentePartida;
             partidaNueva.NotificarTerminarPartida += EliminarComponentePartida;
             this.vistaMenuJankenpon.CrearComponentePartida(partidaNueva);
@@ -73,8 +77,7 @@ namespace Biblioteca.Presentadores
         {
             foreach (Partida<JanKenPon> partida in this.manejadorPartidasJankenpon.PartidasActivas)
             {
-                partida.NotificarDatosDeJuegoActualizados -= ActualizarComponentePartida;
-                partida.NotificarTerminarPartida -= ActualizarComponentePartida;
+                EliminarComponentePartida(partida, e);
             }
             this.manejadorPartidasJankenpon.CancelarPartidasEnCurso();
         }

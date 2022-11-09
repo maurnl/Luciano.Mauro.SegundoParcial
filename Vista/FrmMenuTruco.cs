@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FrmMenuTruco : Form, IVistaMenuTruco
+    public partial class FrmMenuTruco : FrmMenuJuegoBase, IVistaMenuTruco
     {
         private readonly PresentadorMenuTruco presentadorMenuTruco;
         private Dictionary<Partida<Truco>, FrmPartidaTruco> formsPartidas;
@@ -69,25 +69,26 @@ namespace Vista
 
         public void EliminarComponentePartida(Partida<Truco> partida)
         {
-            int indice = BuscarComponentePorPartida(partida);
-            EliminarBoton(indice);
+            EliminarBoton(partida);
         }
 
 
-        private void btnCrearPartida_Click(object sender, EventArgs e)
-        {
-            this.ClickeoNuevaPartida?.Invoke(this, e);
-        }
 
-        private void EliminarBoton(int indiceBoton)
+
+        private void EliminarBoton(Partida<Truco> partida)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<int>(EliminarBoton), indiceBoton);
+                this.Invoke(new Action<Partida<Truco>>(EliminarBoton), partida);
+
             }
             else
             {
-                this.flowPanelPartidas.Controls.RemoveAt(indiceBoton);
+                int indice = BuscarComponentePorPartida(partida);
+                if (indice != -1)
+                {
+                    base.flowPanelPartidas.Controls.RemoveAt(indice);
+                }
             }
         }
 
@@ -99,6 +100,10 @@ namespace Vista
             }
             else
             {
+                if (indiceBoton < 0 || indiceBoton > flowPanelPartidas.Controls.Count)
+                {
+                    return;
+                }
                 this.flowPanelPartidas.Controls[indiceBoton].Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando la mano {(partida.RondaActual == 3 ? "3" : $"{partida.RondaActual + 1}")} de {partida.Juego.GetType().Name}!";
             }
         }
@@ -122,9 +127,16 @@ namespace Vista
             return indice;
         }
 
-        private void FrmMenuTruco_FormClosed(object sender, FormClosedEventArgs e)
+        protected override void FrmMenuJuegoBase_FormClosing(object sender, FormClosingEventArgs e)
         {
+            e.Cancel = true;
             this.OnCierreVista?.Invoke(this, EventArgs.Empty);
+            this.Hide();
+        }
+
+        protected override void btnCrearPartida_Click(object sender, EventArgs e)
+        {
+            this.ClickeoNuevaPartida?.Invoke(this, e);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Entidades.Entidades;
 using Entidades.Interfaces;
+using Entidades.Serializacion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Biblioteca.Modelos
         private TrucoDatosDeJuego datosDeJuego;
         public Truco()
         {
-            this.datosDeJuego = new TrucoDatosDeJuego(GenerarMazo());
+            this.datosDeJuego = new TrucoDatosDeJuego(new SerializadorJson<List<Carta>>("cartas_truco.json").Deserializar() ?? GenerarMazo());
         }
 
         public override IDatosDeJuego<Truco> ObtenerDatosDeJuego()
@@ -87,6 +88,7 @@ namespace Biblioteca.Modelos
                     auxMazo.Add(cartaNueva);
                 }
             }
+            new SerializadorJson<List<Carta>>("cartas_truco.json").Serializar(auxMazo);
             return auxMazo;
         }
     }

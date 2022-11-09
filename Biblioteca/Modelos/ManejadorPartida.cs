@@ -33,6 +33,7 @@ namespace Biblioteca.Modelos
             {
                 partida.CancelarPartida();
             }
+            Thread.Sleep(500);
         }
 
         public Partida<T> NuevaPartida(Jugador jugadorA, Jugador jugadorB)

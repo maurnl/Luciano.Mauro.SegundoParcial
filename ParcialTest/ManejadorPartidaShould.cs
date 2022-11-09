@@ -2,6 +2,7 @@ using Biblioteca.Modelos;
 using Entidades.Entidades;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace ParcialTest
 {
@@ -71,6 +72,33 @@ namespace ParcialTest
 
             // Then
             Assert.AreEqual(cantidadPartidas, manejadorPartidaTruco.PartidasActivas.Count);
+        }
+
+        [TestMethod]
+        public void CancelarTodasLasPartidasEnCurso()
+        {
+            // Given
+            ManejadorPartida<Truco> manejadorPartidaTruco = new ManejadorPartida<Truco>();
+
+            Jugador jugadorUno = new Jugador("Jugador", "Uno");
+            Jugador jugadorDos = new Jugador("Jugador", "Dos");
+
+            manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
+            //manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
+            //manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
+            //manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
+
+            // When
+            manejadorPartidaTruco.CancelarPartidasEnCurso();
+
+            // Then
+            foreach (Partida<Truco> partida in manejadorPartidaTruco.PartidasActivas)
+            {
+                if (!partida.PartidaTerminada)
+                {
+                    Assert.Fail();
+                }
+            }
         }
     }
 }

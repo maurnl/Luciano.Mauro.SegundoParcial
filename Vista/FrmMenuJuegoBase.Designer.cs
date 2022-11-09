@@ -165,7 +165,6 @@
             this.btnCerrar.TabIndex = 4;
             this.btnCerrar.Text = "Salir";
             this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // FrmMenuJuegoBase
             // 
@@ -176,7 +175,6 @@
             this.Name = "FrmMenuJuegoBase";
             this.Text = "VistaJuego";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMenuJuegoBase_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMenuJuego_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

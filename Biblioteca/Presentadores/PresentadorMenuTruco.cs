@@ -72,8 +72,7 @@ namespace Biblioteca.Presentadores
         {
             foreach (Partida<Truco> partida in this.manejadorPartidasTruco.PartidasActivas)
             {
-                partida.NotificarDatosDeJuegoActualizados -= ActualizarComponentePartida;
-                partida.NotificarTerminarPartida -= ActualizarComponentePartida;
+                EliminarComponentePartida(partida, e);
             }
             this.manejadorPartidasTruco.CancelarPartidasEnCurso();
         }

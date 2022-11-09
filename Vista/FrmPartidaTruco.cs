@@ -75,9 +75,9 @@ namespace Vista
             }
         }
 
-        private void PedirJugada()
+        private void PedirJugada(object sender, EventArgs e)
         {
-            MostrarCartas(null!, (EventArgs)null!);
+            MostrarCartas(sender, e);
             FrmJugarManoTruco formMano = new FrmJugarManoTruco(datosDeJuego);
             if (formMano.ShowDialog() == DialogResult.OK)
             {

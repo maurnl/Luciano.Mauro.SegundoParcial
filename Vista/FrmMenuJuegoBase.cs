@@ -17,21 +17,12 @@ namespace Vista
             InitializeComponent();
         }
 
-        protected virtual void FrmMenuJuego_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        }
-
         protected virtual void btnCrearPartida_Click(object sender, EventArgs e)
         {
 
         }
 
         protected virtual void FrmMenuJuegoBase_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-        protected virtual void btnCerrar_Click(object sender, EventArgs e)
         {
 
         }

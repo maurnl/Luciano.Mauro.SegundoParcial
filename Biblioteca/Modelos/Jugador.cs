@@ -12,7 +12,10 @@ namespace Entidades.Entidades
         private bool esHumano;
         private string nombre;
         private string apellido;
-        private int cantidadVictorias;
+        private int cantidadVictoriasTruco;
+        private int cantidadDerrotasTruco;
+        private int cantidadVictoriasJanKenPon;
+        private int cantidadDerrotasJanKenPon;
 
         public Jugador()
         {
@@ -23,12 +26,14 @@ namespace Entidades.Entidades
         {
             this.nombre = nombre;
             this.apellido = apellido;
-            this.cantidadVictorias = 0;
+            this.cantidadVictoriasTruco = 0;
+            this.cantidadDerrotasTruco = 0;
+            this.cantidadVictoriasJanKenPon = 0;
+            this.cantidadDerrotasJanKenPon = 0;
             this.esHumano = false;
         }
-        public delegate void PedirJugada();
 
-        public event PedirJugada TurnoDeJugador;
+        public event EventHandler TurnoDeJugador;
         public event EventHandler ConfirmarTruco;
 
         public int Id
@@ -77,15 +82,48 @@ namespace Entidades.Entidades
             }
         }
 
-        public int CantidadVictorias
+        public int CantidadVictoriasTruco
         {
             get
             {
-                return this.cantidadVictorias;
+                return this.cantidadVictoriasTruco;
             }
             set
             {
-                this.cantidadVictorias = value;
+                this.cantidadVictoriasTruco = value;
+            }
+        }
+        public int CantidadDerrotasTruco
+        {
+            get
+            {
+                return this.cantidadDerrotasTruco;
+            }
+            set
+            {
+                this.cantidadDerrotasTruco = value;
+            }
+        }
+        public int CantidadVictoriasJanKenPon
+        {
+            get
+            {
+                return this.cantidadVictoriasJanKenPon;
+            }
+            set
+            {
+                this.cantidadVictoriasJanKenPon = value;
+            }
+        }
+        public int CantidadDerrotasJanKenPon
+        {
+            get
+            {
+                return this.cantidadDerrotasJanKenPon;
+            }
+            set
+            {
+                this.cantidadDerrotasJanKenPon = value;
             }
         }
 
@@ -99,7 +137,7 @@ namespace Entidades.Entidades
                 {
                     if (!datosDeJuego.HayGanadorDeRonda)
                     {
-                        TurnoDeJugador?.Invoke();
+                        TurnoDeJugador?.Invoke(this, EventArgs.Empty);
                     }
                     if (datosDeJuego.HayTrucoCantado)
                     {
@@ -115,8 +153,6 @@ namespace Entidades.Entidades
                     }while(datosDeJuego.RondaActual<3&&(datosDeJuego.Jugadores[0] == this ? datosDeJuego.CartasJugadorA[indiceRandom].EstaEnJuego : datosDeJuego.CartasJugadorB[indiceRandom].EstaEnJuego));
                     if (datosDeJuego.HayTrucoCantado)
                     {
-                        //datosDeJuego.SetSeleccionTruco(this, true);
-                        //datosDeJuego.SetSeleccionTruco(this, false);
                         datosDeJuego.SetSeleccionTruco(this, new Random().Next(0,2) == 0);
                     }
                     datosDeJuego.SetSeleccionJugador(this, indiceRandom);
@@ -124,9 +160,17 @@ namespace Entidades.Entidades
                 }
             } else if(juego is JanKenPon)
             {
-                Thread.Sleep(800);
-                JanKenPonDatosDeJuego datosDeJuego = (JanKenPonDatosDeJuego) juego.ObtenerDatosDeJuego();
-                datosDeJuego.SetSeleccionJugador(this, new Random().Next(0, 3));
+                if (this.esHumano)
+                {
+
+                }
+                else
+                {
+                    Thread.Sleep(800);
+                    JanKenPonDatosDeJuego datosDeJuego = (JanKenPonDatosDeJuego) juego.ObtenerDatosDeJuego();
+                    datosDeJuego.SetSeleccionJugador(this, new Random().Next(0, 3));
+
+                }
             }
         }
     }

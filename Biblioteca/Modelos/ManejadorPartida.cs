@@ -12,7 +12,6 @@ namespace Biblioteca.Modelos
     {
         private List<Partida<T>> partidasActivas;
         private List<Task> tasksPartidas;
-        private Action delegadoCancelacion;
 
         public ManejadorPartida()
         {
@@ -46,7 +45,6 @@ namespace Biblioteca.Modelos
             partida.SetJugadores(jugadorA, jugadorB);
             this.partidasActivas.Add(partida);
             this.tasksPartidas.Add(partida.TareaPartida);
-            delegadoCancelacion += () => partida.CancelarPartida();
             return partida;
         }
     }

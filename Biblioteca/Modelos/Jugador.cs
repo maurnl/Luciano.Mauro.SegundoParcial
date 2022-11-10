@@ -1,10 +1,9 @@
-﻿using Biblioteca.Modelos;
-using Entidades.Interfaces;
+﻿using Entidades.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Entidades.Entidades
+namespace Biblioteca.Modelos
 {
     public class Jugador
     {
@@ -26,11 +25,11 @@ namespace Entidades.Entidades
         {
             this.nombre = nombre;
             this.apellido = apellido;
-            this.cantidadVictoriasTruco = 0;
-            this.cantidadDerrotasTruco = 0;
-            this.cantidadVictoriasJanKenPon = 0;
-            this.cantidadDerrotasJanKenPon = 0;
-            this.esHumano = false;
+            cantidadVictoriasTruco = 0;
+            cantidadDerrotasTruco = 0;
+            cantidadVictoriasJanKenPon = 0;
+            cantidadDerrotasJanKenPon = 0;
+            esHumano = false;
         }
 
         public event EventHandler TurnoDeJugador;
@@ -40,11 +39,11 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.id;
+                return id;
             }
             set
             {
-                this.id = value;
+                id = value;
             }
         }
 
@@ -52,33 +51,33 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.nombre;
+                return nombre;
             }
             set
             {
-                this.nombre = value;
+                nombre = value;
             }
         }
         public string Apellido
         {
             get
             {
-                return this.apellido;
+                return apellido;
             }
             set
             {
-                this.apellido = value;
+                apellido = value;
             }
         }
         public bool EsHumano
         {
             get
             {
-                return this.esHumano;
+                return esHumano;
             }
             set
             {
-                this.esHumano = value;
+                esHumano = value;
             }
         }
 
@@ -86,54 +85,54 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.cantidadVictoriasTruco;
+                return cantidadVictoriasTruco;
             }
             set
             {
-                this.cantidadVictoriasTruco = value;
+                cantidadVictoriasTruco = value;
             }
         }
         public int CantidadDerrotasTruco
         {
             get
             {
-                return this.cantidadDerrotasTruco;
+                return cantidadDerrotasTruco;
             }
             set
             {
-                this.cantidadDerrotasTruco = value;
+                cantidadDerrotasTruco = value;
             }
         }
         public int CantidadVictoriasJanKenPon
         {
             get
             {
-                return this.cantidadVictoriasJanKenPon;
+                return cantidadVictoriasJanKenPon;
             }
             set
             {
-                this.cantidadVictoriasJanKenPon = value;
+                cantidadVictoriasJanKenPon = value;
             }
         }
         public int CantidadDerrotasJanKenPon
         {
             get
             {
-                return this.cantidadDerrotasJanKenPon;
+                return cantidadDerrotasJanKenPon;
             }
             set
             {
-                this.cantidadDerrotasJanKenPon = value;
+                cantidadDerrotasJanKenPon = value;
             }
         }
 
         public virtual void JugarTurno(Juego juego)
         {
-            if(juego is Truco)
+            if (juego is Truco)
             {
-                TrucoDatosDeJuego datosDeJuego = (TrucoDatosDeJuego) juego.ObtenerDatosDeJuego();
+                TrucoDatosDeJuego datosDeJuego = (TrucoDatosDeJuego)juego.ObtenerDatosDeJuego();
                 // Jugar en base al tipo de juego...
-                if(this.esHumano)
+                if (esHumano)
                 {
                     if (!datosDeJuego.HayGanadorDeRonda)
                     {
@@ -150,24 +149,25 @@ namespace Entidades.Entidades
                     do
                     {
                         indiceRandom = new Random().Next(0, 3);
-                    }while(datosDeJuego.RondaActual<3&&(datosDeJuego.Jugadores[0] == this ? datosDeJuego.CartasJugadorA[indiceRandom].EstaEnJuego : datosDeJuego.CartasJugadorB[indiceRandom].EstaEnJuego));
+                    } while (datosDeJuego.RondaActual < 3 && (datosDeJuego.Jugadores[0] == this ? datosDeJuego.CartasJugadorA[indiceRandom].EstaEnJuego : datosDeJuego.CartasJugadorB[indiceRandom].EstaEnJuego));
                     if (datosDeJuego.HayTrucoCantado)
                     {
-                        datosDeJuego.SetSeleccionTruco(this, new Random().Next(0,2) == 0);
+                        datosDeJuego.SetSeleccionTruco(this, new Random().Next(0, 2) == 0);
                     }
                     datosDeJuego.SetSeleccionJugador(this, indiceRandom);
                     Thread.Sleep(800);
                 }
-            } else if(juego is JanKenPon)
+            }
+            else if (juego is JanKenPon)
             {
-                if (this.esHumano)
+                if (esHumano)
                 {
 
                 }
                 else
                 {
                     Thread.Sleep(800);
-                    JanKenPonDatosDeJuego datosDeJuego = (JanKenPonDatosDeJuego) juego.ObtenerDatosDeJuego();
+                    JanKenPonDatosDeJuego datosDeJuego = (JanKenPonDatosDeJuego)juego.ObtenerDatosDeJuego();
                     datosDeJuego.SetSeleccionJugador(this, new Random().Next(0, 3));
 
                 }

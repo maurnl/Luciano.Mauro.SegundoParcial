@@ -1,13 +1,11 @@
-﻿using Biblioteca.Modelos;
-using Entidades.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Entidades.Entidades
+namespace Biblioteca.Modelos
 {
     public class Partida<T> where T : Juego, new()
     {
@@ -26,24 +24,24 @@ namespace Entidades.Entidades
 
         static Partida()
         {
-            Partida<T>.contador = 0;
+            contador = 0;
         }
 
         public Partida()
         {
-            this.id = contador++;
-            this.juego = new T();
-            this.fuenteCancelacion = new CancellationTokenSource();
-            this.tokenCancelacion = fuenteCancelacion.Token;
-            this.partidaTerminada = false;
-            this.taskPartida = new Task(() =>  BucleDelJuego(this.tokenCancelacion), this.tokenCancelacion);
+            id = contador++;
+            juego = new T();
+            fuenteCancelacion = new CancellationTokenSource();
+            tokenCancelacion = fuenteCancelacion.Token;
+            partidaTerminada = false;
+            taskPartida = new Task(() => BucleDelJuego(tokenCancelacion), tokenCancelacion);
         }
 
         public Task TareaPartida
         {
             get
             {
-                return this.taskPartida;
+                return taskPartida;
             }
         }
 
@@ -51,7 +49,7 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.partidaTerminada;
+                return partidaTerminada;
             }
         }
 
@@ -59,14 +57,14 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.tokenCancelacion;
+                return tokenCancelacion;
             }
         }
         public int Id
         {
             get
             {
-                return this.id;
+                return id;
             }
         }
 
@@ -74,21 +72,21 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.jugadorA;
+                return jugadorA;
             }
         }
         public Jugador JugadorB
         {
             get
             {
-                return this.jugadorB;
+                return jugadorB;
             }
         }
         public int RondaActual
         {
             get
             {
-                return this.juego.ObtenerDatosDeJuego().RondaActual;
+                return juego.ObtenerDatosDeJuego().RondaActual;
             }
         }
 
@@ -96,20 +94,20 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.juego;
+                return juego;
             }
         }
 
         public void CancelarPartida()
         {
-            this.fuenteCancelacion.CancelAfter(0);
-            while (!this.partidaTerminada);
+            fuenteCancelacion.CancelAfter(0);
+            while (!partidaTerminada) ;
         }
 
         public void JugarPartida()
         {
-            this.taskPartida.Start();
-            this.partidaTerminada = true;
+            taskPartida.Start();
+            partidaTerminada = true;
         }
 
         private void BucleDelJuego(CancellationToken tokenCancelacion)
@@ -129,13 +127,13 @@ namespace Entidades.Entidades
         {
             this.jugadorA = jugadorA;
             this.jugadorB = jugadorB;
-            this.juego.ObtenerDatosDeJuego().Jugadores = new List<Jugador> { jugadorA, jugadorB };
+            juego.ObtenerDatosDeJuego().Jugadores = new List<Jugador> { jugadorA, jugadorB };
         }
 
         public override bool Equals(object obj)
         {
             Partida<T> partida = obj as Partida<T>;
-            return partida is not null && this.id == partida.id;
+            return partida is not null && id == partida.id;
         }
 
     }

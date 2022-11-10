@@ -1,6 +1,4 @@
-﻿using Entidades.Entidades;
-using Entidades.Interfaces;
-using Entidades.Serializacion;
+﻿using Entidades.Serializacion;
 using System;
 using System.Collections.Generic;
 using System.Linq;

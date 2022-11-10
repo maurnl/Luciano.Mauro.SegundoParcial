@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entidades.Entidades
+namespace Biblioteca.Modelos
 {
     public class Carta
     {
@@ -15,7 +15,7 @@ namespace Entidades.Entidades
 
         public Carta(int numero, Palo palo, int valorDeJuego)
         {
-            this.estaEnJuego = false;
+            estaEnJuego = false;
             this.numero = numero;
             this.palo = palo;
             this.valorDeJuego = valorDeJuego;
@@ -25,7 +25,7 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.numero;
+                return numero;
             }
         }
 
@@ -33,19 +33,19 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.palo;
+                return palo;
             }
         }
-        
+
         public bool EstaEnJuego
         {
             get
             {
-                return this.estaEnJuego;
+                return estaEnJuego;
             }
             set
             {
-                this.estaEnJuego = value;
+                estaEnJuego = value;
             }
         }
 
@@ -56,7 +56,7 @@ namespace Entidades.Entidades
 
         public override string ToString()
         {
-            return $"{this.numero} de {this.palo}";
+            return $"{numero} de {palo}";
         }
     }
 }

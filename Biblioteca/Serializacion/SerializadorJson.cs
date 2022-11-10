@@ -7,7 +7,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Entidades.Serializacion
+namespace Biblioteca.Serializacion
 {
     public class SerializadorJson<T> : ISerializador<T> where T : class, new()
     {
@@ -48,7 +48,7 @@ namespace Entidades.Serializacion
                 using (writer = new StreamWriter(path))
                 {
 
-                    string json = JsonSerializer.Serialize<T>(objeto);
+                    string json = JsonSerializer.Serialize(objeto);
 
                     writer.Write(json);
                     retorno = true;

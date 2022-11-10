@@ -1,10 +1,8 @@
-﻿using Biblioteca.Modelos;
-using Entidades.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Entidades.Entidades
+namespace Biblioteca.Modelos
 {
     public class TrucoDatosDeJuego : IDatosDeJuego<Truco>
     {
@@ -37,38 +35,38 @@ namespace Entidades.Entidades
 
         static TrucoDatosDeJuego()
         {
-            TrucoDatosDeJuego.random = new Random();
+            random = new Random();
         }
 
         public TrucoDatosDeJuego(List<Carta> mazo)
         {
-            this.logPartida = "";
-            this.cartasQueSalieron = new List<Carta>();
+            logPartida = "";
+            cartasQueSalieron = new List<Carta>();
             this.mazo = mazo;
-            this.contadorTurnos = 0;
-            this.rondaActual = 0;
-            this.rondasGanadasJugadorA = 0;
-            this.rondasGanadasJugadorB = 0;
-            this.puntajeJugadorA = 0;
-            this.puntajeJugadorB = 0;
-            this.hayGanador = false;
-            this.cartasJugadorA = new List<Carta>();
-            this.cartasJugadorB = new List<Carta>();
-            this.cartasEnJuegoJugadorA = new List<Carta>();
-            this.cartasEnJuegoJugadorB = new List<Carta>();
-            this.banderaTurnoJugadorB = true;
-            this.hayGanadorDeRonda = false;
-            this.hayTrucoCantado = false;
-            this.estadoTruco = EstadoTruco.NoDecidio;
-            this.valorDeRonda = 1;
-            this.tokenCancelacion = new CancellationTokenSource();
+            contadorTurnos = 0;
+            rondaActual = 0;
+            rondasGanadasJugadorA = 0;
+            rondasGanadasJugadorB = 0;
+            puntajeJugadorA = 0;
+            puntajeJugadorB = 0;
+            hayGanador = false;
+            cartasJugadorA = new List<Carta>();
+            cartasJugadorB = new List<Carta>();
+            cartasEnJuegoJugadorA = new List<Carta>();
+            cartasEnJuegoJugadorB = new List<Carta>();
+            banderaTurnoJugadorB = true;
+            hayGanadorDeRonda = false;
+            hayTrucoCantado = false;
+            estadoTruco = EstadoTruco.NoDecidio;
+            valorDeRonda = 1;
+            tokenCancelacion = new CancellationTokenSource();
         }
 
         public CancellationToken TokenCancelacion
         {
             get
             {
-                return this.tokenCancelacion.Token;
+                return tokenCancelacion.Token;
             }
         }
 
@@ -76,7 +74,7 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.jugadorTurnoActual;
+                return jugadorTurnoActual;
             }
         }
 
@@ -84,7 +82,7 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.cartasJugadorA;
+                return cartasJugadorA;
             }
         }
 
@@ -92,7 +90,7 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.cartasEnJuegoJugadorA;
+                return cartasEnJuegoJugadorA;
             }
         }
 
@@ -100,7 +98,7 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.cartasJugadorB;
+                return cartasJugadorB;
             }
         }
 
@@ -108,7 +106,7 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.cartasEnJuegoJugadorB;
+                return cartasEnJuegoJugadorB;
             }
         }
 
@@ -116,11 +114,11 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.seleccionJugadorA;
+                return seleccionJugadorA;
             }
             set
             {
-                this.seleccionJugadorA = value;
+                seleccionJugadorA = value;
             }
         }
 
@@ -128,11 +126,11 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.seleccionJugadorB;
+                return seleccionJugadorB;
             }
             set
             {
-                this.seleccionJugadorB = value;
+                seleccionJugadorB = value;
             }
         }
 
@@ -140,11 +138,11 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.hayGanador;
+                return hayGanador;
             }
             set
             {
-                this.hayGanador = true;
+                hayGanador = true;
             }
         }
 
@@ -152,7 +150,7 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.hayGanadorDeRonda;
+                return hayGanadorDeRonda;
             }
         }
 
@@ -160,12 +158,12 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.ganador;
+                return ganador;
             }
             set
             {
-                this.ganador = value;
-                this.hayGanador = true;
+                ganador = value;
+                hayGanador = true;
             }
         }
 
@@ -173,11 +171,11 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.hayTrucoCantado;
+                return hayTrucoCantado;
             }
             set
             {
-                this.hayTrucoCantado = value;
+                hayTrucoCantado = value;
             }
         }
 
@@ -185,19 +183,19 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.jugadores;
+                return jugadores;
             }
             set
             {
-                this.jugadores = value;
-                this.jugadorTurnoActual = this.jugadores[0];
+                jugadores = value;
+                jugadorTurnoActual = jugadores[0];
             }
         }
         public int PuntajeJugadorA
         {
             get
             {
-                return this.puntajeJugadorA;
+                return puntajeJugadorA;
             }
         }
 
@@ -205,14 +203,14 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.puntajeJugadorB;
+                return puntajeJugadorB;
             }
         }
         public int RondaActual
         {
             get
             {
-                return this.rondaActual;
+                return rondaActual;
             }
         }
 
@@ -220,13 +218,13 @@ namespace Entidades.Entidades
         {
             get
             {
-                return this.logPartida;
+                return logPartida;
             }
         }
 
         public void CancelarPartida()
         {
-            this.tokenCancelacion.Cancel();
+            tokenCancelacion.Cancel();
         }
 
         public void SetSeleccionJugador(Jugador jugador, int seleccion)
@@ -235,26 +233,26 @@ namespace Entidades.Entidades
             {
                 return;
             }
-            if (jugador.Equals(this.jugadores[0]))
+            if (jugador.Equals(jugadores[0]))
             {
-                this.seleccionJugadorA = seleccion;
+                seleccionJugadorA = seleccion;
             }
-            else if (jugador.Equals(this.jugadores[1]))
+            else if (jugador.Equals(jugadores[1]))
             {
-                this.seleccionJugadorB = seleccion;
+                seleccionJugadorB = seleccion;
             }
         }
 
         public void SetSeleccionTruco(Jugador jugador, bool seleccion)
         {
-            this.estadoTruco = seleccion ? EstadoTruco.Querido : EstadoTruco.NoQuerido;
+            estadoTruco = seleccion ? EstadoTruco.Querido : EstadoTruco.NoQuerido;
             if (estadoTruco == EstadoTruco.NoQuerido)
             {
-                if (jugador.Equals(this.jugadores[0]))
+                if (jugador.Equals(jugadores[0]))
                 {
                     rondasGanadasJugadorB++;
                 }
-                else if (jugador.Equals(this.jugadores[1]))
+                else if (jugador.Equals(jugadores[1]))
                 {
                     rondasGanadasJugadorA++;
                 }
@@ -271,9 +269,9 @@ namespace Entidades.Entidades
                 do
                 {
                     indiceRandom = random.Next(0, mazo.Count);
-                    cartaRandom = this.mazo[indiceRandom];
+                    cartaRandom = mazo[indiceRandom];
                 } while (cartasQueSalieron.Contains(cartaRandom));
-                this.cartasQueSalieron.Add(cartaRandom);
+                cartasQueSalieron.Add(cartaRandom);
                 cartasRetorno.Add(cartaRandom);
             }
             return cartasRetorno;
@@ -290,18 +288,18 @@ namespace Entidades.Entidades
             {
                 carta.EstaEnJuego = false;
             }
-            this.cartasQueSalieron.Clear();
-            this.cartasJugadorA.Clear();
-            this.cartasJugadorB.Clear();
-            this.cartasEnJuegoJugadorA.Clear();
-            this.cartasEnJuegoJugadorB.Clear();
-            this.cartasJugadorA = ObtenerCartasAleatorias();
-            this.cartasJugadorB = ObtenerCartasAleatorias();
-            this.hayGanadorDeRonda = false;
-            this.jugadorTurnoActual = this.jugadores[0];
-            this.hayTrucoCantado = false;
-            this.valorDeRonda = 1;
-            this.estadoTruco = EstadoTruco.NoDecidio;
+            cartasQueSalieron.Clear();
+            cartasJugadorA.Clear();
+            cartasJugadorB.Clear();
+            cartasEnJuegoJugadorA.Clear();
+            cartasEnJuegoJugadorB.Clear();
+            cartasJugadorA = ObtenerCartasAleatorias();
+            cartasJugadorB = ObtenerCartasAleatorias();
+            hayGanadorDeRonda = false;
+            jugadorTurnoActual = jugadores[0];
+            hayTrucoCantado = false;
+            valorDeRonda = 1;
+            estadoTruco = EstadoTruco.NoDecidio;
         }
 
         public void Actualizar()
@@ -318,24 +316,24 @@ namespace Entidades.Entidades
                 return;
             }
             banderaTurnoJugadorB = true;
-            this.logPartida = "";
+            logPartida = "";
             // Manejo en numero de ronda en base a los turnos jugados
-            this.jugadorTurnoActual = jugadorTurnoActual == jugadores[0] ? jugadores[1] : jugadores[0];
+            jugadorTurnoActual = jugadorTurnoActual == jugadores[0] ? jugadores[1] : jugadores[0];
             Carta cartaJugadorA = cartasJugadorA[seleccionJugadorA];
             Carta cartaJugadorB = cartasJugadorB[seleccionJugadorB];
             if (hayTrucoCantado)
             {
-                this.logPartida += "Se canto Truco!!\n";
+                logPartida += "Se canto Truco!!\n";
                 if (estadoTruco == EstadoTruco.Querido)
                 {
-                    this.logPartida += "Se quiso el Truco!!\n";
+                    logPartida += "Se quiso el Truco!!\n";
                     valorDeRonda += 1;
                     estadoTruco = EstadoTruco.NoDecidio;
                 }
                 else if (estadoTruco == EstadoTruco.NoQuerido)
                 {
                     hayGanadorDeRonda = true;
-                    this.logPartida += "No se quiso el Truco!!\n";
+                    logPartida += "No se quiso el Truco!!\n";
                     estadoTruco = EstadoTruco.NoDecidio;
                     rondaActual = 3;
                     ChequearGanadorDeRonda();
@@ -383,46 +381,46 @@ namespace Entidades.Entidades
             {
                 if (jugadorTurnoActual == jugadores[0])
                 {
-                    this.cartasEnJuegoJugadorB.Add(cartaJugadorB);
-                    this.cartasJugadorB[SeleccionJugadorB].EstaEnJuego = true;
+                    cartasEnJuegoJugadorB.Add(cartaJugadorB);
+                    cartasJugadorB[SeleccionJugadorB].EstaEnJuego = true;
                 }
                 else
                 {
-                    this.cartasEnJuegoJugadorA.Add(cartaJugadorA);
-                    this.cartasJugadorA[SeleccionJugadorA].EstaEnJuego = true;
+                    cartasEnJuegoJugadorA.Add(cartaJugadorA);
+                    cartasJugadorA[SeleccionJugadorA].EstaEnJuego = true;
                 }
             }
             if (contadorTurnos < 1)
             {
-                this.contadorTurnos++;
+                contadorTurnos++;
                 return;
             }
             contadorTurnos = 0;
             // Cambio estado de las cartas en la mano
             // Evaluar quien gano la ronda...   
             rondaActual++;
-            this.logPartida += $"Ronda: {rondaActual}.\n";
+            logPartida += $"Ronda: {rondaActual}.\n";
             foreach (Jugador jugador in jugadores)
             {
-                this.logPartida += $"{(jugador.EsHumano ? "Elegiste" : $"{jugador.Nombre} eligio")} el {(jugador == jugadores[0] ? cartaJugadorA : cartaJugadorB)}.\n";
+                logPartida += $"{(jugador.EsHumano ? "Elegiste" : $"{jugador.Nombre} eligio")} el {(jugador == jugadores[0] ? cartaJugadorA : cartaJugadorB)}.\n";
             }
             if (cartaJugadorA - cartaJugadorB > 0)
             {
                 // Gana jugador A
                 rondasGanadasJugadorA++;
                 jugadorTurnoActual = jugadores[0];
-                this.logPartida += $"{jugadores[0].Nombre} mato al {cartaJugadorB} con su {cartaJugadorA}.\n";
+                logPartida += $"{jugadores[0].Nombre} mato al {cartaJugadorB} con su {cartaJugadorA}.\n";
             }
             else if (cartaJugadorB - cartaJugadorA > 0)
             {
                 // Gana jugador B
                 rondasGanadasJugadorB++;
                 jugadorTurnoActual = jugadores[1];
-                this.logPartida += $"{jugadores[1].Nombre} mato al {cartaJugadorA} con su {cartaJugadorB}.\n";
+                logPartida += $"{jugadores[1].Nombre} mato al {cartaJugadorA} con su {cartaJugadorB}.\n";
             }
             else
             {
-                this.logPartida += "Empate!\n";
+                logPartida += "Empate!\n";
             }
 
             if (rondaActual == 1)
@@ -445,15 +443,15 @@ namespace Entidades.Entidades
 
         private void ChequearGanadorDeRonda()
         {
-            this.hayGanadorDeRonda = true;
+            hayGanadorDeRonda = true;
             if (rondasGanadasJugadorA > rondasGanadasJugadorB)
             {
-                this.logPartida += $"{jugadores[0].Nombre} gano la ronda. Mezclando el mazo...\n";
+                logPartida += $"{jugadores[0].Nombre} gano la ronda. Mezclando el mazo...\n";
                 puntajeJugadorA += valorDeRonda;
             }
             else
             {
-                this.logPartida += $"{jugadores[1].Nombre} gano la ronda. Mezclando el mazo...\n";
+                logPartida += $"{jugadores[1].Nombre} gano la ronda. Mezclando el mazo...\n";
                 puntajeJugadorB += valorDeRonda;
             }
             if (puntajeJugadorA == 4 || puntajeJugadorB == 4)

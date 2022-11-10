@@ -1,6 +1,4 @@
-﻿using Entidades.Interfaces;
-
-namespace Biblioteca.Modelos
+﻿namespace Biblioteca.Modelos
 {
     public abstract class Juego
     {

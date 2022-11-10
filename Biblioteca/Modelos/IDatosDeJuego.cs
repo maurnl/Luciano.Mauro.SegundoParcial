@@ -1,9 +1,7 @@
-﻿using Biblioteca.Modelos;
-using Entidades.Entidades;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 
-namespace Entidades.Interfaces
+namespace Biblioteca.Modelos
 {
     public interface IDatosDeJuego<out T> where T : Juego
     {

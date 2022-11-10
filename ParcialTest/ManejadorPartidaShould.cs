@@ -1,5 +1,4 @@
 using Biblioteca.Modelos;
-using Entidades.Entidades;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading;

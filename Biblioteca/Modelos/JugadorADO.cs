@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Entidades.Entidades;
 using System.Reflection;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace Entidades.ADO
+namespace Biblioteca.Modelos
 {
     public class JugadorADO
     {

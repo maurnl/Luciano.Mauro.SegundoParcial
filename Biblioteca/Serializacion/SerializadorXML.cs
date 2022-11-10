@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entidades.Serializacion
+namespace Biblioteca.Serializacion
 {
     public class SerializadorXML<T> : ISerializador<T> where T : class, new()
     {

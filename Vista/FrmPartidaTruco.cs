@@ -41,11 +41,12 @@ namespace Vista
 
         private void FrmTruco_Load(object sender, EventArgs e)
         {
-            MostrarCartas(null!, (EventArgs)null!);
+            this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo")!;
             this.label1.Text = "";
+            //MostrarCartas(null!, (EventArgs)null!);
         }
 
-        private void MostrarCartas(object sender, EventArgs e)
+        private void MostrarCartas(object? sender, EventArgs e)
         {
             if (InvokeRequired)
             {
@@ -75,9 +76,9 @@ namespace Vista
             }
         }
 
-        private void PedirJugada(object sender, EventArgs e)
+        private void PedirJugada(object? sender, EventArgs e)
         {
-            MostrarCartas(sender, e);
+            MostrarCartas(sender!, e);
             FrmJugarManoTruco formMano = new FrmJugarManoTruco(datosDeJuego);
             if (formMano.ShowDialog() == DialogResult.OK)
             {
@@ -91,9 +92,9 @@ namespace Vista
             {
                 PictureBox pb = new PictureBox
                 {
-                    BackgroundImage = (Image)Resources.ResourceManager.GetObject($"{carta.Numero}de{carta.Palo.ToString().ToLower()}")!,
+                    BackgroundImage = datosDeJuego.Jugadores[0].EsHumano && (cartas == datosDeJuego.CartasJugadorB || cartas == datosDeJuego.CartasEnJuegoJugadorB) && !carta.EstaEnJuego ? (Image)Resources.ResourceManager.GetObject("reverso")! : (Image)Resources.ResourceManager.GetObject($"{carta.Numero}de{carta.Palo.ToString().ToLower()}")!,
                     BackgroundImageLayout = ImageLayout.Stretch,
-                    Size = new Size(70, 145)
+                    Size = new Size(90, 175)
                 };
                 panel.Controls.Add(pb);
                 if (carta.EstaEnJuego && (panel == panelManoJ1 || panel == panelManoJ2))

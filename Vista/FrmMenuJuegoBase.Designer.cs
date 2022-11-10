@@ -125,9 +125,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(106, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 15);
+            this.label2.Size = new System.Drawing.Size(49, 15);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Partidas activas";
+            this.label2.Text = "Partidas";
             // 
             // panel1
             // 

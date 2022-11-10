@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using Biblioteca.Modelos;
 
-namespace Biblioteca.Modelos
+namespace Biblioteca.ADO
 {
     public class JugadorADO
     {

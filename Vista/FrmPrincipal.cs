@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Modelos;
 using Biblioteca.Presentadores;
+using Biblioteca.Serializacion;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,18 +25,29 @@ namespace Vista
             this.formJankenpon = new FrmMenuJanKenPon();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var createParams = base.CreateParams;
+                createParams.ExStyle |= 0x02000000;    // Turn on WS_EX_COMPOSITED
+                return createParams;
+            }
+        }
+
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-
+            // Agregar creacion de archivo config.txt
             this.btnJankenpon.Enabled = false;
             this.btnTruco.Enabled = false;
             this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo_principal")!;
-            this.btnTruco.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_truco")!;
+            this.btnTruco.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_truco_disabled")!;
             this.btnTruco.BackgroundImageLayout = ImageLayout.Stretch;
             this.BackgroundImageLayout = ImageLayout.Stretch;
             this.lblDescripcion.BackColor = Color.FromArgb(50, 100, 100, 100);
             this.lblBienvenido.BackColor = Color.FromArgb(50, 100, 100, 100);
             this.label1.BackColor = Color.FromArgb(50, 100, 100, 100);
+            this.btnTruco.ForeColor = Color.FromArgb(50, 100, 100, 100);
             this.Text = "Eligir sala de juego...";
             this.lblBienvenido.Text = "Bienvenido!";
             this.lblDescripcion.Text = "";
@@ -55,12 +67,14 @@ namespace Vista
         {
             if(this.txtNombre.Text == "")
             {
+                this.btnTruco.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_truco_disabled")!;
                 this.btnJankenpon.Enabled = false;
                 this.btnTruco.Enabled = false;
                 this.lblBienvenido.Text = "Bienvenido!";
             }
             else
             {
+                this.btnTruco.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_truco")!;
                 this.lblBienvenido.Text = $"Bienvenido, {this.txtNombre.Text}!";
                 this.btnJankenpon.Enabled = true;
                 this.btnTruco.Enabled = true;

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vista.Properties;
 
 namespace Vista
 {
@@ -15,6 +16,16 @@ namespace Vista
         public FrmMenuJuegoBase()
         {
             InitializeComponent();
+
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var createParams = base.CreateParams;
+                createParams.ExStyle |= 0x02000000;    // Turn on WS_EX_COMPOSITED
+                return createParams;
+            }
         }
 
         protected virtual void btnCrearPartida_Click(object sender, EventArgs e)

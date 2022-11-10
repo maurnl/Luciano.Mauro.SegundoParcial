@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vista.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Vista
 {
@@ -17,6 +18,16 @@ namespace Vista
     {
         private TrucoDatosDeJuego datosDeJuego;
         private Partida<Truco> partida;
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var createParams = base.CreateParams;
+                createParams.ExStyle |= 0x02000000;    // Turn on WS_EX_COMPOSITED
+                return createParams;
+            }
+        }
 
         public FrmPartidaTruco()
         {
@@ -41,8 +52,8 @@ namespace Vista
         private void FrmTruco_Load(object sender, EventArgs e)
         {
             this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo")!;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
             this.label1.Text = "";
-            //MostrarCartas(null!, (EventArgs)null!);
         }
 
         private void MostrarCartas(object? sender, EventArgs e)

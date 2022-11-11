@@ -20,6 +20,7 @@ namespace Biblioteca.Modelos
         private int contadorTurnos;
         private bool hayGanadorDeRonda;
         private Jugador jugadorTurnoActual;
+        private string logPartida;
 
         public JanKenPonDatosDeJuego()
         {
@@ -29,6 +30,7 @@ namespace Biblioteca.Modelos
             this.puntajeJugadorB = 0;
             this.hayGanador = false;
             this.hayGanadorDeRonda = false;
+            this.logPartida = "";
         }
 
         public Jugador JugadorTurnoActual
@@ -97,6 +99,7 @@ namespace Biblioteca.Modelos
                 this.jugadorTurnoActual = this.jugadores[0];
             }
         }
+
         public int PuntajeJugadorA
         {
             get
@@ -128,6 +131,14 @@ namespace Biblioteca.Modelos
             }
         }
 
+        public string LogPartida
+        {
+            get
+            {
+                return this.logPartida;
+            }
+        }
+
         public void SetSeleccionJugador(Jugador jugador, int seleccion)
         {
             if (jugador.Equals(this.jugadores[0]))
@@ -143,6 +154,15 @@ namespace Biblioteca.Modelos
         public void Actualizar()
         {
             this.jugadorTurnoActual = Jugadores[contadorTurnos];
+            if(jugadorTurnoActual == jugadores[0])
+            {
+                this.logPartida += $"{jugadores[0].Nombre} elegio {NumeroAString(seleccionJugadorA)}...\n";
+            }
+            else
+            {
+                this.logPartida += $"{jugadores[1].Nombre} elegio {NumeroAString(seleccionJugadorB)}...\n";
+            }
+            Thread.Sleep(1000);
             if (contadorTurnos < 1)
             {
                 contadorTurnos++;
@@ -153,25 +173,34 @@ namespace Biblioteca.Modelos
             if (seleccionJugadorA - seleccionJugadorB == 0)
             {
                 // Empate
+                this.logPartida += "Empate!!!\n";
             }
             else if (seleccionJugadorA - seleccionJugadorB == -1 || seleccionJugadorA - seleccionJugadorB == 2)
             {
                 // Gana jugador B
+
+                this.logPartida += $"{jugadores[0].Nombre} gano! Obtiene 1 punto!\n";
                 puntajeJugadorB++;
             }
             else if (seleccionJugadorA - seleccionJugadorB == 1 || seleccionJugadorB - seleccionJugadorA == 2)
             {
                 // Gana jugador A
+                this.logPartida += $"{jugadores[1].Nombre} gano! Obtiene 1 punto!\n";
                 puntajeJugadorA++;
             }
             if (puntajeJugadorA == 3)
             {
-                //Ganador = this.Jugadores[0];
+                Ganador = this.Jugadores[0];
             }
             else if (puntajeJugadorB == 3)
             {
-                //Ganador = this.Jugadores[1];
+                Ganador = this.Jugadores[1];
             }
+            if(Ganador != null)
+            {
+                this.logPartida += $"{Ganador.Nombre} gana la partida!";
+            }
+            Thread.Sleep(1000);
         }
 
         public void Inicializar()

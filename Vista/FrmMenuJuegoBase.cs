@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Biblioteca.Serializacion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using Vista.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Vista
 {
@@ -16,13 +20,23 @@ namespace Vista
         public FrmMenuJuegoBase()
         {
             InitializeComponent();
+            this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo_menu")!;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            this.tableLayoutPanel1.BackColor = Color.FromArgb(50, 200, 100, 50);
 
+            foreach (Control control in this.tableLayoutPanel1.Controls)
+            {
+                if (control is Panel panel)
+                {
+                    panel.BackColor = Color.SandyBrown;
+                }
+            }
         }
         protected override CreateParams CreateParams
         {
             get
             {
-                var createParams = base.CreateParams;
+                CreateParams createParams = base.CreateParams;
                 createParams.ExStyle |= 0x02000000;    // Turn on WS_EX_COMPOSITED
                 return createParams;
             }

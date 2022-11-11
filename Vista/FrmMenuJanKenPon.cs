@@ -42,11 +42,11 @@ namespace Vista
         {
             if (!formsPartidas.ContainsKey(partida))
             {
-                //new FrmPartidaTruco(partida).Show();
+                new FrmPartidaJanKenPon(partida).Show();
             }
             else
             {
-                //formsPartidas[partida].Show();
+                formsPartidas[partida].Show();
             }
         }
 

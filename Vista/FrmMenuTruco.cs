@@ -24,16 +24,8 @@ namespace Vista
             this.DoubleBuffered = true;
             this.presentadorMenuTruco = new PresentadorMenuTruco(this);
             this.formsPartidas = new Dictionary<Partida<Truco>, FrmPartidaTruco>();
-            this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo_menu")!;
-            this.BackgroundImageLayout = ImageLayout.Stretch;
-            this.tableLayoutPanel1.BackColor = Color.FromArgb(50, 200, 100, 50);
-            foreach (Control control in this.tableLayoutPanel1.Controls)
-            {
-                if(control is Panel panel)
-                {
-                    panel.BackColor = Color.SandyBrown;
-                }
-            }
+
+
         }
 
         public bool EsPartidaSimulada

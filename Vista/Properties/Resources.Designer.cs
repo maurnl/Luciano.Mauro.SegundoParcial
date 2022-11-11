@@ -493,6 +493,16 @@ namespace Vista.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fondo_jankenpon {
+            get {
+                object obj = ResourceManager.GetObject("fondo_jankenpon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fondo_menu {
             get {
                 object obj = ResourceManager.GetObject("fondo_menu", resourceCulture);
@@ -513,9 +523,39 @@ namespace Vista.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap papel {
+            get {
+                object obj = ResourceManager.GetObject("papel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap piedra {
+            get {
+                object obj = ResourceManager.GetObject("piedra", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap reverso {
             get {
                 object obj = ResourceManager.GetObject("reverso", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tijera {
+            get {
+                object obj = ResourceManager.GetObject("tijera", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

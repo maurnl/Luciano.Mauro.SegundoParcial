@@ -26,6 +26,7 @@ namespace Biblioteca.Presentadores
             this.jugadoresSimulados = new List<Jugador>(jugadoresBBDD.GetRange(1, jugadoresBBDD.Count - 1));
             this.vistaMenuJuego.ClickeoNuevaPartida += NuevaPartida;
             this.vistaMenuJuego.ClickeoAbrirPartida += AbrirComponentePartida;
+            this.vistaMenuJuego.ClickeoMostrarHistorialPartidas += MostrarHistorialPartidas;
             this.vistaMenuJuego.OnCierreVista += LimpiarEventosVista;
         }
 

@@ -37,6 +37,7 @@ namespace Vista
         public event EventHandler OnCierreVista;
         public event EventHandler ClickeoNuevaPartida;
         public event EventHandler ClickeoAbrirPartida;
+        public event EventHandler ClickeoMostrarHistorialPartidas;
 
         public void AbrirComponentePartida(Partida partida)
         {
@@ -138,6 +139,16 @@ namespace Vista
         protected override void btnCrearPartida_Click(object sender, EventArgs e)
         {
             this.ClickeoNuevaPartida?.Invoke(this, e);
+        }
+
+        protected override void btnHistorialPartidas_Click(object sender, EventArgs e)
+        {
+            this.ClickeoMostrarHistorialPartidas?.Invoke(this, e);
+        }
+
+        public void MostrarHistorialPartidas(List<PartidaTerminada> historialPartidas)
+        {
+            throw new NotImplementedException();
         }
     }
 }

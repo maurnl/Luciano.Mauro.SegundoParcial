@@ -138,7 +138,7 @@ namespace Vista
 
         protected override void btnHistorialPartidas_Click(object sender, EventArgs e)
         {
-            this.ClickeoMostrarHistorialPartidas?.Invoke(sender, e);
+            this.ClickeoMostrarHistorialPartidas?.Invoke(this, e);
         }
 
         public void MostrarHistorialPartidas(List<PartidaTerminada> historialPartidas)

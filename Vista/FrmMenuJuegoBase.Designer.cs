@@ -31,14 +31,12 @@
             this.btnCrearPartida = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.lstPartidas = new System.Windows.Forms.ListBox();
-            this.lstJugadores = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkSimulada = new System.Windows.Forms.CheckBox();
             this.flowPanelPartidas = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnHistorialPartidas = new System.Windows.Forms.Button();
+            this.btnGuardarPartidas = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -74,60 +72,20 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.lstPartidas, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lstJugadores, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnHistorialPartidas, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnGuardarPartidas, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 95);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.342494F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.65751F));
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.70422F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.29578F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 331F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(207, 474);
             this.tableLayoutPanel2.TabIndex = 1;
-            // 
-            // lstPartidas
-            // 
-            this.lstPartidas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstPartidas.FormattingEnabled = true;
-            this.lstPartidas.ItemHeight = 15;
-            this.lstPartidas.Location = new System.Drawing.Point(106, 33);
-            this.lstPartidas.Name = "lstPartidas";
-            this.lstPartidas.Size = new System.Drawing.Size(98, 438);
-            this.lstPartidas.TabIndex = 1;
-            // 
-            // lstJugadores
-            // 
-            this.lstJugadores.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstJugadores.FormattingEnabled = true;
-            this.lstJugadores.ItemHeight = 15;
-            this.lstJugadores.Location = new System.Drawing.Point(3, 33);
-            this.lstJugadores.Name = "lstJugadores";
-            this.lstJugadores.Size = new System.Drawing.Size(97, 438);
-            this.lstJugadores.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 30);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Jugadores";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(106, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Partidas";
             // 
             // panel1
             // 
@@ -166,6 +124,27 @@
             this.btnCerrar.Text = "Salir";
             this.btnCerrar.UseVisualStyleBackColor = true;
             // 
+            // btnHistorialPartidas
+            // 
+            this.btnHistorialPartidas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnHistorialPartidas.Location = new System.Drawing.Point(3, 3);
+            this.btnHistorialPartidas.Name = "btnHistorialPartidas";
+            this.btnHistorialPartidas.Size = new System.Drawing.Size(201, 66);
+            this.btnHistorialPartidas.TabIndex = 0;
+            this.btnHistorialPartidas.Text = "Historial Partidas";
+            this.btnHistorialPartidas.UseVisualStyleBackColor = true;
+            this.btnHistorialPartidas.Click += new System.EventHandler(this.btnHistorialPartidas_Click);
+            // 
+            // btnGuardarPartidas
+            // 
+            this.btnGuardarPartidas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGuardarPartidas.Location = new System.Drawing.Point(3, 75);
+            this.btnGuardarPartidas.Name = "btnGuardarPartidas";
+            this.btnGuardarPartidas.Size = new System.Drawing.Size(201, 64);
+            this.btnGuardarPartidas.TabIndex = 1;
+            this.btnGuardarPartidas.Text = "button1";
+            this.btnGuardarPartidas.UseVisualStyleBackColor = true;
+            // 
             // FrmMenuJuegoBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -177,7 +156,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMenuJuegoBase_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -191,11 +169,9 @@
         protected System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         protected System.Windows.Forms.Panel panel1;
         protected System.Windows.Forms.CheckBox chkSimulada;
-        protected System.Windows.Forms.ListBox lstJugadores;
-        protected System.Windows.Forms.ListBox lstPartidas;
         protected System.Windows.Forms.FlowLayoutPanel flowPanelPartidas;
-        protected System.Windows.Forms.Label label1;
-        protected System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnHistorialPartidas;
+        private System.Windows.Forms.Button btnGuardarPartidas;
     }
 }

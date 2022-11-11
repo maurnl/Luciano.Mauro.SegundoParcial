@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteca.ADO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,16 @@ namespace Biblioteca.Modelos
             {
                 return this.partidasActivas;
             }
+        }
+
+        public List<PartidaTerminada> ObtenerHistorialPartidas()
+        {
+            List<PartidaTerminada> historialPartidas = new PartidasADO().ObtenerListaPartidasTerminadas();
+            if(historialPartidas == null)
+            {
+                historialPartidas = new List<PartidaTerminada>();
+            }
+            return historialPartidas;
         }
 
         public void CancelarPartidasEnCurso()

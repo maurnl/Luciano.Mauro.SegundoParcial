@@ -51,5 +51,10 @@ namespace Vista
         {
 
         }
+
+        protected virtual void btnHistorialPartidas_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

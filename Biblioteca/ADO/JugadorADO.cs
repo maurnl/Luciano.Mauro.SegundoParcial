@@ -57,7 +57,7 @@ namespace Biblioteca.ADO
                 comando = new SqlCommand();
 
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "SELECT id, nombre, apellido, esHumano, trucoGanados, trucoPerdidos, jankenponGanados, jankenponPerdidos FROM dbo.Jugador";
+                comando.CommandText = "SELECT id, nombre, apellido, esHumano, trucoGanadas, trucoPerdidas, piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas FROM dbo.Jugadores";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -68,9 +68,9 @@ namespace Biblioteca.ADO
                     Jugador item = new Jugador();
 
                     item.Id = lector.GetInt32(0);
-                    item.EsHumano = lector.GetBoolean(1);
-                    item.Nombre = lector.GetString(2);
-                    item.Apellido = lector.GetString(3);
+                    item.Nombre = lector.GetString(1);
+                    item.Apellido = lector.GetString(2);
+                    item.EsHumano = lector.GetBoolean(3);
                     item.CantidadVictoriasTruco = lector.GetInt32(4);
                     item.CantidadDerrotasTruco = lector.GetInt32(5);
                     item.CantidadVictoriasJanKenPon = lector.GetInt32(6);
@@ -103,8 +103,8 @@ namespace Biblioteca.ADO
 
             try
             {
-                string sql = "INSERT INTO dbo.Jugadores (id, esHumano, nombre, apellido, cantidadVictorias) " +
-                    "VALUES(@id, @esHumano, @nombre, @apellido, @cantidadVictorias)";
+                string sql = "INSERT INTO dbo.Jugadores (id, nombre, apellido, esHumano, trucoGanadas, trucoPerdidas, piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas) " +
+                    "VALUES(@id, @nombre, @apellido, @esHumano, @trucoGanadas, @trucoPerdidas, @piedrapapeltijeraGanadas, @piedrapapeltijeraPerdidas)";
 
                 comando = new SqlCommand();
 
@@ -114,7 +114,11 @@ namespace Biblioteca.ADO
                 comando.Parameters.AddWithValue("@esHumano", param.EsHumano);
                 comando.Parameters.AddWithValue("@nombre", param.Nombre);
                 comando.Parameters.AddWithValue("@apellido", param.Apellido);
-                //comando.Parameters.AddWithValue("@cantidadVictorias", param.CantidadVictorias);
+                comando.Parameters.AddWithValue("@trucoGanadas", param.CantidadVictoriasTruco);
+                comando.Parameters.AddWithValue("@trucoPerdidas", param.CantidadDerrotasTruco);
+                comando.Parameters.AddWithValue("@piedrapapeltijeraGanadas", param.CantidadVictoriasJanKenPon);
+                comando.Parameters.AddWithValue("@piedrapapeltijeraPerdidas", param.CantidadDerrotasJanKenPon);
+
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -154,10 +158,13 @@ namespace Biblioteca.ADO
                 comando.Parameters.AddWithValue("@esHumano", param.EsHumano);
                 comando.Parameters.AddWithValue("@nombre", param.Nombre);
                 comando.Parameters.AddWithValue("@apellido", param.Apellido);
-                //comando.Parameters.AddWithValue("@cantidadVictorias", param.CantidadVictorias);
+                comando.Parameters.AddWithValue("@trucoGanadas", param.CantidadVictoriasTruco);
+                comando.Parameters.AddWithValue("@trucoPerdidas", param.CantidadDerrotasTruco);
+                comando.Parameters.AddWithValue("@piedrapapeltijeraGanadas", param.CantidadVictoriasJanKenPon);
+                comando.Parameters.AddWithValue("@piedrapapeltijeraPerdidas", param.CantidadDerrotasJanKenPon);
 
                 string sql = "UPDATE dbo.Jugadores ";
-                sql += "SET esHumano = @esHumano, nombre = @nombre, apellido = @apellido, cantidadVictorias = @cantidadVictorias";
+                sql += "SET esHumano = @esHumano, nombre = @nombre, apellido = @apellido, trucoGanadas = @trucoGanadas, trucoPerdidas = @trucoPerdidas, piedrapapeltijeraGanadas = @piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas = @piedrapapeltijeraPerdidas";
                 sql += "WHERE id = @id";
 
                 comando.CommandType = CommandType.Text;

@@ -27,14 +27,22 @@ namespace Biblioteca.Modelos
             contador = 0;
         }
 
-        public Partida(IDatosDeJuego<Juego> datosDeJuego)
+        public Partida(IDatosDeJuego<Juego> datosDeJuego) 
         {
-            this.datosDeJuego = datosDeJuego;
             id = contador++;
             fuenteCancelacion = new CancellationTokenSource();
             tokenCancelacion = fuenteCancelacion.Token;
             partidaTerminada = false;
             taskPartida = new Task(() => BucleDelJuego(tokenCancelacion), tokenCancelacion);
+            this.datosDeJuego = datosDeJuego;
+        }
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
         }
 
         public Task TareaPartida
@@ -60,13 +68,6 @@ namespace Biblioteca.Modelos
                 return tokenCancelacion;
             }
         }
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-        }
 
         public Jugador JugadorA
         {
@@ -75,6 +76,7 @@ namespace Biblioteca.Modelos
                 return jugadorA;
             }
         }
+
         public Jugador JugadorB
         {
             get
@@ -82,6 +84,7 @@ namespace Biblioteca.Modelos
                 return jugadorB;
             }
         }
+
         public int RondaActual
         {
             get
@@ -95,6 +98,26 @@ namespace Biblioteca.Modelos
             get
             {
                 return this.datosDeJuego;
+            }
+        }
+
+        public string Juego
+        {
+            get
+            {
+                string retorno = "Desconocido";
+                if(this.datosDeJuego is JanKenPonDatosDeJuego)
+                {
+                    retorno = "Piedra papel o tijera";
+                }
+                else
+                {
+                    if(this.datosDeJuego is TrucoDatosDeJuego)
+                    {
+                        retorno = "Truco";
+                    }
+                }
+                return retorno;
             }
         }
 

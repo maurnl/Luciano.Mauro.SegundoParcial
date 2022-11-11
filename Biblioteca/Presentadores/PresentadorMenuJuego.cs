@@ -22,9 +22,6 @@ namespace Biblioteca.Presentadores
             this.vistaMenuJankenpon = vistaMenuJankenpon;
             this.manejadorPartidas = new ManejadorPartida(juego);
             List<Jugador> jugadoresBBDD = new JugadorADO().ObtenerListaJugadores();
-            jugadoresBBDD.Add(new Jugador("Mauro", "Luciano"));
-            jugadoresBBDD.Add(new Jugador("Mauro", "Luciano"));
-            jugadoresBBDD.Add(new Jugador("Mauro", "Luciano"));
             this.jugadorHumano = jugadoresBBDD[0];
             this.jugadoresSimulados = new List<Jugador>(jugadoresBBDD.GetRange(1, jugadoresBBDD.Count - 1));
             this.vistaMenuJankenpon.ClickeoNuevaPartida += NuevaPartida;
@@ -34,7 +31,14 @@ namespace Biblioteca.Presentadores
 
         private void NuevaPartida(object sender, EventArgs e)
         {
-            Partida partidaNueva = this.manejadorPartidas.NuevaPartida(this.vistaMenuJankenpon.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
+            Random random = new Random();
+            int indiceRandomUno = random.Next(0, jugadoresSimulados.Count);
+            int indiceRandomDos;
+            do
+            {
+                indiceRandomDos = random.Next(0, jugadoresSimulados.Count);
+            } while (indiceRandomDos == indiceRandomUno);
+            Partida partidaNueva = this.manejadorPartidas.NuevaPartida(this.vistaMenuJankenpon.EsPartidaSimulada ? jugadoresSimulados[indiceRandomUno] : jugadorHumano, jugadoresSimulados[indiceRandomDos]);
             if(partidaNueva is null)
             {
                 return;

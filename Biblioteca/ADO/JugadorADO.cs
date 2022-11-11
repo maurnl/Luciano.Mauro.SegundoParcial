@@ -57,7 +57,7 @@ namespace Biblioteca.ADO
                 comando = new SqlCommand();
 
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "SELECT id, esHumano, nombre, apellido, partidasTrucoGanadas, partidasTrucoPerdidas, partidasJanKenPonGanadas, partidasJanKenPonPerdidas FROM dbo.Jugadores AS jug INNER JOIN dbo.Estadisticas AS est ON jug.id = est.idJugador";
+                comando.CommandText = "SELECT id, nombre, apellido, esHumano, trucoGanados, trucoPerdidos, jankenponGanados, jankenponPerdidos FROM dbo.Jugador";
                 comando.Connection = conexion;
 
                 conexion.Open();

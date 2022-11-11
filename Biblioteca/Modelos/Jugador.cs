@@ -126,19 +126,19 @@ namespace Biblioteca.Modelos
             }
         }
 
-        public virtual void JugarTurno(Juego juego)
+        public virtual void JugarTurno(IDatosDeJuego<Juego> datosDeJuego)
         {
-            if (juego is Truco)
+            if (datosDeJuego is TrucoDatosDeJuego)
             {
-                TrucoDatosDeJuego datosDeJuego = (TrucoDatosDeJuego)juego.ObtenerDatosDeJuego();
+                TrucoDatosDeJuego datosDeTruco = (TrucoDatosDeJuego)datosDeJuego;
                 // Jugar en base al tipo de juego...
                 if (esHumano)
                 {
-                    if (!datosDeJuego.HayGanadorDeRonda)
+                    if (!datosDeTruco.HayGanadorDeRonda)
                     {
                         TurnoDeJugador?.Invoke(this, EventArgs.Empty);
                     }
-                    if (datosDeJuego.HayTrucoCantado)
+                    if (datosDeTruco.HayTrucoCantado)
                     {
                         ConfirmarTruco?.Invoke(this, EventArgs.Empty);
                     }
@@ -149,17 +149,18 @@ namespace Biblioteca.Modelos
                     do
                     {
                         indiceRandom = new Random().Next(0, 3);
-                    } while (datosDeJuego.RondaActual < 3 && (datosDeJuego.Jugadores[0] == this ? datosDeJuego.CartasJugadorA[indiceRandom].EstaEnJuego : datosDeJuego.CartasJugadorB[indiceRandom].EstaEnJuego));
-                    if (datosDeJuego.HayTrucoCantado)
+                    } while (datosDeTruco.RondaActual < 3 && (datosDeTruco.Jugadores[0] == this ? datosDeTruco.CartasJugadorA[indiceRandom].EstaEnJuego : datosDeTruco.CartasJugadorB[indiceRandom].EstaEnJuego));
+                    if (datosDeTruco.HayTrucoCantado)
                     {
-                        datosDeJuego.SetSeleccionTruco(this, new Random().Next(0, 2) == 0);
+                        datosDeTruco.SetSeleccionTruco(this, new Random().Next(0, 2) == 0);
                     }
-                    datosDeJuego.SetSeleccionJugador(this, indiceRandom);
+                    datosDeTruco.SetSeleccionJugador(this, indiceRandom);
                     Thread.Sleep(800);
                 }
             }
-            else if (juego is JanKenPon)
+            else if (datosDeJuego is JanKenPonDatosDeJuego)
             {
+                JanKenPonDatosDeJuego datosDeJanKenPon = (JanKenPonDatosDeJuego)datosDeJuego;
                 if (esHumano)
                 {
 
@@ -167,8 +168,7 @@ namespace Biblioteca.Modelos
                 else
                 {
                     Thread.Sleep(800);
-                    JanKenPonDatosDeJuego datosDeJuego = (JanKenPonDatosDeJuego)juego.ObtenerDatosDeJuego();
-                    datosDeJuego.SetSeleccionJugador(this, new Random().Next(0, 3));
+                    datosDeJanKenPon.SetSeleccionJugador(this, new Random().Next(0, 3));
 
                 }
             }

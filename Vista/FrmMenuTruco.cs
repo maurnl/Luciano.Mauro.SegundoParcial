@@ -14,18 +14,16 @@ using Vista.Properties;
 
 namespace Vista
 {
-    public partial class FrmMenuTruco : FrmMenuJuegoBase, IVistaMenuTruco
+    public partial class FrmMenuTruco : FrmMenuJuegoBase, IVistaMenuJuego
     {
-        private readonly PresentadorMenuTruco presentadorMenuTruco;
-        private Dictionary<Partida<Truco>, FrmPartidaTruco> formsPartidas;
+        private readonly PresentadorMenuJuego presentadorMenuTruco;
+        private Dictionary<Partida, FrmPartidaTruco> formsPartidas;
         public FrmMenuTruco()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            this.presentadorMenuTruco = new PresentadorMenuTruco(this);
-            this.formsPartidas = new Dictionary<Partida<Truco>, FrmPartidaTruco>();
-
-
+            this.presentadorMenuTruco = new PresentadorMenuJuego(this, new Truco());
+            this.formsPartidas = new Dictionary<Partida, FrmPartidaTruco>();
         }
 
         public bool EsPartidaSimulada
@@ -40,7 +38,7 @@ namespace Vista
         public event EventHandler ClickeoNuevaPartida;
         public event EventHandler ClickeoAbrirPartida;
 
-        public void AbrirComponentePartida(Partida<Truco> partida)
+        public void AbrirComponentePartida(Partida partida)
         {
             if (!formsPartidas.ContainsKey(partida))
             {
@@ -52,7 +50,7 @@ namespace Vista
             }
         }
 
-        public void CrearComponentePartida(Partida<Truco> partida)
+        public void CrearComponentePartida(Partida partida)
         {
             Button boton = new Button
             {
@@ -64,13 +62,13 @@ namespace Vista
             boton.Click += (sender, e) => this.ClickeoAbrirPartida?.Invoke(((Button)sender!).Name, e);
         }
 
-        public void ActualizarComponentePartida(Partida<Truco> partida)
+        public void ActualizarComponentePartida(Partida partida)
         {
             int indice = BuscarComponentePorPartida(partida);
             ActualizarBoton(partida, indice);
         }
 
-        public void EliminarComponentePartida(Partida<Truco> partida)
+        public void EliminarComponentePartida(Partida partida)
         {
             EliminarBoton(partida);
         }
@@ -78,11 +76,11 @@ namespace Vista
 
 
 
-        private void EliminarBoton(Partida<Truco> partida)
+        private void EliminarBoton(Partida partida)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<Partida<Truco>>(EliminarBoton), partida);
+                this.Invoke(new Action<Partida>(EliminarBoton), partida);
 
             }
             else
@@ -95,11 +93,11 @@ namespace Vista
             }
         }
 
-        private void ActualizarBoton(Partida<Truco> partida, int indiceBoton)
+        private void ActualizarBoton(Partida partida, int indiceBoton)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<Partida<Truco>, int>(ActualizarBoton), partida, indiceBoton);
+                this.Invoke(new Action<Partida, int>(ActualizarBoton), partida, indiceBoton);
             }
             else
             {
@@ -107,11 +105,11 @@ namespace Vista
                 {
                     return;
                 }
-                this.flowPanelPartidas.Controls[indiceBoton].Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando la mano {(partida.RondaActual == 3 ? "3" : $"{partida.RondaActual + 1}")} de {partida.Juego.GetType().Name}!";
+                this.flowPanelPartidas.Controls[indiceBoton].Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando la mano {(partida.RondaActual == 3 ? "3" : $"{partida.RondaActual + 1}")} de Truco!";
             }
         }
 
-        private int BuscarComponentePorPartida(Partida<Truco> partida)
+        private int BuscarComponentePorPartida(Partida partida)
         {
             int cantidadItems = this.flowPanelPartidas.Controls.Count;
             int indice = -1;

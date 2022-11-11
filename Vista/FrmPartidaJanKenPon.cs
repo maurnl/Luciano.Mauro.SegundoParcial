@@ -22,9 +22,9 @@ namespace Vista
             this.imagenes = new List<Image>();
         }
 
-        public FrmPartidaJanKenPon(Partida<JanKenPon> partida) : this()
+        public FrmPartidaJanKenPon(Partida partida) : this()
         {
-            this.datosDeJuego = (JanKenPonDatosDeJuego) partida.Juego.ObtenerDatosDeJuego();
+            this.datosDeJuego = (JanKenPonDatosDeJuego) partida.DatosDeJuego;
             partida.NotificarDatosDeJuegoActualizados += MostrarDatosDeJuego;
             //List<int> selecciones;
             //for (int i = 0; i < 3; i++)
@@ -140,7 +140,7 @@ namespace Vista
             {
                 case 0:
                     texto += "piedra";
-                    break;
+                    break;  
                 case 1:
                     texto += "papel";
                     break;

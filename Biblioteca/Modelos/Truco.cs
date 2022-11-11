@@ -9,15 +9,9 @@ namespace Biblioteca.Modelos
 {
     public class Truco : Juego
     {
-        private TrucoDatosDeJuego datosDeJuego;
-        public Truco()
-        {
-            this.datosDeJuego = new TrucoDatosDeJuego(new SerializadorJson<List<Carta>>("cartas_truco.json").Deserializar() ?? GenerarMazo());
-        }
-
         public override IDatosDeJuego<Truco> ObtenerDatosDeJuego()
         {
-            return this.datosDeJuego;
+            return new TrucoDatosDeJuego(new SerializadorJson<List<Carta>>("cartas_truco.json").Deserializar() ?? GenerarMazo());
         }
 
         private static int CalcularValorDeJuego(int numero, Palo palo)

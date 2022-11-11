@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.Modelos
 {
-    public class ManejadorPartida<T> where T : Juego, new()
+    public class ManejadorPartida
     {
-        private List<Partida<T>> partidasActivas;
-        private List<Task> tasksPartidas;
+        private Juego juego;
+        private List<Partida> partidasActivas;
 
-        public ManejadorPartida()
+        public ManejadorPartida(Juego juego)
         {
-            this.partidasActivas = new List<Partida<T>>();
-            this.tasksPartidas = new List<Task>();
+            this.juego = juego;
+            this.partidasActivas = new List<Partida>();
         }
 
-        public List<Partida<T>> PartidasActivas
+        public List<Partida> PartidasActivas
         {
             get
             {
@@ -28,23 +28,22 @@ namespace Biblioteca.Modelos
 
         public void CancelarPartidasEnCurso()
         {
-            foreach (Partida<T> partida in this.partidasActivas)
+            foreach (Partida partida in this.partidasActivas)
             {
                 partida.CancelarPartida();
             }
             Thread.Sleep(500);
         }
 
-        public Partida<T> NuevaPartida(Jugador jugadorA, Jugador jugadorB)
+        public Partida NuevaPartida(Jugador jugadorA, Jugador jugadorB)
         {
             if (jugadorA == null || jugadorB == null)
             {
                 return null;
             }
-            Partida<T> partida = new Partida<T>();
+            Partida partida = new Partida(juego.ObtenerDatosDeJuego());
             partida.SetJugadores(jugadorA, jugadorB);
             this.partidasActivas.Add(partida);
-            this.tasksPartidas.Add(partida.TareaPartida);
             return partida;
         }
     }

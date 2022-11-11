@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.Modelos
 {
-    public class Partida<T> where T : Juego, new()
+    public class Partida
     {
         private static int contador;
         private int id;
-        private T juego;
+        private IDatosDeJuego<Juego> datosDeJuego;
         private Jugador jugadorA;
         private Jugador jugadorB;
         private CancellationToken tokenCancelacion;
@@ -27,10 +27,10 @@ namespace Biblioteca.Modelos
             contador = 0;
         }
 
-        public Partida()
+        public Partida(IDatosDeJuego<Juego> datosDeJuego)
         {
+            this.datosDeJuego = datosDeJuego;
             id = contador++;
-            juego = new T();
             fuenteCancelacion = new CancellationTokenSource();
             tokenCancelacion = fuenteCancelacion.Token;
             partidaTerminada = false;
@@ -86,15 +86,15 @@ namespace Biblioteca.Modelos
         {
             get
             {
-                return juego.ObtenerDatosDeJuego().RondaActual;
+                return datosDeJuego.RondaActual;
             }
         }
 
-        public T Juego
+        public IDatosDeJuego<Juego> DatosDeJuego
         {
             get
             {
-                return juego;
+                return this.datosDeJuego;
             }
         }
 
@@ -112,11 +112,10 @@ namespace Biblioteca.Modelos
 
         private void BucleDelJuego(CancellationToken tokenCancelacion)
         {
-            IDatosDeJuego<Juego> datosDeJuego = juego.ObtenerDatosDeJuego();
             datosDeJuego.Inicializar();
             while (!datosDeJuego.HayGanador && !tokenCancelacion.IsCancellationRequested)
             {
-                datosDeJuego.JugadorTurnoActual.JugarTurno(juego);
+                datosDeJuego.JugadorTurnoActual.JugarTurno(datosDeJuego);
                 datosDeJuego.Actualizar();
                 NotificarDatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
             }
@@ -127,12 +126,12 @@ namespace Biblioteca.Modelos
         {
             this.jugadorA = jugadorA;
             this.jugadorB = jugadorB;
-            juego.ObtenerDatosDeJuego().Jugadores = new List<Jugador> { jugadorA, jugadorB };
+            datosDeJuego.Jugadores = new List<Jugador> { jugadorA, jugadorB };
         }
 
         public override bool Equals(object obj)
         {
-            Partida<T> partida = obj as Partida<T>;
+            Partida partida = obj as Partida;
             return partida is not null && id == partida.id;
         }
 

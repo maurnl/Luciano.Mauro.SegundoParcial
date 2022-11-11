@@ -14,16 +14,15 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FrmMenuJanKenPon : FrmMenuJuegoBase, IVistaMenuJanKenPon
+    public partial class FrmMenuJanKenPon : FrmMenuJuegoBase, IVistaMenuJuego
     {
-        private readonly PresentadorMenuJanKenPon presentadorMenuTruco;
-        private Dictionary<Partida<JanKenPon>, FrmPartidaTruco> formsPartidas;
+        private readonly PresentadorMenuJuego presentadorMenuTruco;
+        private Dictionary<Partida, FrmPartidaTruco> formsPartidas;
         public FrmMenuJanKenPon()
         {
             InitializeComponent();
-            InitializeComponent();
-            this.presentadorMenuTruco = new PresentadorMenuJanKenPon(this);
-            this.formsPartidas = new Dictionary<Partida<JanKenPon>, FrmPartidaTruco>();
+            this.presentadorMenuTruco = new PresentadorMenuJuego(this, new JanKenPon());
+            this.formsPartidas = new Dictionary<Partida, FrmPartidaTruco>();
         }
 
         public bool EsPartidaSimulada
@@ -38,7 +37,7 @@ namespace Vista
         public event EventHandler ClickeoNuevaPartida;
         public event EventHandler ClickeoAbrirPartida;
 
-        public void AbrirComponentePartida(Partida<JanKenPon> partida)
+        public void AbrirComponentePartida(Partida partida)
         {
             if (!formsPartidas.ContainsKey(partida))
             {
@@ -50,7 +49,7 @@ namespace Vista
             }
         }
 
-        public void CrearComponentePartida(Partida<JanKenPon> partida)
+        public void CrearComponentePartida(Partida partida)
         {
             Button boton = new Button
             {
@@ -62,13 +61,13 @@ namespace Vista
             boton.Click += (sender, e) => this.ClickeoAbrirPartida?.Invoke(((Button)sender!).Name, e);
         }
 
-        public void ActualizarComponentePartida(Partida<JanKenPon> partida)
+        public void ActualizarComponentePartida(Partida partida)
         {
             int indice = BuscarComponentePorPartida(partida);
             ActualizarBoton(partida, indice);
         }
 
-        public void EliminarComponentePartida(Partida<JanKenPon> partida)
+        public void EliminarComponentePartida(Partida partida)
         {
             EliminarBoton(partida);
         }
@@ -78,11 +77,11 @@ namespace Vista
             ClickeoNuevaPartida?.Invoke(this, e);
         }
 
-        private void EliminarBoton(Partida<JanKenPon> partida)
+        private void EliminarBoton(Partida partida)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<Partida<JanKenPon>>(EliminarBoton), partida);
+                this.Invoke(new Action<Partida>(EliminarBoton), partida);
             }
             else
             {
@@ -94,11 +93,11 @@ namespace Vista
             }
         }
 
-        private void ActualizarBoton(Partida<JanKenPon> partida, int indiceBoton)
+        private void ActualizarBoton(Partida partida, int indiceBoton)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<Partida<JanKenPon>, int>(ActualizarBoton), partida, indiceBoton);
+                this.Invoke(new Action<Partida, int>(ActualizarBoton), partida, indiceBoton);
             }
             else
             {
@@ -106,11 +105,11 @@ namespace Vista
                 {
                     return;
                 }
-                base.flowPanelPartidas.Controls[indiceBoton].Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando la mano {(partida.RondaActual == 3 ? "3" : $"{partida.RondaActual + 1}")} de {partida.Juego.GetType().Name}!";
+                base.flowPanelPartidas.Controls[indiceBoton].Text = $"{partida.JugadorA.Nombre} y {partida.JugadorB.Nombre} estan jugando la mano {(partida.RondaActual == 3 ? "3" : $"{partida.RondaActual + 1}")} de Piedra, papel o tijera!";
             }
         }
 
-        private int BuscarComponentePorPartida(Partida<JanKenPon> partida)
+        private int BuscarComponentePorPartida(Partida partida)
         {
             int cantidadItems = base.flowPanelPartidas.Controls.Count;
             int indice = -1;

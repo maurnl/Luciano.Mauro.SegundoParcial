@@ -17,7 +17,7 @@ namespace Vista
     public partial class FrmPartidaTruco : Form
     {
         private TrucoDatosDeJuego datosDeJuego;
-        private Partida<Truco> partida;
+        private Partida partida;
 
         protected override CreateParams CreateParams
         {
@@ -34,10 +34,10 @@ namespace Vista
             InitializeComponent();
         }
 
-        public FrmPartidaTruco(Partida<Truco> partida) : this()
+        public FrmPartidaTruco(Partida partida) : this()
         {
             this.partida = partida;
-            this.datosDeJuego = (TrucoDatosDeJuego)partida.Juego.ObtenerDatosDeJuego();
+            this.datosDeJuego = (TrucoDatosDeJuego)partida.DatosDeJuego;
             if (partida.JugadorA.EsHumano)
             {
                 this.partida.JugadorA.TurnoDeJugador += PedirJugada;

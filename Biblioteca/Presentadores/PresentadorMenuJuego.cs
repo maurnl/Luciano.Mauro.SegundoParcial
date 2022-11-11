@@ -10,18 +10,21 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.Presentadores
 {
-    public class PresentadorMenuJanKenPon
+    public class PresentadorMenuJuego
     {
-        private IVistaMenuJanKenPon vistaMenuJankenpon;
+        private IVistaMenuJuego vistaMenuJankenpon;
+        private ManejadorPartida manejadorPartidas;
         private Jugador jugadorHumano;
         private List<Jugador> jugadoresSimulados;
-        private ManejadorPartida<JanKenPon> manejadorPartidasJankenpon;
 
-        public PresentadorMenuJanKenPon(IVistaMenuJanKenPon vistaMenuJankenpon)
+        public PresentadorMenuJuego(IVistaMenuJuego vistaMenuJankenpon, Juego juego)
         {
             this.vistaMenuJankenpon = vistaMenuJankenpon;
-            this.manejadorPartidasJankenpon = new ManejadorPartida<JanKenPon>();
+            this.manejadorPartidas = new ManejadorPartida(juego);
             List<Jugador> jugadoresBBDD = new JugadorADO().ObtenerListaJugadores();
+            jugadoresBBDD.Add(new Jugador("Mauro", "Luciano"));
+            jugadoresBBDD.Add(new Jugador("Mauro", "Luciano"));
+            jugadoresBBDD.Add(new Jugador("Mauro", "Luciano"));
             this.jugadorHumano = jugadoresBBDD[0];
             this.jugadoresSimulados = new List<Jugador>(jugadoresBBDD.GetRange(1, jugadoresBBDD.Count - 1));
             this.vistaMenuJankenpon.ClickeoNuevaPartida += NuevaPartida;
@@ -31,7 +34,7 @@ namespace Biblioteca.Presentadores
 
         private void NuevaPartida(object sender, EventArgs e)
         {
-            Partida<JanKenPon> partidaNueva = this.manejadorPartidasJankenpon.NuevaPartida(this.vistaMenuJankenpon.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
+            Partida partidaNueva = this.manejadorPartidas.NuevaPartida(this.vistaMenuJankenpon.EsPartidaSimulada ? jugadoresSimulados[0] : jugadorHumano, jugadoresSimulados[1]);
             if(partidaNueva is null)
             {
                 return;
@@ -49,7 +52,7 @@ namespace Biblioteca.Presentadores
         private void AbrirComponentePartida(object sender, EventArgs e)
         {
             int idPartida = int.Parse((string)sender);
-            foreach (Partida<JanKenPon> partida in this.manejadorPartidasJankenpon.PartidasActivas)
+            foreach (Partida partida in this.manejadorPartidas.PartidasActivas)
             {
                 if (partida.Id == idPartida)
                 {
@@ -61,12 +64,12 @@ namespace Biblioteca.Presentadores
 
         private void ActualizarComponentePartida(object sender, EventArgs e)
         {
-            this.vistaMenuJankenpon.ActualizarComponentePartida((Partida<JanKenPon>)sender);
+            this.vistaMenuJankenpon.ActualizarComponentePartida((Partida)sender);
         }
 
         private void EliminarComponentePartida(object sender, EventArgs e)
         {
-            Partida<JanKenPon> partida = (Partida<JanKenPon>)sender;
+            Partida partida = (Partida)sender;
             partida.NotificarDatosDeJuegoActualizados -= ActualizarComponentePartida;
             partida.NotificarTerminarPartida -= EliminarComponentePartida;
             this.vistaMenuJankenpon.EliminarComponentePartida(partida);
@@ -74,11 +77,11 @@ namespace Biblioteca.Presentadores
 
         public void LimpiarEventosVista(object sender, EventArgs e)
         {
-            foreach (Partida<JanKenPon> partida in this.manejadorPartidasJankenpon.PartidasActivas)
+            foreach (Partida partida in this.manejadorPartidas.PartidasActivas)
             {
                 EliminarComponentePartida(partida, e);
             }
-            this.manejadorPartidasJankenpon.CancelarPartidasEnCurso();
+            this.manejadorPartidas.CancelarPartidasEnCurso();
         }
     }
 }

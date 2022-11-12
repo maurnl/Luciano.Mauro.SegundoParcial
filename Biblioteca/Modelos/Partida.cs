@@ -27,7 +27,7 @@ namespace Biblioteca.Modelos
             contador = 0;
         }
 
-        public Partida(IDatosDeJuego<Juego> datosDeJuego) 
+        public Partida(IDatosDeJuego<Juego> datosDeJuego, Jugador jugadorA, Jugador jugadorB) 
         {
             this.id = contador++;
             this.fuenteCancelacion = new CancellationTokenSource();
@@ -35,6 +35,9 @@ namespace Biblioteca.Modelos
             this.partidaTerminada = false;
             this.taskPartida = new Task(() => BucleDelJuego(tokenCancelacion), tokenCancelacion);
             this.datosDeJuego = datosDeJuego;
+            this.jugadorA = jugadorA;
+            this.jugadorB = jugadorB;
+            this.datosDeJuego.Jugadores = new List<Jugador> { jugadorA, jugadorB };
         }
 
         public int Id
@@ -140,17 +143,10 @@ namespace Biblioteca.Modelos
             while (!this.datosDeJuego.HayGanador && !tokenCancelacion.IsCancellationRequested)
             {
                 this.datosDeJuego.JugadorTurnoActual.JugarTurno(this.datosDeJuego);
-                this.datosDeJuego.Actualizar();
+                this.datosDeJuego.Jugar();
                 this.NotificarDatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
             }
             this.NotificarTerminarPartida?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void SetJugadores(Jugador jugadorA, Jugador jugadorB)
-        {
-            this.jugadorA = jugadorA;
-            this.jugadorB = jugadorB;
-            this.datosDeJuego.Jugadores = new List<Jugador> { jugadorA, jugadorB };
         }
 
         public override bool Equals(object obj)

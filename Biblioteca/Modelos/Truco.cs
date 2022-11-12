@@ -9,9 +9,16 @@ namespace Biblioteca.Modelos
 {
     public class Truco : Juego
     {
+        private SerializadorJson<List<Carta>> serializadorCartas;
+
+        public Truco()
+        {
+            serializadorCartas = new SerializadorJson<List<Carta>>("cartas_truco.json");
+        }
+
         public override IDatosDeJuego<Truco> ObtenerDatosDeJuego()
         {
-            return new TrucoDatosDeJuego(new SerializadorJson<List<Carta>>("cartas_truco.json").Deserializar() ?? GenerarMazo());
+            return new TrucoDatosDeJuego(serializadorCartas.Deserializar() ?? GenerarMazo());
         }
 
         private static int CalcularValorDeJuego(int numero, Palo palo)
@@ -80,7 +87,7 @@ namespace Biblioteca.Modelos
                     auxMazo.Add(cartaNueva);
                 }
             }
-            new SerializadorJson<List<Carta>>("cartas_truco.json").Serializar(auxMazo);
+            serializadorCartas.Serializar(auxMazo);
             return auxMazo;
         }
     }

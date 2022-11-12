@@ -58,8 +58,7 @@ namespace Biblioteca.Modelos
             {
                 return null;
             }
-            Partida partida = new Partida(juego.ObtenerDatosDeJuego());
-            partida.SetJugadores(jugadorA, jugadorB);
+            Partida partida = new Partida(juego.ObtenerDatosDeJuego(), jugadorA, jugadorB);
             partida.NotificarTerminarPartida += GuardarPartidaFinalizada;
             this.partidasActivas.Add(partida);
             return partida;

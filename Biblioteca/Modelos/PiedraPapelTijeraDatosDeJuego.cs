@@ -151,7 +151,7 @@ namespace Biblioteca.Modelos
             }
         }
 
-        public void Actualizar()
+        public void Jugar()
         {
             this.jugadorTurnoActual = Jugadores[contadorTurnos];
             if(jugadorTurnoActual == jugadores[0])

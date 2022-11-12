@@ -12,6 +12,6 @@ namespace Biblioteca.Modelos
         Jugador Ganador { get; set; }
         int RondaActual { get; }
         void Inicializar();
-        void Actualizar();
+        void Jugar();
     }
 }

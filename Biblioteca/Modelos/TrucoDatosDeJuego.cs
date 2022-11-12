@@ -302,7 +302,7 @@ namespace Biblioteca.Modelos
             estadoTruco = EstadoTruco.NoDecidio;
         }
 
-        public void Actualizar()
+        public void Jugar()
         {
             if (rondaActual == 3)
             {

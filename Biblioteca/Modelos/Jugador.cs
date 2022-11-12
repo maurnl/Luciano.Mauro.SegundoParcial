@@ -33,7 +33,6 @@ namespace Biblioteca.Modelos
         }
 
         public event EventHandler TurnoDeJugador;
-        public event EventHandler ConfirmarTruco;
 
         public int Id
         {
@@ -138,10 +137,6 @@ namespace Biblioteca.Modelos
                     {
                         TurnoDeJugador?.Invoke(this, EventArgs.Empty);
                     }
-                    if (datosDeTruco.HayTrucoCantado)
-                    {
-                        ConfirmarTruco?.Invoke(this, EventArgs.Empty);
-                    }
                 }
                 else
                 {
@@ -150,6 +145,7 @@ namespace Biblioteca.Modelos
                     {
                         indiceRandom = new Random().Next(0, 3);
                     } while (datosDeTruco.RondaActual < 3 && (datosDeTruco.Jugadores[0] == this ? datosDeTruco.CartasJugadorA[indiceRandom].EstaEnJuego : datosDeTruco.CartasJugadorB[indiceRandom].EstaEnJuego));
+                    // calculo si tiene truco
                     if (datosDeTruco.HayTrucoCantado)
                     {
                         datosDeTruco.SetSeleccionTruco(this, new Random().Next(0, 2) == 0);

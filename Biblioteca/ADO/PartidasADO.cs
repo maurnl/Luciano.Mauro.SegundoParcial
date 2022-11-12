@@ -48,7 +48,7 @@ namespace Biblioteca.ADO
             return rta;
         }
 
-        public List<PartidaTerminada> ObtenerListaPartidasTerminadas()
+        public List<PartidaTerminada> ObtenerListaPartidasTerminadas(string juego)
         {
             List<PartidaTerminada> lista = new List<PartidaTerminada>();
 
@@ -57,7 +57,14 @@ namespace Biblioteca.ADO
                 comando = new SqlCommand();
 
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "SELECT id, nombre, apellido, esHumano, trucoGanadas, trucoPerdidas, piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas FROM dbo.HistorialPartidas";
+                comando.CommandText = "SELECT h.id, j.nombre, j2.nombre, h.rondaJugadas, h.juego " +
+                    "FROM dbo.HistorialPartidas AS h " +
+                    "JOIN dbo.Jugadores AS j ON h.idJugadorGanador = j.id " +
+                    "JOIN dbo.Jugadores AS j2 ON h.idJugadorPerdedor = j2.id " +
+                    "WHERE h.juego = @juego";
+
+                comando.Parameters.AddWithValue("@juego", juego);
+
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -70,10 +77,8 @@ namespace Biblioteca.ADO
                     item.IdPartida = lector.GetInt32(0);
                     item.NombreGanador = lector.GetString(1);
                     item.NombrePerdedor = lector.GetString(2);
-                    item.PuntajeGanador = lector.GetInt32(3);
-                    item.PuntajePerdedor = lector.GetInt32(4);
-                    item.RondasJugadas = lector.GetInt32(5);
-                    item.NombreJuego = lector.GetString(6);
+                    item.RondasJugadas = lector.GetInt32(3);
+                    item.NombreJuego = lector.GetString(4);
 
                     lista.Add(item);
                 }
@@ -111,7 +116,7 @@ namespace Biblioteca.ADO
                 comando.CommandText = sql;
                 comando.Parameters.AddWithValue("@idPartida", param.Id);
                 comando.Parameters.AddWithValue("@idJugadorGanador", param.DatosDeJuego.Ganador.Id);
-                comando.Parameters.AddWithValue("@idJugadorPerdedor", param.DatosDeJuego.Ganador == param.DatosDeJuego.Jugadores[0] ? param.DatosDeJuego.Jugadores[0] : param.DatosDeJuego.Jugadores[1]);
+                comando.Parameters.AddWithValue("@idJugadorPerdedor", param.DatosDeJuego.Ganador == param.DatosDeJuego.Jugadores[0] ? param.DatosDeJuego.Jugadores[0].Id : param.DatosDeJuego.Jugadores[1].Id);
                 comando.Parameters.AddWithValue("@rondaJugadas", param.RondaActual);
                 comando.Parameters.AddWithValue("@juego", param.Juego);
 

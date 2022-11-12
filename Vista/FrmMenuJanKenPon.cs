@@ -21,7 +21,7 @@ namespace Vista
         public FrmMenuJanKenPon()
         {
             InitializeComponent();
-            this.presentadorMenuTruco = new PresentadorMenuJuego(this, new JanKenPon());
+            this.presentadorMenuTruco = new PresentadorMenuJuego(this, new PiedraPapelTijera());
             this.formsPartidas = new Dictionary<Partida, FrmPartidaTruco>();
         }
 
@@ -141,9 +141,9 @@ namespace Vista
             this.ClickeoMostrarHistorialPartidas?.Invoke(this, e);
         }
 
-        public void MostrarHistorialPartidas(List<PartidaTerminada> historialPartidas)
+        public void MostrarHistorialPartidas(List<PartidaTerminada> historialPartidas, string juego)
         {
-            throw new NotImplementedException();
+            new FrmHistorialPartidas(historialPartidas, juego).Show();
         }
     }
 

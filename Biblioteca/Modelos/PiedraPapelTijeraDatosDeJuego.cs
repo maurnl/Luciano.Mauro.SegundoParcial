@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.Modelos
 {
-    public class JanKenPonDatosDeJuego : IDatosDeJuego<JanKenPon>
+    public class PiedraPapelTijeraDatosDeJuego : IDatosDeJuego<PiedraPapelTijera>
     {
         private bool hayGanador;
         private List<Jugador> jugadores;
@@ -22,7 +22,7 @@ namespace Biblioteca.Modelos
         private Jugador jugadorTurnoActual;
         private string logPartida;
 
-        public JanKenPonDatosDeJuego()
+        public PiedraPapelTijeraDatosDeJuego()
         {
             this.contadorTurnos = 0;
             this.rondaActual = 0;

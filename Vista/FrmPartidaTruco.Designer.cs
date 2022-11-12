@@ -37,6 +37,7 @@
             this.panelManoJ2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelJuegoJ1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelJuegoJ2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCancelarPartida = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblJugadorA
@@ -119,11 +120,22 @@
             this.panelJuegoJ2.Size = new System.Drawing.Size(290, 180);
             this.panelJuegoJ2.TabIndex = 8;
             // 
+            // btnCancelarPartida
+            // 
+            this.btnCancelarPartida.Location = new System.Drawing.Point(704, 730);
+            this.btnCancelarPartida.Name = "btnCancelarPartida";
+            this.btnCancelarPartida.Size = new System.Drawing.Size(150, 58);
+            this.btnCancelarPartida.TabIndex = 9;
+            this.btnCancelarPartida.Text = "Cancelar partida";
+            this.btnCancelarPartida.UseVisualStyleBackColor = true;
+            this.btnCancelarPartida.Click += new System.EventHandler(this.btnCancelarPartida_Click);
+            // 
             // FrmPartidaTruco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1197, 800);
+            this.Controls.Add(this.btnCancelarPartida);
             this.Controls.Add(this.panelJuegoJ2);
             this.Controls.Add(this.panelJuegoJ1);
             this.Controls.Add(this.panelManoJ2);
@@ -153,6 +165,6 @@
         private System.Windows.Forms.FlowLayoutPanel panelManoJ2;
         private System.Windows.Forms.FlowLayoutPanel panelJuegoJ1;
         private System.Windows.Forms.FlowLayoutPanel panelJuegoJ2;
-
+        private System.Windows.Forms.Button btnCancelarPartida;
     }
 }

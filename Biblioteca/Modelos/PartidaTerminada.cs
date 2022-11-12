@@ -11,8 +11,6 @@ namespace Biblioteca.Modelos
         private int idPartida;
         private string nombreGanador;
         private string nombrePerdedor;
-        private int puntajeGanador;
-        private int puntajePerdedor;
         private int rondasJugadas;
         private string nombreJuego;
 
@@ -21,13 +19,11 @@ namespace Biblioteca.Modelos
 
         }
 
-        public PartidaTerminada(int idPartida, string nombreGanador, string nombrePerdedor, int puntajeGanador, int puntajePerdedor, int rondasJugadas, string nombreJuego)
+        public PartidaTerminada(int idPartida, string nombreGanador, string nombrePerdedor, int rondasJugadas, string nombreJuego)
         {
             this.idPartida = idPartida;
             this.nombreGanador = nombreGanador;
             this.nombrePerdedor = nombrePerdedor;
-            this.puntajeGanador = puntajeGanador;
-            this.puntajePerdedor = puntajePerdedor;
             this.rondasJugadas = rondasJugadas;
             this.nombreJuego = nombreJuego;
         }
@@ -56,18 +52,6 @@ namespace Biblioteca.Modelos
             }
         }
 
-        public int PuntajeGanador
-        {
-            get
-            {
-                return this.puntajeGanador;
-            }
-            set
-            {
-                this.puntajeGanador = value;
-            }
-        }
-
         public string NombrePerdedor
         {
             get
@@ -77,18 +61,6 @@ namespace Biblioteca.Modelos
             set
             {
                 this.nombrePerdedor = value;
-            }
-        }
-
-        public int PuntajePerdedor
-        {
-            get
-            {
-                return this.puntajePerdedor;
-            }
-            set
-            {
-                this.puntajePerdedor = value;
             }
         }
 

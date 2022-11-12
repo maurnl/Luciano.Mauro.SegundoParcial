@@ -15,7 +15,7 @@ namespace Vista
     public partial class FrmPartidaJanKenPon : Form
     {
         private List<Image> imagenes;
-        private JanKenPonDatosDeJuego datosDeJuego;
+        private PiedraPapelTijeraDatosDeJuego datosDeJuego;
         public FrmPartidaJanKenPon()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace Vista
 
         public FrmPartidaJanKenPon(Partida partida) : this()
         {
-            this.datosDeJuego = (JanKenPonDatosDeJuego) partida.DatosDeJuego;
+            this.datosDeJuego = (PiedraPapelTijeraDatosDeJuego) partida.DatosDeJuego;
             partida.NotificarDatosDeJuegoActualizados += MostrarDatosDeJuego;
             //List<int> selecciones;
             //for (int i = 0; i < 3; i++)

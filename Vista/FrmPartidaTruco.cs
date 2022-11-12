@@ -56,6 +56,7 @@ namespace Vista
             this.label1.Text = "";
         }
 
+
         private void MostrarCartas(object? sender, EventArgs e)
         {
             if (InvokeRequired)
@@ -126,6 +127,11 @@ namespace Vista
                 this.partida.JugadorB.TurnoDeJugador -= PedirJugada;
                 this.partida.NotificarDatosDeJuegoActualizados -= MostrarCartas;
             }
+        }
+
+        private void btnCancelarPartida_Click(object sender, EventArgs e)
+        {
+            partida.CancelarPartida();
         }
     }
 }

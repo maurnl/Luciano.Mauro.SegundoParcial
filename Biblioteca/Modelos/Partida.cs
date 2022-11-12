@@ -29,11 +29,11 @@ namespace Biblioteca.Modelos
 
         public Partida(IDatosDeJuego<Juego> datosDeJuego) 
         {
-            id = contador++;
-            fuenteCancelacion = new CancellationTokenSource();
-            tokenCancelacion = fuenteCancelacion.Token;
-            partidaTerminada = false;
-            taskPartida = new Task(() => BucleDelJuego(tokenCancelacion), tokenCancelacion);
+            this.id = contador++;
+            this.fuenteCancelacion = new CancellationTokenSource();
+            this.tokenCancelacion = fuenteCancelacion.Token;
+            this.partidaTerminada = false;
+            this.taskPartida = new Task(() => BucleDelJuego(tokenCancelacion), tokenCancelacion);
             this.datosDeJuego = datosDeJuego;
         }
 
@@ -41,7 +41,7 @@ namespace Biblioteca.Modelos
         {
             get
             {
-                return id;
+                return this.id;
             }
         }
 
@@ -49,7 +49,7 @@ namespace Biblioteca.Modelos
         {
             get
             {
-                return taskPartida;
+                return this.taskPartida;
             }
         }
 
@@ -57,7 +57,7 @@ namespace Biblioteca.Modelos
         {
             get
             {
-                return partidaTerminada;
+                return this.partidaTerminada;
             }
         }
 
@@ -65,7 +65,7 @@ namespace Biblioteca.Modelos
         {
             get
             {
-                return tokenCancelacion;
+                return this.tokenCancelacion;
             }
         }
 
@@ -73,7 +73,7 @@ namespace Biblioteca.Modelos
         {
             get
             {
-                return jugadorA;
+                return this.jugadorA;
             }
         }
 
@@ -81,7 +81,7 @@ namespace Biblioteca.Modelos
         {
             get
             {
-                return jugadorB;
+                return this.jugadorB;
             }
         }
 
@@ -89,7 +89,7 @@ namespace Biblioteca.Modelos
         {
             get
             {
-                return datosDeJuego.RondaActual;
+                return this.datosDeJuego.RondaActual;
             }
         }
 
@@ -106,9 +106,9 @@ namespace Biblioteca.Modelos
             get
             {
                 string retorno = "Desconocido";
-                if(this.datosDeJuego is JanKenPonDatosDeJuego)
+                if(this.datosDeJuego is PiedraPapelTijeraDatosDeJuego)
                 {
-                    retorno = "Piedra papel o tijera";
+                    retorno = "PiedraPapelTijera";
                 }
                 else
                 {
@@ -123,33 +123,34 @@ namespace Biblioteca.Modelos
 
         public void CancelarPartida()
         {
-            fuenteCancelacion.CancelAfter(0);
-            while (!partidaTerminada) ;
+            this.fuenteCancelacion.CancelAfter(0);
+            this.datosDeJuego.Ganador = this.datosDeJuego.JugadorTurnoActual;
+            while (!this.partidaTerminada) ;
         }
 
         public void JugarPartida()
         {
             taskPartida.Start();
-            partidaTerminada = true;
+            this.partidaTerminada = true;
         }
 
         private void BucleDelJuego(CancellationToken tokenCancelacion)
         {
-            datosDeJuego.Inicializar();
-            while (!datosDeJuego.HayGanador && !tokenCancelacion.IsCancellationRequested)
+            this.datosDeJuego.Inicializar();
+            while (!this.datosDeJuego.HayGanador && !tokenCancelacion.IsCancellationRequested)
             {
-                datosDeJuego.JugadorTurnoActual.JugarTurno(datosDeJuego);
-                datosDeJuego.Actualizar();
-                NotificarDatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
+                this.datosDeJuego.JugadorTurnoActual.JugarTurno(this.datosDeJuego);
+                this.datosDeJuego.Actualizar();
+                this.NotificarDatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
             }
-            NotificarTerminarPartida?.Invoke(this, EventArgs.Empty);
+            this.NotificarTerminarPartida?.Invoke(this, EventArgs.Empty);
         }
 
         public void SetJugadores(Jugador jugadorA, Jugador jugadorB)
         {
             this.jugadorA = jugadorA;
             this.jugadorB = jugadorB;
-            datosDeJuego.Jugadores = new List<Jugador> { jugadorA, jugadorB };
+            this.datosDeJuego.Jugadores = new List<Jugador> { jugadorA, jugadorB };
         }
 
         public override bool Equals(object obj)

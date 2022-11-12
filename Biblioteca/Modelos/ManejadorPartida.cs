@@ -27,9 +27,15 @@ namespace Biblioteca.Modelos
             }
         }
 
-        public List<PartidaTerminada> ObtenerHistorialPartidas()
+        private void GuardarPartidaFinalizada(object sender, EventArgs e)
         {
-            List<PartidaTerminada> historialPartidas = new PartidasADO().ObtenerListaPartidasTerminadas();
+            Partida partidaDelEvento = (Partida)sender;
+            new PartidasADO().AgregarPartidaTerminada(partidaDelEvento);
+        }
+
+        public List<PartidaTerminada> ObtenerHistorialPartidas(string nombreJuego)
+        {
+            List<PartidaTerminada> historialPartidas = new PartidasADO().ObtenerListaPartidasTerminadas(nombreJuego);
             if(historialPartidas == null)
             {
                 historialPartidas = new List<PartidaTerminada>();
@@ -43,7 +49,7 @@ namespace Biblioteca.Modelos
             {
                 partida.CancelarPartida();
             }
-            Thread.Sleep(500);
+            Thread.Sleep(1500);
         }
 
         public Partida NuevaPartida(Jugador jugadorA, Jugador jugadorB)
@@ -54,6 +60,7 @@ namespace Biblioteca.Modelos
             }
             Partida partida = new Partida(juego.ObtenerDatosDeJuego());
             partida.SetJugadores(jugadorA, jugadorB);
+            partida.NotificarTerminarPartida += GuardarPartidaFinalizada;
             this.partidasActivas.Add(partida);
             return partida;
         }

@@ -146,9 +146,9 @@ namespace Vista
             this.ClickeoMostrarHistorialPartidas?.Invoke(this, e);
         }
 
-        public void MostrarHistorialPartidas(List<PartidaTerminada> historialPartidas)
+        public void MostrarHistorialPartidas(List<PartidaTerminada> historialPartidas, string juego)
         {
-            throw new NotImplementedException();
+            new FrmHistorialPartidas(historialPartidas, juego).Show();
         }
     }
 }

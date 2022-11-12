@@ -16,11 +16,13 @@ namespace Biblioteca.Presentadores
         private ManejadorPartida manejadorPartidas;
         private Jugador jugadorHumano;
         private List<Jugador> jugadoresSimulados;
+        private Juego juego;
 
         public PresentadorMenuJuego(IVistaMenuJuego vistaMenuJankenpon, Juego juego)
         {
+            this.juego = juego;
             this.vistaMenuJuego = vistaMenuJankenpon;
-            this.manejadorPartidas = new ManejadorPartida(juego);
+            this.manejadorPartidas = new ManejadorPartida(this.juego);
             List<Jugador> jugadoresBBDD = new JugadorADO().ObtenerListaJugadores();
             this.jugadorHumano = jugadoresBBDD[0];
             this.jugadoresSimulados = new List<Jugador>(jugadoresBBDD.GetRange(1, jugadoresBBDD.Count - 1));
@@ -82,8 +84,9 @@ namespace Biblioteca.Presentadores
 
         private void MostrarHistorialPartidas(object sender, EventArgs e)
         {
-            List<PartidaTerminada> historialPartidas = this.manejadorPartidas.ObtenerHistorialPartidas();
-            this.vistaMenuJuego.MostrarHistorialPartidas(historialPartidas);
+            string nombreJuego = this.juego.GetType().Name;
+            List<PartidaTerminada> historialPartidas = this.manejadorPartidas.ObtenerHistorialPartidas(nombreJuego);
+            this.vistaMenuJuego.MostrarHistorialPartidas(historialPartidas, nombreJuego);
         }
 
         public void LimpiarEventosVista(object sender, EventArgs e)

@@ -17,6 +17,6 @@ namespace Biblioteca.Vistas
         void EliminarComponentePartida(Partida partida);
         void AbrirComponentePartida(Partida partida);
         void ActualizarComponentePartida(Partida partica);
-        void MostrarHistorialPartidas(List<PartidaTerminada> historialPartidas);
+        void MostrarHistorialPartidas(List<PartidaTerminada> historialPartidas, string juego);
     }
 }

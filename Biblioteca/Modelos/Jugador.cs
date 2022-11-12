@@ -158,9 +158,9 @@ namespace Biblioteca.Modelos
                     Thread.Sleep(800);
                 }
             }
-            else if (datosDeJuego is JanKenPonDatosDeJuego)
+            else if (datosDeJuego is PiedraPapelTijeraDatosDeJuego)
             {
-                JanKenPonDatosDeJuego datosDeJanKenPon = (JanKenPonDatosDeJuego)datosDeJuego;
+                PiedraPapelTijeraDatosDeJuego datosDeJanKenPon = (PiedraPapelTijeraDatosDeJuego)datosDeJuego;
                 if (esHumano)
                 {
 

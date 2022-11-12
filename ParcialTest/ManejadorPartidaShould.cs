@@ -1,103 +1,103 @@
-//using Biblioteca.Modelos;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using System.Collections.Generic;
-//using System.Threading;
+using Biblioteca.Modelos;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Threading;
 
-//namespace ParcialTest
-//{
-//    [TestClass]
-//    public class ManejadorPartidaShould
-//    {
-//        [TestMethod]
-//        public void DevolverPartidaNulaEnJugadorNulo()
-//        {
-//            // Given
-//            ManejadorPartida<Truco> manejadorPartidaTruco = new ManejadorPartida<Truco>();
-//            Jugador jugadorUno = new Jugador("Jugador", "Uno");
-//            Jugador jugadorDos = null;
+namespace ParcialTest
+{
+    [TestClass]
+    public class ManejadorPartidaShould
+    {
+        private ManejadorPartida manejadorPartidasTruco;
 
-//            // When
-//            Partida<Truco> partidaNula = manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos);
+        [TestInitialize]
+        public void InicializarManejador()
+        {
+            this.manejadorPartidasTruco = new ManejadorPartida(new Truco());
+        }
 
-//            // Then
-//            Assert.IsNull(partidaNula);
-//        }
+        [TestMethod]
+        public void DevolverPartidaNulaEnJugadorNulo()
+        {
+            // Arrange
+            Jugador jugadorUno = new Jugador("Jugador", "Uno");
+            Jugador jugadorDos = null;
 
-//        [TestMethod]
-//        public void DevolverPartidaNoNulaEnJugadoresValidos()
-//        {
-//            // Given
-//            ManejadorPartida<Truco> manejadorPartidaTruco = new ManejadorPartida<Truco>();
-//            Jugador jugadorUno = new Jugador("Jugador", "Uno");
-//            Jugador jugadorDos = new Jugador("Jugador", "Dos");
+            // Act
+            Partida partidaNula = manejadorPartidasTruco.NuevaPartida(jugadorUno, jugadorDos);
 
-//            // When
-//            Partida<Truco> partidaValida = manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos);
+            // Assert
+            Assert.IsNull(partidaNula);
+        }
 
-//            // Then
-//            Assert.IsNotNull(partidaValida);
-//        }
+        [TestMethod]
+        public void DevolverPartidaNoNulaEnJugadoresValidos()
+        {
+            // Arrange
+            Jugador jugadorUno = new Jugador("Jugador", "Uno");
+            Jugador jugadorDos = new Jugador("Jugador", "Dos");
 
-//        [TestMethod]
-//        public void TenerUnaListaNoNula()
-//        {
-//            // Given 
-//            ManejadorPartida<Truco> manejadorPartidaTruco = new ManejadorPartida<Truco>();
+            // Act
+            Partida partidaValida = manejadorPartidasTruco.NuevaPartida(jugadorUno, jugadorDos);
 
-//            // When
-//            List<Partida<Truco>> partidas = manejadorPartidaTruco.PartidasActivas;
+            // Assert
+            Assert.IsNotNull(partidaValida);
+        }
 
-//            // Then
-//            Assert.IsNotNull(partidas);
-//        }
+        [TestMethod]
+        public void TenerUnaListaNoNula()
+        {
+            // Arrange 
+            // Act
+            List<Partida> partidas = manejadorPartidasTruco.PartidasActivas;
 
-//        [TestMethod]
-//        [DataRow(10)]
-//        [DataRow(3)]
-//        [DataRow(26)]
-//        [DataRow(11)]
-//        public void AgregarPartidaEnListaPartidas(int cantidadPartidas)
-//        {
-//            // Given
-//            ManejadorPartida<Truco> manejadorPartidaTruco = new ManejadorPartida<Truco>();
-//            Jugador jugadorUno = new Jugador("Jugador", "Uno");
-//            Jugador jugadorDos = new Jugador("Jugador", "Dos");
+            // Assert
+            Assert.IsNotNull(partidas);
+        }
 
-//            // When
-//            for (int i = 0; i < cantidadPartidas; i++)
-//            {
-//                manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos);
-//            }
+        [TestMethod]
+        [DataRow(10)]
+        [DataRow(3)]
+        [DataRow(26)]
+        [DataRow(11)]
+        public void AgregarPartidaEnListaPartidas(int cantidadPartidas)
+        {
+            // Arrange
+            Jugador jugadorUno = new Jugador("Jugador", "Uno");
+            Jugador jugadorDos = new Jugador("Jugador", "Dos");
 
-//            // Then
-//            Assert.AreEqual(cantidadPartidas, manejadorPartidaTruco.PartidasActivas.Count);
-//        }
+            // Act
+            for (int i = 0; i < cantidadPartidas; i++)
+            {
+                manejadorPartidasTruco.NuevaPartida(jugadorUno, jugadorDos);
+            }
 
-//        [TestMethod]
-//        public void CancelarTodasLasPartidasEnCurso()
-//        {
-//            // Given
-//            ManejadorPartida<Truco> manejadorPartidaTruco = new ManejadorPartida<Truco>();
+            // Assert
+            Assert.AreEqual(cantidadPartidas, manejadorPartidasTruco.PartidasActivas.Count);
+        }
 
-//            Jugador jugadorUno = new Jugador("Jugador", "Uno");
-//            Jugador jugadorDos = new Jugador("Jugador", "Dos");
+        [TestMethod]
+        public void CancelarTodasLasPartidasEnCurso()
+        {
+            // Arrange
+            Jugador jugadorUno = new Jugador("Jugador", "Uno");
+            Jugador jugadorDos = new Jugador("Jugador", "Dos");
 
-//            manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
-//            //manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
-//            //manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
-//            //manejadorPartidaTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
+            manejadorPartidasTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
+            manejadorPartidasTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
+            manejadorPartidasTruco.NuevaPartida(jugadorUno, jugadorDos).JugarPartida();
 
-//            // When
-//            manejadorPartidaTruco.CancelarPartidasEnCurso();
+            // Act
+            manejadorPartidasTruco.CancelarPartidasEnCurso();
 
-//            // Then
-//            foreach (Partida<Truco> partida in manejadorPartidaTruco.PartidasActivas)
-//            {
-//                if (!partida.PartidaTerminada)
-//                {
-//                    Assert.Fail();
-//                }
-//            }
-//        }
-//    }
-//}
+            // Assert
+            foreach (Partida partida in manejadorPartidasTruco.PartidasActivas)
+            {
+                if (!partida.PartidaTerminada)
+                {
+                    Assert.Fail();
+                }
+            }
+        }
+    }
+}

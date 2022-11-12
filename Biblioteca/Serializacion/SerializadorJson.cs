@@ -17,8 +17,12 @@ namespace Biblioteca.Serializacion
 
         public SerializadorJson(string archivo)
         {
-            path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            path += "\\" + archivo;
+            path = Environment.CurrentDirectory + @"\Serializacion";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            path += @"\" + archivo;
         }
 
         public T Deserializar()

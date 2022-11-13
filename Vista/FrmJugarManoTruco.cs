@@ -53,24 +53,6 @@ namespace Vista
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private string NumeroAString(int numero)
-        {
-            string texto = "";
-            switch (numero)
-            {
-                case 0:
-                    texto += "Piedra";
-                    break;
-                case 1:
-                    texto += "Papel";
-                    break;
-                case 2:
-                    texto += "Tijera";
-                    break;
-            }
-            return texto;
-        }
-
         public int IndiceCartaJugada
         {
             get

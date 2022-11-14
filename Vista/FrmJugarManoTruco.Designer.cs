@@ -34,31 +34,31 @@
             // 
             // panelCartas
             // 
-            this.panelCartas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.panelCartas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCartas.Location = new System.Drawing.Point(0, 0);
             this.panelCartas.Name = "panelCartas";
-            this.panelCartas.Size = new System.Drawing.Size(431, 260);
+            this.panelCartas.Size = new System.Drawing.Size(335, 220);
             this.panelCartas.TabIndex = 0;
             // 
             // btnTruco
             // 
-            this.btnTruco.Location = new System.Drawing.Point(460, 12);
+            this.btnTruco.Location = new System.Drawing.Point(364, 12);
             this.btnTruco.Name = "btnTruco";
             this.btnTruco.Size = new System.Drawing.Size(75, 46);
             this.btnTruco.TabIndex = 0;
             this.btnTruco.Text = "Truco!!";
             this.btnTruco.UseVisualStyleBackColor = true;
             // 
-            // FrmJugarMano
+            // FrmJugarManoTruco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 260);
+            this.ClientSize = new System.Drawing.Size(460, 220);
             this.Controls.Add(this.btnTruco);
             this.Controls.Add(this.panelCartas);
-            this.Name = "FrmJugarMano";
+            this.Name = "FrmJugarManoTruco";
             this.Text = "FrmJugarMano";
             this.ResumeLayout(false);
 

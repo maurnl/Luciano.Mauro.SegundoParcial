@@ -21,6 +21,10 @@ namespace Vista
         public FrmJugarManoTruco(TrucoDatosDeJuego datosDeJuego)
         {
             InitializeComponent();
+            this.Text = "Elija una carta...";
+            this.panelCartas.BackColor = Color.FromArgb(80, 150, 100, 50);
+            this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo_menu")!;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
             List<Carta> cartas;
             this.datosDeJuego = datosDeJuego;
             for (int i = 0; i < 3; i++)

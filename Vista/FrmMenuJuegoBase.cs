@@ -28,7 +28,7 @@ namespace Vista
             {
                 if (control is Panel panel)
                 {
-                    panel.BackColor = Color.SandyBrown;
+                    panel.BackColor = Color.FromArgb(80, 150, 100, 50);
                 }
             }
         }

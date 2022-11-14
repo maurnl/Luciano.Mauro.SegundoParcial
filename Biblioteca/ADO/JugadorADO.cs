@@ -7,7 +7,7 @@ using Biblioteca.Modelos;
 
 namespace Biblioteca.ADO
 {
-    public class JugadorADO
+    public class JugadorADO : IDatosJugadores
     {
         private static string cadena_conexion;
         private SqlConnection conexion;

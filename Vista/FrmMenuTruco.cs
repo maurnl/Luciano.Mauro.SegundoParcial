@@ -1,6 +1,6 @@
-﻿using Biblioteca.Modelos;
+﻿using Biblioteca.ADO;
+using Biblioteca.Modelos;
 using Biblioteca.Presentadores;
-using Biblioteca.Vistas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,16 +14,13 @@ using Vista.Properties;
 
 namespace Vista
 {
-    public partial class FrmMenuTruco : FrmMenuJuegoBase, IVistaMenuJuego
+    public partial class FrmMenuTruco : FrmMenuJuegoBase, IPresentadorMenuJuego
     {
         private readonly PresentadorMenuJuego presentadorMenuTruco;
-        private Dictionary<Partida, FrmPartidaTruco> formsPartidas;
         public FrmMenuTruco()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
-            this.presentadorMenuTruco = new PresentadorMenuJuego(this, new Truco());
-            this.formsPartidas = new Dictionary<Partida, FrmPartidaTruco>();
+            this.presentadorMenuTruco = new PresentadorMenuJuego(this, new Truco(), new JugadorADO());
         }
 
         public bool EsPartidaSimulada
@@ -41,14 +38,7 @@ namespace Vista
 
         public void AbrirComponentePartida(Partida partida)
         {
-            if (!formsPartidas.ContainsKey(partida))
-            {
-                new FrmPartidaTruco(partida).Show();
-            }
-            else
-            {
-                formsPartidas[partida].Show();
-            }
+            new FrmPartidaTruco(partida).Show();
         }
 
         public void CrearComponentePartida(Partida partida)
@@ -73,9 +63,6 @@ namespace Vista
         {
             EliminarBoton(partida);
         }
-
-
-
 
         private void EliminarBoton(Partida partida)
         {

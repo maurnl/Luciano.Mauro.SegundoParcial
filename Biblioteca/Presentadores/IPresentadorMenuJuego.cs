@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Biblioteca.Vistas
+namespace Biblioteca.Presentadores
 {
-    public interface IVistaMenuJuego
+    public interface IPresentadorMenuJuego
     {
         public bool EsPartidaSimulada { get; }
 

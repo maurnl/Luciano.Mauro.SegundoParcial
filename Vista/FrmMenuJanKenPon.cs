@@ -1,6 +1,6 @@
-﻿using Biblioteca.Modelos;
+﻿using Biblioteca.ADO;
+using Biblioteca.Modelos;
 using Biblioteca.Presentadores;
-using Biblioteca.Vistas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +14,14 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FrmMenuJanKenPon : FrmMenuJuegoBase, IVistaMenuJuego
+    public partial class FrmMenuJanKenPon : FrmMenuJuegoBase, IPresentadorMenuJuego
     {
         private readonly PresentadorMenuJuego presentadorMenuTruco;
         private Dictionary<Partida, FrmPartidaTruco> formsPartidas;
         public FrmMenuJanKenPon()
         {
             InitializeComponent();
-            this.presentadorMenuTruco = new PresentadorMenuJuego(this, new PiedraPapelTijera());
+            this.presentadorMenuTruco = new PresentadorMenuJuego(this, new PiedraPapelTijera(), new JugadorADO());
             this.formsPartidas = new Dictionary<Partida, FrmPartidaTruco>();
         }
 

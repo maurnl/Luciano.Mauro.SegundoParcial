@@ -1,5 +1,4 @@
 ﻿using Biblioteca.Modelos;
-using Biblioteca.Vistas;
 using Biblioteca.ADO;
 using System;
 using System.Collections.Generic;
@@ -12,18 +11,18 @@ namespace Biblioteca.Presentadores
 {
     public class PresentadorMenuJuego
     {
-        private IVistaMenuJuego vistaMenuJuego;
+        private IPresentadorMenuJuego vistaMenuJuego;
         private ManejadorPartida manejadorPartidas;
         private Jugador jugadorHumano;
         private List<Jugador> jugadoresSimulados;
         private Juego juego;
 
-        public PresentadorMenuJuego(IVistaMenuJuego vistaMenuJankenpon, Juego juego)
+        public PresentadorMenuJuego(IPresentadorMenuJuego vistaMenuJankenpon, Juego juego, IDatosJugadores jugadoresAdo)
         {
             this.juego = juego;
             this.vistaMenuJuego = vistaMenuJankenpon;
             this.manejadorPartidas = new ManejadorPartida(this.juego);
-            List<Jugador> jugadoresBBDD = new JugadorADO().ObtenerListaJugadores();
+            List<Jugador> jugadoresBBDD = jugadoresAdo.ObtenerListaJugadores();
             this.jugadorHumano = jugadoresBBDD[0];
             this.jugadoresSimulados = new List<Jugador>(jugadoresBBDD.GetRange(1, jugadoresBBDD.Count - 1));
             this.vistaMenuJuego.ClickeoNuevaPartida += NuevaPartida;

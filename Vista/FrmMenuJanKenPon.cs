@@ -23,6 +23,7 @@ namespace Vista
             InitializeComponent();
             this.presentadorMenuTruco = new PresentadorMenuJuego(this, new PiedraPapelTijera(), new JugadorADO());
             this.formsPartidas = new Dictionary<Partida, FrmPartidaTruco>();
+            this.Text = "Sala de Piedra, papel o tijera!";
         }
 
         public bool EsPartidaSimulada

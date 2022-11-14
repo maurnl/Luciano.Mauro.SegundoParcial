@@ -21,6 +21,7 @@ namespace Vista
         {
             InitializeComponent();
             this.presentadorMenuTruco = new PresentadorMenuJuego(this, new Truco(), new JugadorADO());
+            this.Text = "Sala de Truco!";
         }
 
         public bool EsPartidaSimulada

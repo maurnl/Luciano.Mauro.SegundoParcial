@@ -36,6 +36,7 @@ namespace Vista
 
         public FrmPartidaTruco(Partida partida) : this()
         {
+            this.Text = $"Truco: {partida.JugadorA.Nombre} vs {partida.JugadorB.Nombre}";
             this.partida = partida;
             this.datosDeJuego = (TrucoDatosDeJuego)partida.DatosDeJuego;
             if (partida.JugadorA.EsHumano)

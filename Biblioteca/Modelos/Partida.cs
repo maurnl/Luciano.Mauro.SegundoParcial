@@ -19,6 +19,8 @@ namespace Biblioteca.Modelos
         private Task taskPartida;
         private bool partidaTerminada;
 
+        private Action<Partida> delegadoGuardarPartida;
+
         public event EventHandler NotificarTerminarPartida;
         public event EventHandler NotificarDatosDeJuegoActualizados;
 
@@ -27,13 +29,18 @@ namespace Biblioteca.Modelos
             contador = 0;
         }
 
-        public Partida(IDatosDeJuego<Juego> datosDeJuego, Jugador jugadorA, Jugador jugadorB) 
+        public Partida(IDatosDeJuego<Juego> datosDeJuego, Jugador jugadorA, Jugador jugadorB, Action<Partida> delegadoGuardarPartida)
         {
             this.id = contador++;
+            this.delegadoGuardarPartida = delegadoGuardarPartida;
             this.fuenteCancelacion = new CancellationTokenSource();
             this.tokenCancelacion = fuenteCancelacion.Token;
             this.partidaTerminada = false;
-            this.taskPartida = new Task(() => BucleDelJuego(tokenCancelacion), tokenCancelacion);
+            this.taskPartida = new Task(() =>
+            {
+                BucleDelJuego(tokenCancelacion);
+                this.delegadoGuardarPartida?.Invoke(this);
+            }, tokenCancelacion);
             this.datosDeJuego = datosDeJuego;
             this.jugadorA = jugadorA;
             this.jugadorB = jugadorB;
@@ -146,7 +153,6 @@ namespace Biblioteca.Modelos
                 this.datosDeJuego.Jugar();
                 this.NotificarDatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
             }
-            this.NotificarTerminarPartida?.Invoke(this, EventArgs.Empty);
         }
 
         public override bool Equals(object obj)

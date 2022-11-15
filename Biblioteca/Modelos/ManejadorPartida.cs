@@ -28,10 +28,10 @@ namespace Biblioteca.Modelos
             }
         }
 
-        private void GuardarPartidaFinalizada(object sender, EventArgs e)
+        private void GuardarPartidaFinalizada(Partida sender)
         {
             JugadorADO jugadorAdo = new JugadorADO();
-            Partida partidaDelEvento = (Partida)sender;
+            Partida partidaDelEvento = sender;
             new PartidasADO().AgregarPartidaTerminada(partidaDelEvento);
             jugadorAdo.ModificarJugador(partidaDelEvento.JugadorA);
             jugadorAdo.ModificarJugador(partidaDelEvento.JugadorB);
@@ -59,8 +59,7 @@ namespace Biblioteca.Modelos
             {
                 return null;
             }
-            Partida partida = new Partida(juego.ObtenerDatosDeJuego(), jugadorA, jugadorB);
-            partida.NotificarTerminarPartida += GuardarPartidaFinalizada;
+            Partida partida = new Partida(juego.ObtenerDatosDeJuego(), jugadorA, jugadorB, GuardarPartidaFinalizada);
             this.partidasActivas.Add(partida);
             this.delegadoCancelaciones += () => partida.CancelarPartida();
             return partida;

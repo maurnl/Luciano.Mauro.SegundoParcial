@@ -11,8 +11,8 @@ namespace Biblioteca.Serializacion
 {
     public class SerializadorJson<T> : ISerializador<T> where T : class, new()
     {
-        public StreamWriter writer;
-        public StreamReader reader;
+        public StreamWriter escritor;
+        public StreamReader lector;
         public string path;
 
         public SerializadorJson(string archivo)
@@ -27,21 +27,20 @@ namespace Biblioteca.Serializacion
 
         public T Deserializar()
         {
-            T obj;
+            T objeto;
             try
             {
-                using (reader = new StreamReader(path))
+                using (lector = new StreamReader(path))
                 {
-                    string json = reader.ReadToEnd();
-
-                    obj = JsonSerializer.Deserialize<T>(json);
+                    string json = lector.ReadToEnd();
+                    objeto = JsonSerializer.Deserialize<T>(json);
                 }
             }
             catch (Exception)
             {
                 return null;
             }
-            return obj;
+            return objeto;
         }
 
         public bool Serializar(T objeto)
@@ -49,12 +48,10 @@ namespace Biblioteca.Serializacion
             bool retorno = false;
             try
             {
-                using (writer = new StreamWriter(path))
+                using (escritor = new StreamWriter(path))
                 {
-
                     string json = JsonSerializer.Serialize(objeto);
-
-                    writer.Write(json);
+                    escritor.Write(json);
                     retorno = true;
                 }
             }

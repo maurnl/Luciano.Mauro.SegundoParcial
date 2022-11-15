@@ -35,7 +35,6 @@ namespace Biblioteca.Serializacion
                 using (this.reader = new StreamReader(this.path))
                 {
                     this.serializer = new XmlSerializer(typeof(T));
-
                     aux = (T)this.serializer.Deserialize(this.reader);
                 }
             }
@@ -54,7 +53,6 @@ namespace Biblioteca.Serializacion
                 using (this.writer = new StreamWriter(this.path))
                 {
                     this.serializer = new XmlSerializer(typeof(T));
-
                     this.serializer.Serialize(this.writer, obj);
                 }
                 retorno = true;

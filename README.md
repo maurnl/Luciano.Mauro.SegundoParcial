@@ -31,3 +31,24 @@ Si se decide jugar vs la máquina el formulario se presentará con un diálogo a
 
 # Diagrama de clases
 
+# Entidades
+![Diagrama de clases de la biblioteca](docs/diagrama_clases.png)
+
+# Forms
+![Diagrama de clases de la biblioteca](docs/diagrama_forms.png)
+
+# Justificación técnica
+
+## Excepciones
+
+## Excepciones
+## Pruebas unitarias
+## Tipos genéricos
+## Interfaces
+## Archivos
+## Serialización
+## SQL
+## Delegados y expresiones lambda
+## Programación multi-hilo y concurrencia
+## Eventos
+## Métodos de extensión

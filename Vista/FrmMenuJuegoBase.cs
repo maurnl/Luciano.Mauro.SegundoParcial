@@ -22,13 +22,13 @@ namespace Vista
             InitializeComponent();
             this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo_menu")!;
             this.BackgroundImageLayout = ImageLayout.Stretch;
-            this.tableLayoutPanel1.BackColor = Color.FromArgb(50, 200, 100, 50);
+            this.tableLayoutPanel1.BackColor = Color.FromArgb(50, 244, 164, 96);
 
             foreach (Control control in this.tableLayoutPanel1.Controls)
             {
                 if (control is Panel panel)
                 {
-                    panel.BackColor = Color.FromArgb(80, 150, 100, 50);
+                    panel.BackColor = Color.FromArgb(80, 244, 164, 96);
                 }
             }
         }

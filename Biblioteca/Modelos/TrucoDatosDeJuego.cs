@@ -279,10 +279,10 @@ namespace Biblioteca.Modelos
 
         public void Inicializar()
         {
-            RepartirCartas();
+            ReiniciarRonda();
         }
 
-        private void RepartirCartas()
+        private void ReiniciarRonda()
         {
             foreach (Carta carta in mazo)
             {
@@ -312,7 +312,7 @@ namespace Biblioteca.Modelos
                     return;
                 }
                 rondaActual = 0;
-                RepartirCartas();
+                ReiniciarRonda();
                 return;
             }
             banderaTurnoJugadorB = true;

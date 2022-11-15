@@ -33,6 +33,10 @@ namespace Biblioteca.Presentadores
 
         private void NuevaPartida(object sender, EventArgs e)
         {
+            if (jugadoresSimulados.Count < 1)
+            {
+                return;
+            }
             Random random = new Random();
             int indiceRandomUno = random.Next(0, jugadoresSimulados.Count);
             int indiceRandomDos;

@@ -156,7 +156,7 @@ namespace Biblioteca.Modelos
             }
             else if (datosDeJuego is PiedraPapelTijeraDatosDeJuego)
             {
-                PiedraPapelTijeraDatosDeJuego datosDeJanKenPon = (PiedraPapelTijeraDatosDeJuego)datosDeJuego;
+                PiedraPapelTijeraDatosDeJuego datosPiedraPapelTijera = (PiedraPapelTijeraDatosDeJuego)datosDeJuego;
                 if (esHumano)
                 {
 
@@ -164,7 +164,7 @@ namespace Biblioteca.Modelos
                 else
                 {
                     Thread.Sleep(800);
-                    datosDeJanKenPon.SetSeleccionJugador(this, new Random().Next(0, 3));
+                    datosPiedraPapelTijera.SetSeleccionJugador(this, new Random().Next(0, 3));
 
                 }
             }

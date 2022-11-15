@@ -36,6 +36,13 @@ namespace Vista
 
         public FrmPartidaTruco(Partida partida) : this()
         {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Panel panel)
+                {
+                    panel.BackColor = Color.FromArgb(50, 244, 164, 96);
+                }
+            }
             this.Text = $"Truco: {partida.JugadorA.Nombre} vs {partida.JugadorB.Nombre}";
             this.partida = partida;
             this.datosDeJuego = (TrucoDatosDeJuego)partida.DatosDeJuego;

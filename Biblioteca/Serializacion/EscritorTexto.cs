@@ -7,13 +7,13 @@ using System.IO;
 
 namespace Entidades.Serializacion
 {
-    public class ArchivosDeTexto
+    public class EscritorTexto
     {
         private StreamWriter escritor;
         private StreamReader lector;
         private string path;
 
-        public ArchivosDeTexto()
+        public EscritorTexto()
         {
             if (!Directory.Exists(@".\Archivos"))
             {
@@ -21,30 +21,6 @@ namespace Entidades.Serializacion
             }
             this.path = @".\Serializacion\log_partida.txt";
         }
-
-        public bool AgregarAlArchivo(string logPartida)
-        {
-            bool agrego = false;
-
-            try
-            {
-                this.escritor = new StreamWriter(this.path, true);
-                this.escritor.WriteLine(logPartida);
-                agrego = true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            finally
-            {
-                if (this.escritor != null)
-                    this.escritor.Close();
-            }
-
-            return agrego;
-        }
-
 
         public bool SobreescribirElArchivo(string logPartida)
         {

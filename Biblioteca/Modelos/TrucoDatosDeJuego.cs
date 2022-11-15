@@ -27,6 +27,7 @@ namespace Biblioteca.Modelos
         private int contadorTurnos;
         private int valorDeRonda;
         private string logPartida;
+        private string logPartidaCompleto;
         private Jugador jugadorTurnoActual;
         private List<Carta> cartasJugadorA;
         private List<Carta> cartasEnJuegoJugadorA;
@@ -223,6 +224,14 @@ namespace Biblioteca.Modelos
             }
         }
 
+        public string LogPartidaCompleto
+        {
+            get
+            {
+                return this.logPartidaCompleto;
+            }
+        }
+
         public string LogPartida
         {
             get
@@ -312,6 +321,12 @@ namespace Biblioteca.Modelos
             this.sePuedeCantarTruco = true;
         }
 
+        private void AgregarAlLog(string mensaje)
+        {
+            this.logPartida += mensaje;
+            this.logPartidaCompleto += mensaje;
+        }
+
         public void Jugar()
         {
             if (this.rondaActual == 3)
@@ -334,17 +349,17 @@ namespace Biblioteca.Modelos
             if (this.hayTrucoCantado)
             {
                 this.sePuedeCantarTruco = false;
-                this.logPartida += "Se canto Truco!!\n";
+                AgregarAlLog("Se canto Truco!!\n");
                 if (this.estadoTruco == EstadoTruco.Querido)
                 {
-                    this.logPartida += "Se quiso el Truco!!\n";
+                    AgregarAlLog("Se quiso el Truco!!\n");
                     this.valorDeRonda += 1;
                     this.estadoTruco = EstadoTruco.NoDecidio;
                 }
                 else if (this.estadoTruco == EstadoTruco.NoQuerido)
                 {
                     this.hayGanadorDeRonda = true;
-                    this.logPartida += "No se quiso el Truco!!\n";
+                    AgregarAlLog("No se quiso el Truco!!\n");
                     this.estadoTruco = EstadoTruco.NoDecidio;
                     rondaActual = 3;
                     ChequearGanadorDeRonda();
@@ -378,28 +393,28 @@ namespace Biblioteca.Modelos
             // Cambio estado de las cartas en la mano
             // Evaluar quien gano la ronda...   
             this.rondaActual++;
-            this.logPartida += $"Ronda: {this.rondaActual}.\n";
+            AgregarAlLog($"Ronda: {this.rondaActual}.\n");
             foreach (Jugador jugador in this.jugadores)
             {
-                this.logPartida += $"{(jugador.EsHumano ? "Elegiste" : $"{jugador.Nombre} eligio")} el {(jugador == this.jugadores[0] ? cartaJugadorA : cartaJugadorB)}.\n";
+                AgregarAlLog($"{(jugador.EsHumano ? "Elegiste" : $"{jugador.Nombre} eligio")} el {(jugador == this.jugadores[0] ? cartaJugadorA : cartaJugadorB)}.\n");
             }
             if (cartaJugadorA - cartaJugadorB > 0)
             {
                 // Gana jugador A
                 this.rondasGanadasJugadorA++;
                 this.jugadorTurnoActual = this.jugadores[0];
-                this.logPartida += $"{this.jugadores[0].Nombre} mato al {cartaJugadorB} con su {cartaJugadorA}.\n";
+                AgregarAlLog($"{this.jugadores[0].Nombre} mato al {cartaJugadorB} con su {cartaJugadorA}.\n");
             }
             else if (cartaJugadorB - cartaJugadorA > 0)
             {
                 // Gana jugador B
                 this.rondasGanadasJugadorB++;
                 this.jugadorTurnoActual = jugadores[1];
-                this.logPartida += $"{this.jugadores[1].Nombre} mato al {cartaJugadorA} con su {cartaJugadorB}.\n";
+                AgregarAlLog($"{this.jugadores[1].Nombre} mato al {cartaJugadorA} con su {cartaJugadorB}.\n");
             }
             else
             {
-                this.logPartida += "Empate!\n";
+                AgregarAlLog("Empate!\n");
             }
 
             if (this.rondaActual == 1)
@@ -425,12 +440,12 @@ namespace Biblioteca.Modelos
             this.hayGanadorDeRonda = true;
             if (this.rondasGanadasJugadorA > this.rondasGanadasJugadorB)
             {
-                this.logPartida += $"{this.jugadores[0].Nombre} gano la ronda. Mezclando el mazo...\n";
+                AgregarAlLog($"{this.jugadores[0].Nombre} gano la ronda. Mezclando el mazo...\n");
                 this.puntajeJugadorA += this.valorDeRonda;
             }
             else
             {
-                this.logPartida += $"{this.jugadores[1].Nombre} gano la ronda. Mezclando el mazo...\n";
+                AgregarAlLog($"{this.jugadores[1].Nombre} gano la ronda. Mezclando el mazo...\n");
                 this.puntajeJugadorB += this.valorDeRonda;
             }
             if (this.puntajeJugadorA >= 6 || this.puntajeJugadorB >= 6)
@@ -445,6 +460,7 @@ namespace Biblioteca.Modelos
                 {
                     Jugadores[0].CantidadDerrotasTruco++;
                 }
+                AgregarAlLog($"{this.Ganador.Nombre} ganó la partida!! Bien jugado!!");
             }
             this.rondasGanadasJugadorA = 0;
             this.rondasGanadasJugadorB = 0;

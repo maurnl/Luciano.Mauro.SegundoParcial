@@ -1,4 +1,5 @@
 ﻿using Biblioteca.Modelos;
+using Entidades.Serializacion;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -144,7 +145,13 @@ namespace Vista
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-
+            if(new EscritorTexto().SobreescribirElArchivo(this.datosDeJuego.LogPartidaCompleto))
+            {
+                MessageBox.Show("Se guardó el registro correctamente!");
+            } else
+            {
+                MessageBox.Show("Hubo un error al generar el archivo de texto...");
+            }
         }
     }
 }

@@ -39,11 +39,13 @@ namespace Vista
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            // Agregar creacion de archivo config.txt
             this.btnJankenpon.Enabled = false;
             this.btnTruco.Enabled = false;
             this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo_principal")!;
-            //this.btnTruco.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_truco_disabled")!;
+            this.btnJugadores.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_jugadores")!;
+            this.btnTruco.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_truco_disabled")!;
+            this.btnJankenpon.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_ppt_disabled")!;
+            this.btnJugadores.BackgroundImageLayout = ImageLayout.Stretch;
             this.btnTruco.BackgroundImageLayout = ImageLayout.Stretch;
             this.BackgroundImageLayout = ImageLayout.Stretch;
             this.lblDescripcion.BackColor = Color.FromArgb(50, 100, 100, 100);
@@ -69,6 +71,7 @@ namespace Vista
         {
             if(this.txtNombre.Text == "")
             {
+                this.btnJankenpon.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_ppt_disabled")!;
                 this.btnTruco.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_truco_disabled")!;
                 this.btnJankenpon.Enabled = false;
                 this.btnTruco.Enabled = false;
@@ -76,6 +79,7 @@ namespace Vista
             }
             else
             {
+                this.btnJankenpon.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_ppt")!;
                 this.btnTruco.BackgroundImage = (Image)Resources.ResourceManager.GetObject("boton_truco")!;
                 this.lblBienvenido.Text = $"Bienvenido, {this.txtNombre.Text}!";
                 this.btnJankenpon.Enabled = true;
@@ -102,6 +106,14 @@ namespace Vista
         private void btnJugadores_Click(object sender, EventArgs e)
         {
             new FrmCrudJugadores().Show();
+        }
+
+        private void btnJugadores_MouseEnter(object sender, EventArgs e)
+        {
+            this.lblDescripcion.Text = "                                                                       \n" +
+                "                                        Administrar usuarios ...                                 \n" +
+                "                                                                                                \n" +
+                "                                               ";
         }
     }
 }

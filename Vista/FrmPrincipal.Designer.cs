@@ -53,7 +53,6 @@
             this.btnJankenpon.Name = "btnJankenpon";
             this.btnJankenpon.Size = new System.Drawing.Size(130, 130);
             this.btnJankenpon.TabIndex = 1;
-            this.btnJankenpon.Text = "Jugar Piedra, papel o tijera!";
             this.btnJankenpon.UseVisualStyleBackColor = true;
             this.btnJankenpon.Click += new System.EventHandler(this.btnJankenpon_Click);
             this.btnJankenpon.MouseEnter += new System.EventHandler(this.btnJankenpon_MouseEnter);
@@ -104,9 +103,9 @@
             this.btnJugadores.Name = "btnJugadores";
             this.btnJugadores.Size = new System.Drawing.Size(130, 130);
             this.btnJugadores.TabIndex = 6;
-            this.btnJugadores.Text = "Administrar jugadores...";
             this.btnJugadores.UseVisualStyleBackColor = true;
             this.btnJugadores.Click += new System.EventHandler(this.btnJugadores_Click);
+            this.btnJugadores.MouseEnter += new System.EventHandler(this.btnJugadores_MouseEnter);
             // 
             // FrmPrincipal
             // 

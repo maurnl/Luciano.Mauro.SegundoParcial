@@ -238,6 +238,15 @@
   <data name="7deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Cartas\7deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="boton_jugadores" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boton_usuarios.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boton_ppt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boton_ppt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boton_ppt_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boton_ppt_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="boton_truco" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\boton_truco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

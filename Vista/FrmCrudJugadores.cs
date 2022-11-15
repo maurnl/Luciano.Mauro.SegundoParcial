@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vista.Properties;
 
 namespace Vista
 {
@@ -24,6 +25,8 @@ namespace Vista
 
         private void FrmCrudJugadores_Load(object sender, EventArgs e)
         {
+            this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo_menu")!;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
             ActualizarDatagrid();
         }
 

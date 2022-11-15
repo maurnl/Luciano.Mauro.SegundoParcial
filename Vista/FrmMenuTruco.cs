@@ -138,5 +138,17 @@ namespace Vista
         {
             new FrmHistorialPartidas(historialPartidas, juego).Show();
         }
+
+        public void MostrarCantidadPartidas(int cantidadPartidas)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<int>(MostrarCantidadPartidas), cantidadPartidas);
+            } 
+            else
+            {
+                base.lblCantidadPartidas.Text = $"Partidas activas: {cantidadPartidas}";
+            }
+        }
     }
 }

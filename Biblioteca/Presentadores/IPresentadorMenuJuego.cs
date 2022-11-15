@@ -18,5 +18,6 @@ namespace Biblioteca.Presentadores
         void AbrirComponentePartida(Partida partida);
         void ActualizarComponentePartida(Partida partica);
         void MostrarHistorialPartidas(List<PartidaTerminada> historialPartidas, string juego);
+        void MostrarCantidadPartidas(int cantidadPartidas);
     }
 }

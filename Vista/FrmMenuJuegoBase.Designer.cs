@@ -35,6 +35,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkSimulada = new System.Windows.Forms.CheckBox();
             this.flowPanelPartidas = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblCantidadPartidas = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -58,6 +59,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowPanelPartidas, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblCantidadPartidas, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -121,6 +123,16 @@
             this.flowPanelPartidas.Size = new System.Drawing.Size(620, 474);
             this.flowPanelPartidas.TabIndex = 3;
             // 
+            // lblCantidadPartidas
+            // 
+            this.lblCantidadPartidas.AutoSize = true;
+            this.lblCantidadPartidas.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCantidadPartidas.Location = new System.Drawing.Point(216, 0);
+            this.lblCantidadPartidas.Name = "lblCantidadPartidas";
+            this.lblCantidadPartidas.Size = new System.Drawing.Size(65, 22);
+            this.lblCantidadPartidas.TabIndex = 4;
+            this.lblCantidadPartidas.Text = "label1";
+            // 
             // FrmMenuJuegoBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -131,6 +143,7 @@
             this.Text = "VistaJuego";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMenuJuegoBase_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -147,5 +160,6 @@
         protected System.Windows.Forms.CheckBox chkSimulada;
         protected System.Windows.Forms.FlowLayoutPanel flowPanelPartidas;
         private System.Windows.Forms.Button btnHistorialPartidas;
+        protected System.Windows.Forms.Label lblCantidadPartidas;
     }
 }

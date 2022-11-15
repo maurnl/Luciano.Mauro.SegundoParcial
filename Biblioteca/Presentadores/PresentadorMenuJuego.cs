@@ -50,13 +50,20 @@ namespace Biblioteca.Presentadores
                 return;
             }
             partidaNueva.NotificarDatosDeJuegoActualizados += ActualizarComponentePartida;
+            partidaNueva.NotificarTerminarPartida += MostrarCantidadPartidas;
             partidaNueva.NotificarTerminarPartida += EliminarComponentePartida;
             this.vistaMenuJuego.CrearComponentePartida(partidaNueva);
             if (!this.vistaMenuJuego.EsPartidaSimulada)
             {
                 this.vistaMenuJuego.AbrirComponentePartida(partidaNueva);
             }
+            MostrarCantidadPartidas(sender, e);
             partidaNueva.JugarPartida();
+        }
+
+        private void MostrarCantidadPartidas(object sender, EventArgs e)
+        {
+            this.vistaMenuJuego.MostrarCantidadPartidas(this.manejadorPartidas.CantidadPartidasActivas);
         }
 
         private void AbrirComponentePartida(object sender, EventArgs e)
@@ -75,6 +82,7 @@ namespace Biblioteca.Presentadores
         {
             Partida partida = (Partida)sender;
             partida.NotificarDatosDeJuegoActualizados -= ActualizarComponentePartida;
+            partida.NotificarTerminarPartida -= MostrarCantidadPartidas;
             partida.NotificarTerminarPartida -= EliminarComponentePartida;
             this.vistaMenuJuego.EliminarComponentePartida(partida);
         }

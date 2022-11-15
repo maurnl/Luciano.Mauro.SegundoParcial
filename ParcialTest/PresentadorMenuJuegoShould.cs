@@ -57,6 +57,9 @@ namespace ParcialTest
                     break;
             }
         }
+
+        [TestMethod]
+        public void 
     }
 
     internal class AdoMock : IDatosJugadores
@@ -81,6 +84,7 @@ namespace ParcialTest
         public bool EventoCrearOk { get; set; }
         public bool EventorEliminarOk { get; set; }
         public bool EventoMostrarOk { get; set; }
+        public int CantidadPartidas { get; set; }
 
         public event EventHandler OnCierreVista;
         public event EventHandler ClickeoNuevaPartida;
@@ -124,5 +128,9 @@ namespace ParcialTest
         {
         }
 
+        public void MostrarCantidadPartidas(int cantidadPartidas)
+        {
+            this.CantidadPartidas = cantidadPartidas;
+        }
     }
 }

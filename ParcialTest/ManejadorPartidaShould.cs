@@ -89,11 +89,11 @@ namespace ParcialTest
 
             // Act
             manejadorPartidasTruco.CancelarPartidasEnCurso();
-
+            Thread.Sleep(1500);
             // Assert
             foreach (Partida partida in manejadorPartidasTruco.PartidasActivas)
             {
-                if (!partida.PartidaTerminada)
+                if (!partida.TokenCancelacion.IsCancellationRequested)
                 {
                     Assert.Fail();
                 }

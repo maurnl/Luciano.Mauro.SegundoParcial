@@ -17,7 +17,6 @@ namespace Biblioteca.Modelos
         private CancellationToken tokenCancelacion;
         private CancellationTokenSource fuenteCancelacion;
         private Task taskPartida;
-        private bool partidaTerminada;
 
         private Action<Partida> delegadoGuardarPartida;
 
@@ -35,11 +34,11 @@ namespace Biblioteca.Modelos
             this.delegadoGuardarPartida = delegadoGuardarPartida;
             this.fuenteCancelacion = new CancellationTokenSource();
             this.tokenCancelacion = fuenteCancelacion.Token;
-            this.partidaTerminada = false;
             this.taskPartida = new Task(() =>
             {
                 BucleDelJuego(tokenCancelacion);
                 this.delegadoGuardarPartida?.Invoke(this);
+                this.NotificarTerminarPartida?.Invoke(this, EventArgs.Empty);
             }, tokenCancelacion);
             this.datosDeJuego = datosDeJuego;
             this.jugadorA = jugadorA;
@@ -60,14 +59,6 @@ namespace Biblioteca.Modelos
             get
             {
                 return this.taskPartida;
-            }
-        }
-
-        public bool PartidaTerminada
-        {
-            get
-            {
-                return this.partidaTerminada;
             }
         }
 
@@ -135,23 +126,25 @@ namespace Biblioteca.Modelos
         {
             this.fuenteCancelacion.CancelAfter(0);
             this.datosDeJuego.Ganador = this.datosDeJuego.JugadorTurnoActual;
-            while (!this.partidaTerminada) ;
         }
 
         public void JugarPartida()
         {
             taskPartida.Start();
-            this.partidaTerminada = true;
         }
 
         private void BucleDelJuego(CancellationToken tokenCancelacion)
         {
             this.datosDeJuego.Inicializar();
-            while (!this.datosDeJuego.HayGanador && !tokenCancelacion.IsCancellationRequested)
+            while (!this.datosDeJuego.HayGanador)
             {
                 this.datosDeJuego.JugadorTurnoActual.JugarTurno(this.datosDeJuego);
                 this.datosDeJuego.Jugar();
                 this.NotificarDatosDeJuegoActualizados?.Invoke(this, EventArgs.Empty);
+                if (tokenCancelacion.IsCancellationRequested)
+                {
+                    return;
+                }
             }
         }
 

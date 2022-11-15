@@ -13,11 +13,20 @@ namespace Biblioteca.Modelos
         private Juego juego;
         private Action delegadoCancelaciones;
         private List<Partida> partidasActivas;
+        private int cantidadPartidasActivas;
 
         public ManejadorPartida(Juego juego)
         {
             this.juego = juego;
             this.partidasActivas = new List<Partida>();
+        }
+
+        public int CantidadPartidasActivas
+        {
+            get
+            {
+                return this.cantidadPartidasActivas;
+            }
         }
 
         public List<Partida> PartidasActivas
@@ -35,6 +44,7 @@ namespace Biblioteca.Modelos
             new PartidasADO().AgregarPartidaTerminada(partidaDelEvento);
             jugadorAdo.ModificarJugador(partidaDelEvento.JugadorA);
             jugadorAdo.ModificarJugador(partidaDelEvento.JugadorB);
+            this.cantidadPartidasActivas--;
         }
 
         public List<PartidaTerminada> ObtenerHistorialPartidas(string nombreJuego)
@@ -49,6 +59,7 @@ namespace Biblioteca.Modelos
 
         public void CancelarPartidasEnCurso()
         {
+            this.cantidadPartidasActivas = 0;
             delegadoCancelaciones?.Invoke();
             Thread.Sleep(1500);
         }
@@ -62,6 +73,7 @@ namespace Biblioteca.Modelos
             Partida partida = new Partida(juego.ObtenerDatosDeJuego(), jugadorA, jugadorB, GuardarPartidaFinalizada);
             this.partidasActivas.Add(partida);
             this.delegadoCancelaciones += () => partida.CancelarPartida();
+            this.cantidadPartidasActivas++;
             return partida;
         }
     }

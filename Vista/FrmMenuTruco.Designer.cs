@@ -35,14 +35,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 572);
-            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FrmMenuTruco";
-            this.Text = "VistaJuego";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Load += new System.EventHandler(this.FrmMenuTruco_Load);
             this.ResumeLayout(false);
 
         }

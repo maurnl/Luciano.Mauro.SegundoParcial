@@ -150,5 +150,10 @@ namespace Vista
                 base.lblCantidadPartidas.Text = $"Partidas activas: {cantidadPartidas}";
             }
         }
+
+        private void FrmMenuTruco_Load(object sender, EventArgs e)
+        {
+            MostrarCantidadPartidas(0);
+        }
     }
 }

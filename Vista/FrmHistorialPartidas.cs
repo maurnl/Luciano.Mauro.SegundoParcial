@@ -64,6 +64,7 @@ namespace Vista
             if (frmSerializacion.ShowDialog() == DialogResult.OK)
             {
                 this.partidas = frmSerializacion.PartidasDeserializadas;
+                ActualizarDatagrid(this.partidas);
                 MessageBox.Show("Lista cargada correctamente!");
             }
         }

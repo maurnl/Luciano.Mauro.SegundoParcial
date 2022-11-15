@@ -433,7 +433,7 @@ namespace Biblioteca.Modelos
                 this.logPartida += $"{this.jugadores[1].Nombre} gano la ronda. Mezclando el mazo...\n";
                 this.puntajeJugadorB += this.valorDeRonda;
             }
-            if (this.puntajeJugadorA == 4 || this.puntajeJugadorB == 4)
+            if (this.puntajeJugadorA >= 6 || this.puntajeJugadorB >= 6)
             {
                 this.Ganador = this.puntajeJugadorA > this.puntajeJugadorB ? this.jugadores[0] : this.jugadores[1];
                 this.Ganador.CantidadVictoriasTruco++;

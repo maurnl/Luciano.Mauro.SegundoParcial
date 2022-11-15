@@ -141,5 +141,10 @@ namespace Vista
         {
             partida.CancelarPartida();
         }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

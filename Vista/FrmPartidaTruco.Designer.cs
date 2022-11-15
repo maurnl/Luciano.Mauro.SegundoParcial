@@ -38,6 +38,7 @@
             this.panelJuegoJ1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelJuegoJ2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCancelarPartida = new System.Windows.Forms.Button();
+            this.btnExportar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblJugadorA
@@ -130,11 +131,22 @@
             this.btnCancelarPartida.UseVisualStyleBackColor = true;
             this.btnCancelarPartida.Click += new System.EventHandler(this.btnCancelarPartida_Click);
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Location = new System.Drawing.Point(882, 730);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(150, 57);
+            this.btnExportar.TabIndex = 10;
+            this.btnExportar.Text = "Exportar texto...";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
             // FrmPartidaTruco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1197, 800);
+            this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.btnCancelarPartida);
             this.Controls.Add(this.panelJuegoJ2);
             this.Controls.Add(this.panelJuegoJ1);
@@ -166,5 +178,6 @@
         private System.Windows.Forms.FlowLayoutPanel panelJuegoJ1;
         private System.Windows.Forms.FlowLayoutPanel panelJuegoJ2;
         private System.Windows.Forms.Button btnCancelarPartida;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

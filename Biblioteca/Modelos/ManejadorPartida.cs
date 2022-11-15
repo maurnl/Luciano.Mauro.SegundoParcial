@@ -11,6 +11,7 @@ namespace Biblioteca.Modelos
     public class ManejadorPartida
     {
         private Juego juego;
+        private Action delegadoCancelaciones;
         private List<Partida> partidasActivas;
 
         public ManejadorPartida(Juego juego)
@@ -48,10 +49,7 @@ namespace Biblioteca.Modelos
 
         public void CancelarPartidasEnCurso()
         {
-            foreach (Partida partida in this.partidasActivas)
-            {
-                partida.CancelarPartida();
-            }
+            delegadoCancelaciones?.Invoke();
             Thread.Sleep(1500);
         }
 
@@ -64,6 +62,7 @@ namespace Biblioteca.Modelos
             Partida partida = new Partida(juego.ObtenerDatosDeJuego(), jugadorA, jugadorB);
             partida.NotificarTerminarPartida += GuardarPartidaFinalizada;
             this.partidasActivas.Add(partida);
+            this.delegadoCancelaciones += () => partida.CancelarPartida();
             return partida;
         }
     }

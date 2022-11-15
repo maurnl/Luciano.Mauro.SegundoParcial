@@ -21,7 +21,6 @@ namespace Biblioteca.ADO
 
         public JugadorADO()
         {
-            // CREO UN OBJETO SQLCONECTION
             conexion = new SqlConnection(cadena_conexion);
         }
 

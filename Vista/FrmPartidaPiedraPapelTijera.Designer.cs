@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FrmPartidaJanKenPon
+    partial class FrmPartidaPiedraPapelTijera
     {
         /// <summary>
         /// Required designer variable.

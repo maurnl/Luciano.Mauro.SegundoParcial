@@ -73,8 +73,8 @@ namespace Biblioteca.ADO
                     item.EsHumano = lector.GetBoolean(3);
                     item.CantidadVictoriasTruco = lector.GetInt32(4);
                     item.CantidadDerrotasTruco = lector.GetInt32(5);
-                    item.CantidadVictoriasJanKenPon = lector.GetInt32(6);
-                    item.CantidadDerrotasJanKenPon = lector.GetInt32(7);
+                    item.CantidadVictoriasPiedraPapelTijera = lector.GetInt32(6);
+                    item.CantidadDerrotasPiedraPapelTijera = lector.GetInt32(7);
 
                     lista.Add(item);
                 }
@@ -115,8 +115,8 @@ namespace Biblioteca.ADO
                 comando.Parameters.AddWithValue("@apellido", param.Apellido);
                 comando.Parameters.AddWithValue("@trucoGanadas", param.CantidadVictoriasTruco);
                 comando.Parameters.AddWithValue("@trucoPerdidas", param.CantidadDerrotasTruco);
-                comando.Parameters.AddWithValue("@piedrapapeltijeraGanadas", param.CantidadVictoriasJanKenPon);
-                comando.Parameters.AddWithValue("@piedrapapeltijeraPerdidas", param.CantidadDerrotasJanKenPon);
+                comando.Parameters.AddWithValue("@piedrapapeltijeraGanadas", param.CantidadVictoriasPiedraPapelTijera);
+                comando.Parameters.AddWithValue("@piedrapapeltijeraPerdidas", param.CantidadDerrotasPiedraPapelTijera);
 
                 comando.Connection = conexion;
 
@@ -159,8 +159,8 @@ namespace Biblioteca.ADO
                 comando.Parameters.AddWithValue("@apellido", param.Apellido);
                 comando.Parameters.AddWithValue("@trucoGanadas", param.CantidadVictoriasTruco);
                 comando.Parameters.AddWithValue("@trucoPerdidas", param.CantidadDerrotasTruco);
-                comando.Parameters.AddWithValue("@piedrapapeltijeraGanadas", param.CantidadVictoriasJanKenPon);
-                comando.Parameters.AddWithValue("@piedrapapeltijeraPerdidas", param.CantidadDerrotasJanKenPon);
+                comando.Parameters.AddWithValue("@piedrapapeltijeraGanadas", param.CantidadVictoriasPiedraPapelTijera);
+                comando.Parameters.AddWithValue("@piedrapapeltijeraPerdidas", param.CantidadDerrotasPiedraPapelTijera);
 
                 string sql = "UPDATE dbo.Jugadores ";
                 sql += "SET esHumano = @esHumano, nombre = @nombre, apellido = @apellido, trucoGanadas = @trucoGanadas, trucoPerdidas = @trucoPerdidas, piedrapapeltijeraGanadas = @piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas = @piedrapapeltijeraPerdidas ";

@@ -435,7 +435,16 @@ namespace Biblioteca.Modelos
             }
             if (this.puntajeJugadorA == 4 || this.puntajeJugadorB == 4)
             {
-               this. Ganador = this.puntajeJugadorA > this.puntajeJugadorB ? this.jugadores[0] : this.jugadores[1];
+                this.Ganador = this.puntajeJugadorA > this.puntajeJugadorB ? this.jugadores[0] : this.jugadores[1];
+                this.Ganador.CantidadVictoriasTruco++;
+                if(this.Ganador == Jugadores[0])
+                {
+                    Jugadores[1].CantidadDerrotasTruco++;
+                }
+                else
+                {
+                    Jugadores[0].CantidadDerrotasTruco++;
+                }
             }
             this.rondasGanadasJugadorA = 0;
             this.rondasGanadasJugadorB = 0;

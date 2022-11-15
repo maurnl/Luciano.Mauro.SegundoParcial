@@ -13,8 +13,8 @@ namespace Biblioteca.Modelos
         private string apellido;
         private int cantidadVictoriasTruco;
         private int cantidadDerrotasTruco;
-        private int cantidadVictoriasJanKenPon;
-        private int cantidadDerrotasJanKenPon;
+        private int cantidadVictoriasPiedraPapelTijera;
+        private int cantidadDerrotasPiedraPapelTijera;
 
         public Jugador()
         {
@@ -25,11 +25,11 @@ namespace Biblioteca.Modelos
         {
             this.nombre = nombre;
             this.apellido = apellido;
-            cantidadVictoriasTruco = 0;
-            cantidadDerrotasTruco = 0;
-            cantidadVictoriasJanKenPon = 0;
-            cantidadDerrotasJanKenPon = 0;
-            esHumano = false;
+            this.cantidadVictoriasTruco = 0;
+            this.cantidadDerrotasTruco = 0;
+            this.cantidadVictoriasPiedraPapelTijera = 0;
+            this.cantidadDerrotasPiedraPapelTijera = 0;
+            this.esHumano = false;
         }
 
         public event EventHandler TurnoDeJugador;
@@ -102,26 +102,26 @@ namespace Biblioteca.Modelos
                 cantidadDerrotasTruco = value;
             }
         }
-        public int CantidadVictoriasJanKenPon
+        public int CantidadVictoriasPiedraPapelTijera
         {
             get
             {
-                return cantidadVictoriasJanKenPon;
+                return cantidadVictoriasPiedraPapelTijera;
             }
             set
             {
-                cantidadVictoriasJanKenPon = value;
+                cantidadVictoriasPiedraPapelTijera = value;
             }
         }
-        public int CantidadDerrotasJanKenPon
+        public int CantidadDerrotasPiedraPapelTijera
         {
             get
             {
-                return cantidadDerrotasJanKenPon;
+                return cantidadDerrotasPiedraPapelTijera;
             }
             set
             {
-                cantidadDerrotasJanKenPon = value;
+                cantidadDerrotasPiedraPapelTijera = value;
             }
         }
 

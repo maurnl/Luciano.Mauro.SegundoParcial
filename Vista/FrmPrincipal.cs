@@ -19,12 +19,12 @@ namespace Vista
     public partial class FrmPrincipal : Form
     {
         FrmMenuTruco formTruco;
-        FrmMenuJanKenPon formJankenpon;
+        FrmMenuPiedraPapelTijera formJankenpon;
         public FrmPrincipal()
         {
             InitializeComponent();
             this.formTruco = new FrmMenuTruco();
-            this.formJankenpon = new FrmMenuJanKenPon();
+            this.formJankenpon = new FrmMenuPiedraPapelTijera();
         }
 
         protected override CreateParams CreateParams

@@ -53,14 +53,14 @@ namespace Vista
             {
                 this.jugador = new Jugador(this.txtNombre.Text, this.txtApellido.Text);
                 this.jugador.CantidadVictoriasTruco = (int)this.nudVictoriasTruco.Value;
-                this.jugador.CantidadVictoriasJanKenPon = (int)this.nudVictoriasPPT.Value;
+                this.jugador.CantidadVictoriasPiedraPapelTijera = (int)this.nudVictoriasPPT.Value;
 
             } else
             {
                 this.jugador.Nombre = this.txtNombre.Text;
                 this.jugador.Apellido = this.txtApellido.Text;
                 this.jugador.CantidadVictoriasTruco = (int)this.nudVictoriasTruco.Value;
-                this.jugador.CantidadVictoriasJanKenPon = (int)this.nudVictoriasPPT.Value;
+                this.jugador.CantidadVictoriasPiedraPapelTijera = (int)this.nudVictoriasPPT.Value;
             }
             this.DialogResult = DialogResult.OK;
         }

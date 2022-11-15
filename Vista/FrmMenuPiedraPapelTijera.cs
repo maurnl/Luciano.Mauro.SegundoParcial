@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FrmMenuJanKenPon : FrmMenuJuegoBase, IPresentadorMenuJuego
+    public partial class FrmMenuPiedraPapelTijera : FrmMenuJuegoBase, IPresentadorMenuJuego
     {
         private readonly PresentadorMenuJuego presentadorMenuTruco;
         private Dictionary<Partida, FrmPartidaTruco> formsPartidas;
-        public FrmMenuJanKenPon()
+        public FrmMenuPiedraPapelTijera()
         {
             InitializeComponent();
             this.presentadorMenuTruco = new PresentadorMenuJuego(this, new PiedraPapelTijera(), new JugadorADO());
@@ -43,7 +43,7 @@ namespace Vista
         {
             if (!formsPartidas.ContainsKey(partida))
             {
-                new FrmPartidaJanKenPon(partida).Show();
+                new FrmPartidaPiedraPapelTijera(partida).Show();
             }
             else
             {

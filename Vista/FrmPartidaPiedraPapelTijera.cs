@@ -12,67 +12,21 @@ using Vista.Properties;
 
 namespace Vista
 {
-    public partial class FrmPartidaJanKenPon : Form
+    public partial class FrmPartidaPiedraPapelTijera : Form
     {
         private List<Image> imagenes;
         private PiedraPapelTijeraDatosDeJuego datosDeJuego;
-        public FrmPartidaJanKenPon()
+        public FrmPartidaPiedraPapelTijera()
         {
             InitializeComponent();
             this.imagenes = new List<Image>();
         }
 
-        public FrmPartidaJanKenPon(Partida partida) : this()
+        public FrmPartidaPiedraPapelTijera(Partida partida) : this()
         {
-            this.datosDeJuego = (PiedraPapelTijeraDatosDeJuego) partida.DatosDeJuego;
+            this.datosDeJuego = (PiedraPapelTijeraDatosDeJuego)partida.DatosDeJuego;
             partida.NotificarDatosDeJuegoActualizados += MostrarDatosDeJuego;
-            //List<int> selecciones;
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    if (datosDeJuego.JugadorTurnoActual == datosDeJuego.Jugadores[0])
-            //    {
-            //        selecciones = datosDeJuego.SeleccionesJugadorA;
-            //    }
-            //    else
-            //    {
-            //        selecciones = datosDeJuego.SeleccionesJugadorA;
-            //    }
-            //    Button boton = new Button
-            //    {
-            //        Size = new Size(100, 175),
-            //        Text = $"Seleccion: {NumeroAString(i)}",
-            //        TabIndex = i,
-            //        BackgroundImage = (Image)Resources.ResourceManager.GetObject($"{NumeroAString(i)}")!,
-            //        BackgroundImageLayout = ImageLayout.Stretch
-            //    };
-            //    this.panelCartas.Controls.Add(boton);
-            //    boton.Click += Button_onClick;
-            //    this.btnTruco.Click += CantarTruco;
-            //    this.indiceCartaJugada = 0;
-            //}
-            //this.StartPosition = FormStartPosition.CenterScreen;
-
-            // Ganador
-            //this.lblGanador.Text = datosDeJuego.HayGanador ? $"Ganador: {datosDeJuego.Ganador.Nombre}!!" : "Jugando...";
-            // Puntaje
-            //this.lblJugadorA.Text = $"{datosDeJuego.Jugadores[0].Nombre}: {datosDeJuego.PuntajeJugadorA}";
-            //this.lblJugadorB.Text = $"{datosDeJuego.Jugadores[1].Nombre}: {datosDeJuego.PuntajeJugadorB}";
-            // Turnos
-            //if (panelJuegoJ2.Controls.Count < 3)
-            //{
-                //this.rtbLog.Text = this.rtbLog.Text.Insert(0, datosDeJuego.LogPartida);
-            //}
         }
-
-        //private void PedirJugada(object? sender, EventArgs e)
-        //{
-        //    MostrarCartas(sender!, e);
-        //    FrmJugarManoTruco formMano = new FrmJugarManoTruco(datosDeJuego);
-        //    if (formMano.ShowDialog() == DialogResult.OK)
-        //    {
-        //        datosDeJuego.SetSeleccionJugador(datosDeJuego.JugadorTurnoActual, formMano.IndiceCartaJugada);
-        //    }
-        //}
 
         protected override CreateParams CreateParams
         {
@@ -102,15 +56,6 @@ namespace Vista
                     this.panelJugadorB.Controls.Clear();
                     MostrarElemento(datosDeJuego.SeleccionJugadorB, panelJugadorB);
                 }
-                // Ganador
-                //this.lblGanador.Text = datosDeJuego.HayGanador ? $"Ganador: {datosDeJuego.Ganador.Nombre}!!" : "Jugando...";
-                // Puntaje
-                //this.lblJugadorA.Text = $"{datosDeJuego.Jugadores[0].Nombre}: {datosDeJuego.PuntajeJugadorA}";
-                //this.lblJugadorB.Text = $"{datosDeJuego.Jugadores[1].Nombre}: {datosDeJuego.PuntajeJugadorB}";
-                // Turnos
-                //if (panelJuegoJ2.Controls.Count < 3)
-                //{
-                //}
                 this.rtbLog.Text = "";
                 this.rtbLog.Text = this.rtbLog.Text.Insert(0, datosDeJuego.LogPartida);
             }

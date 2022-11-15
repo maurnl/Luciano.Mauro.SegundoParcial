@@ -191,12 +191,16 @@ namespace Biblioteca.Modelos
             if (puntajeJugadorA == 3)
             {
                 Ganador = this.Jugadores[0];
+                this.Ganador.CantidadVictoriasPiedraPapelTijera++;
+                this.Jugadores[1].CantidadDerrotasPiedraPapelTijera++;
             }
             else if (puntajeJugadorB == 3)
             {
                 Ganador = this.Jugadores[1];
+                this.Ganador.CantidadVictoriasPiedraPapelTijera++;
+                this.Jugadores[0].CantidadDerrotasPiedraPapelTijera++;
             }
-            if(Ganador != null)
+            if (Ganador != null)
             {
                 this.logPartida += $"{Ganador.Nombre} gana la partida!";
             }

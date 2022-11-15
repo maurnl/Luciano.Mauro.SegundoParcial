@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FrmMenuJanKenPon
+    partial class FrmMenuPiedraPapelTijera
     {
         /// <summary>
         /// Required designer variable.

@@ -13,7 +13,7 @@ namespace ParcialTest
     public class PartidaShould
     {
         [TestMethod]
-        public void GuardarPartidaFinalizadaCorrectamente()
+        public void GuardarPartidaFinalizada_Ok()
         {
             // Arrange
             Truco truco = new Truco();

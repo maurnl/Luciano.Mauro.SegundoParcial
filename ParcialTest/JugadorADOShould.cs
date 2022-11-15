@@ -12,7 +12,7 @@ namespace ParcialTest
     public class JugadorADOShould
     {
         [TestMethod]
-        public void ConectarALaBaseDeDatos()
+        public void ConectarALaBaseDeDatos_Ok()
         {
             // Arrange
             JugadorADO jugadorAdo = new JugadorADO();

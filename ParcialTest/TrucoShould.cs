@@ -12,7 +12,7 @@ namespace ParcialTest
     public class TrucoShould
     {
         [TestMethod]
-        public void DevolverTipoCorrecto()
+        public void ObtenerDatosDeJuegoRetornaTipo_Ok()
         {
             // Arrange
             Truco truco = new Truco();
@@ -25,7 +25,20 @@ namespace ParcialTest
         }
 
         [TestMethod]
-        public void DevolverDatosDeJuegoNuevos()
+        public void ObtenerDatosDeJuegoRetornaTipo_Falla()
+        {
+            // Arrange
+            Truco truco = new Truco();
+
+            // Act
+            IDatosDeJuego<Juego> datosDeJuego = truco.ObtenerDatosDeJuego();
+
+            // Assert
+            Assert.IsNotInstanceOfType(datosDeJuego, typeof(IDatosDeJuego<PiedraPapelTijera>));
+        }
+
+        [TestMethod]
+        public void ObtenerDatosDeJuegoNuevos_Ok()
         {
             // Arrange
             Truco truco = new Truco();

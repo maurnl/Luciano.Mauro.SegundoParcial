@@ -12,7 +12,7 @@ namespace ParcialTest
     public class PartidasADOShould
     {
         [TestMethod]
-        public void ConectarALaBaseDeDatos()
+        public void ConectarALaBaseDeDatos_Ok()
         {
             // Arrange
             PartidasADO partidasAdo = new PartidasADO();

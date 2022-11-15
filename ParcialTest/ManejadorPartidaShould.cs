@@ -17,7 +17,7 @@ namespace ParcialTest
         }
 
         [TestMethod]
-        public void DevolverPartidaNulaEnJugadorNulo()
+        public void NuevaPartida_Falla()
         {
             // Arrange
             Jugador jugadorUno = new Jugador("Jugador", "Uno");
@@ -31,7 +31,7 @@ namespace ParcialTest
         }
 
         [TestMethod]
-        public void DevolverPartidaNoNulaEnJugadoresValidos()
+        public void NuevaPartida_Ok()
         {
             // Arrange
             Jugador jugadorUno = new Jugador("Jugador", "Uno");
@@ -45,7 +45,7 @@ namespace ParcialTest
         }
 
         [TestMethod]
-        public void TenerUnaListaNoNula()
+        public void PartidasActivas_Ok()
         {
             // Arrange 
             // Act
@@ -60,7 +60,7 @@ namespace ParcialTest
         [DataRow(3)]
         [DataRow(26)]
         [DataRow(11)]
-        public void AgregarPartidaEnListaPartidas(int cantidadPartidas)
+        public void IncrementarPartidasActivas_Ok(int cantidadPartidas)
         {
             // Arrange
             Jugador jugadorUno = new Jugador("Jugador", "Uno");
@@ -73,11 +73,11 @@ namespace ParcialTest
             }
 
             // Assert
-            Assert.AreEqual(cantidadPartidas, manejadorPartidasTruco.PartidasActivas.Count);
+            Assert.AreEqual(cantidadPartidas, manejadorPartidasTruco.CantidadPartidasActivas);
         }
 
         [TestMethod]
-        public void CancelarTodasLasPartidasEnCurso()
+        public void CancelarTodasLasPartidas_Ok()
         {
             // Arrange
             Jugador jugadorUno = new Jugador("Jugador", "Uno");

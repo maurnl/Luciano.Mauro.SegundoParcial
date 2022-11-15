@@ -23,7 +23,7 @@ namespace ParcialTest
         [DataRow(0)]
         [DataRow(1)]
         [DataRow(2)]
-        public void SetearSeleccionDelJugadorCorrectamente(int seleccion)
+        public void SetearSeleccionDeJugador_Ok(int seleccion)
         {
             // Arrange
             Jugador jugador = new Jugador("Jugador", "Prueba");

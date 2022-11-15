@@ -28,6 +28,15 @@ namespace Biblioteca.Modelos
             contador = 0;
         }
 
+        /// <summary>
+        /// Para construir una partida se requiere una implementación de IDatosDeJuego, dos entidades Jugador y un delegado
+        /// de tipo Action<Partida>. Sin reglas de juego, dos jugadores y una forma de guardar la partida no se podrá crear
+        /// una instancia de Partida.
+        /// </summary>
+        /// <param name="datosDeJuego">Datos/Reglas del juego</param>
+        /// <param name="jugadorA">Jugador uno</param>
+        /// <param name="jugadorB">Jugador dos</param>
+        /// <param name="delegadoGuardarPartida">Delegado output de la partida</param>
         public Partida(IDatosDeJuego<Juego> datosDeJuego, Jugador jugadorA, Jugador jugadorB, Action<Partida> delegadoGuardarPartida)
         {
             this.id = contador++;

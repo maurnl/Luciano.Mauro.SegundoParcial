@@ -38,9 +38,6 @@ Si se decide jugar vs la máquina el formulario se presentará con un diálogo a
 ![Diagrama de clases de la biblioteca](docs/diagrama_forms.png)
 
 # Justificación técnica
-
-## Excepciones
-
 ## Excepciones
 Se utilizaron excepciones para manejar los posibles errores en tiempo de ejecución a la hora de obtener jugadores desde la base de datos.
 ```
@@ -92,11 +89,48 @@ Se realizaron test unitarios para comprobar la funcionalidad del código y reduc
 
 ![Código de test unitarios](docs/testunitarios.png)
 ## Tipos genéricos
+Se utilizaron tipos genericos para la interfaz de serializacion, permitiendo serializar cualquier tipo con una instancia de serializador que cumpla con las restricciones.
+
+
+![Código de test unitarios](docs/genericos.png)
 ## Interfaces
+Se aplicaron interfaces para guardar los datos de la partida de un juego dado y manejarlo dentro de la clase partida a partir de esta.
+
+
+![Código de test unitarios](docs/interfaces.png)
+![Código de test unitarios](docs/interfaces2.png)
+![Código de test unitarios](docs/interfaces3.png)
 ## Archivos
+Para guardar el registro de la partida se utilizó una clase para guardar el texto generado en un archivo de texto localmente.
+
+
+![Código de test unitarios](docs/archivos.png)
 ## Serialización
-## SQL
+Se realizó la serialización del mazo de cartas una vez que se crea en memoria, y además se agregó la opción de poder serializar y deserializar un historial de partidas.
+
+
+![Código de test unitarios](docs/serializacion.png)
+![Código de test unitarios](docs/serializacion2.png)
+![Código de test unitarios](docs/serializacion3.png)
+## SQL y Base de datos
+Se implementó una base de datos para guardar los jugadores y el registro de partidas, y SQL para realizar consultas a la base de datos y poder generar un CRUD de los jugadores.
+
+
+![Código de test unitarios](docs/sql.png)
 ## Delegados y expresiones lambda
+Se utilizó delegados para guardar el método Cancelar de cada partida con el objetivo de realizar una única llamada para cancelar todas las partidas. Por otro lado, se utilizaron expresiones lambda para simplificar la escritura de bucles foreach utilizando el método ForEach de List<T>, el cual recibe una expresión lambda.
+
+
+![Código de test unitarios](docs/delegados.png)
+![Código de test unitarios](docs/lambda.png)
 ## Programación multi-hilo y concurrencia
+Se necesitó de concurrencia para que se puedan jugar partidas sin bloquear el hilo principal de renderizado de WinForms. Para ello se utilizó la clase Task para crear hilos nuevos, y se hizo que cada partida se juegue dentro de un hilo diferente.
+
+
+![Código de test unitarios](docs/multihilos.png)
 ## Eventos
-## Métodos de extensión
+Por último, se implementaron eventos para conectar el Presentador a la Vista, y además a las instancias de Partida con el formulario que las muestra.
+
+
+![Código de test unitarios](docs/eventos.png)
+![Código de test unitarios](docs/eventos2.png)

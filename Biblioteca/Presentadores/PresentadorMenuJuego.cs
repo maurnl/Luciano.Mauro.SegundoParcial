@@ -17,10 +17,10 @@ namespace Biblioteca.Presentadores
         private List<Jugador> jugadoresSimulados;
         private Juego juego;
 
-        public PresentadorMenuJuego(IPresentadorMenuJuego vistaMenuJankenpon, Juego juego, IDatosJugadores jugadoresAdo)
+        public PresentadorMenuJuego(IPresentadorMenuJuego vistaMenuJuego, Juego juego, IDatosJugadores jugadoresAdo)
         {
             this.juego = juego;
-            this.vistaMenuJuego = vistaMenuJankenpon;
+            this.vistaMenuJuego = vistaMenuJuego;
             this.manejadorPartidas = new ManejadorPartida(this.juego);
             List<Jugador> jugadoresBBDD = jugadoresAdo.ObtenerListaJugadores();
             this.jugadorHumano = jugadoresBBDD[0];

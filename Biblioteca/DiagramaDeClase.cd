@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Biblioteca.ADO.JugadorADO" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="0.5" Width="1.5" />
+    <Position X="11" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABEoAAAAAAAEABAAAAAAIAAAAAAIAAAAAAAAAAAAE=</HashCode>
       <FileName>ADO\JugadorADO.cs</FileName>
@@ -9,63 +9,63 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Biblioteca.ADO.PartidasADO" Collapsed="true">
-    <Position X="9.5" Y="1.5" Width="1.5" />
+    <Position X="13.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAEABAAAAQAAAAAAABIAAAAAAAAAAAAE=</HashCode>
       <FileName>ADO\PartidasADO.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Modelos.Carta" Collapsed="true">
-    <Position X="7.75" Y="0.5" Width="1.5" />
+    <Position X="5.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAQAAkAEEAAAAAAAIAAAAAAAEAAAABAAI=</HashCode>
       <FileName>Modelos\Carta.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Modelos.Juego" Collapsed="true">
-    <Position X="4.25" Y="0.5" Width="1.5" />
+    <Position X="4.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Modelos\Juego.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Modelos.Jugador" Collapsed="true">
-    <Position X="9.5" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAIAAAQCAACEAgABgAICAABAAgAAQAEAABABAgA=</HashCode>
       <FileName>Modelos\Jugador.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Modelos.ManejadorPartida" Collapsed="true">
-    <Position X="13" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAgAAAAAAAAAAAAAAAAAAAAABAIgAAAAAAAAEAE=</HashCode>
       <FileName>Modelos\ManejadorPartida.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Modelos.Partida" Collapsed="true">
-    <Position X="7.75" Y="1.5" Width="1.5" />
+    <Position X="7.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAUCFQAAQAgAAAAEgAAAAAEEAQAABAMIYAAACAAAEwA=</HashCode>
       <FileName>Modelos\Partida.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Modelos.PartidaTerminada" Collapsed="true">
-    <Position X="11.25" Y="1.5" Width="1.5" />
+    <Position X="9.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAADBAAAAwQAEAAAABAAAAAAgAAAAIAAAAAAAA=</HashCode>
       <FileName>Modelos\PartidaTerminada.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Modelos.PiedraPapelTijera" Collapsed="true">
-    <Position X="3" Y="1.75" Width="1.5" />
+    <Position X="3" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Modelos\PiedraPapelTijera.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Modelos.PiedraPapelTijeraDatosDeJuego" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13" Y="1.5" Width="1.5" />
+    <Position X="3" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AoBBAAARAEAAkAIAQEFCQAAAAEAAgEAEAgAAQACAAQA=</HashCode>
       <FileName>Modelos\PiedraPapelTijeraDatosDeJuego.cs</FileName>
@@ -73,29 +73,29 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Biblioteca.Modelos.Truco" Collapsed="true">
-    <Position X="5.25" Y="1.75" Width="1.5" />
+    <Position X="5.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAgAAAAgAAAAIAAAA=</HashCode>
       <FileName>Modelos\Truco.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Modelos.TrucoDatosDeJuego" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="9.5" Y="2.5" Width="1.5" />
+    <Position X="5.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>goNBgYQRAEiAkAYAQAFSQAAAEMGAgEAFAgQAQBCAAQg=</HashCode>
+      <HashCode>goNBgYQRAEiAkAYAUAFSQAAAEMGAgEAFAgQAQACAAQg=</HashCode>
       <FileName>Modelos\TrucoDatosDeJuego.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Biblioteca.Presentadores.PresentadorMenuJuego" Collapsed="true">
-    <Position X="7.75" Y="2.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>IAAEAAiAAAEAAAAAAAEAAAAAAAAAIAIAABAAAAAAACE=</HashCode>
       <FileName>Presentadores\PresentadorMenuJuego.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Biblioteca.Serializacion.SerializadorJson&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="4.75" Width="1.5" />
+    <Position X="11.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAACAAAAAAAAAAAAQQAAAAAQAAA=</HashCode>
       <FileName>Serializacion\SerializadorJson.cs</FileName>
@@ -103,7 +103,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Biblioteca.Serializacion.SerializadorXML&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13" Y="4.75" Width="1.5" />
+    <Position X="13.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Serializacion\SerializadorXML.cs</FileName>
@@ -111,42 +111,42 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="Biblioteca.Modelos.IDatosDeJuego&lt;T&gt;" Collapsed="true">
-    <Position X="7.75" Y="3.75" Width="1.5" />
+    <Position X="4" Y="1.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AgBAAAAAAEAAAAAAAAECAAAAAAAAAAAEAAAAAACAAQA=</HashCode>
       <FileName>Modelos\IDatosDeJuego.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Biblioteca.Modelos.IDatosJugadores" Collapsed="true">
-    <Position X="9.5" Y="3.75" Width="1.5" />
+    <Position X="12.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Modelos\IDatosJugadores.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Biblioteca.Presentadores.IPresentadorMenuJuego" Collapsed="true">
-    <Position X="11.25" Y="3.75" Width="1.5" />
+    <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAAAAEAAAQAAAEAAAAAAgCAIAAAAAAAEAQAACA=</HashCode>
       <FileName>Presentadores\IPresentadorMenuJuego.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Biblioteca.Serializacion.ISerializador&lt;T&gt;" Collapsed="true">
-    <Position X="13" Y="3.75" Width="1.5" />
+    <Position X="12.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Serializacion\ISerializador.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="EstadoTruco" Collapsed="true">
-    <Position X="7.75" Y="4.75" Width="1.5" />
+    <Position X="4.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAABAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>Modelos\EEstadoTruco.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Palo" Collapsed="true">
-    <Position X="9.5" Y="4.75" Width="1.5" />
+    <Position X="6.25" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAABAAgAAAAAAAAAAg=</HashCode>
       <FileName>Modelos\EPalo.cs</FileName>

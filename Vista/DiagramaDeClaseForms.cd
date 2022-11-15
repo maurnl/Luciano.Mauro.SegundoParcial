@@ -1,2 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Vista.Properties.Resources" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAABAAwAACgghUESADEJAgBSAARIAAACGAkUNMgMk=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vista.FrmHistorialPartidas" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAACBAAACCAAAACAAAAAAAAAAQAAQCAAIA=</HashCode>
+      <FileName>FrmHistorialPartidas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vista.FrmJugarManoTruco" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgCAAAAAACAAAhAAAACAAAACEAAAAAEACAAAIAAAAAA=</HashCode>
+      <FileName>FrmJugarManoTruco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vista.FrmMenuJanKenPon" Collapsed="true">
+    <Position X="6.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAEAACEAAAQAAAOAAAACAgCAIAAAAAACEARAoGg=</HashCode>
+      <FileName>FrmMenuJanKenPon.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Vista.FrmMenuJuegoBase" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAQAAQACEAAAAAAACCAAACAAAAAAAAAAADAQAAgGA=</HashCode>
+      <FileName>FrmMenuJuegoBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vista.FrmMenuTruco" Collapsed="true">
+    <Position X="4.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACEAAAQAAAOAAAACAgCAIAAAAAACEARAoGg=</HashCode>
+      <FileName>FrmMenuTruco.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Vista.FrmPartidaJanKenPon" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAAAgAAACAAAAIAEECAAAgCAAAAAIEAAAAAAAAAACA=</HashCode>
+      <FileName>FrmPartidaJanKenPon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vista.FrmPartidaTruco" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgAAAQAIACAAABIAAACGAAACEAACAAkAiAAAAAAAAIA=</HashCode>
+      <FileName>FrmPartidaTruco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vista.FrmPrincipal" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgCAAAQAECAAABAAAACAAAATECCEABAAAAAAAgAAAgI=</HashCode>
+      <FileName>FrmPrincipal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vista.Program" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

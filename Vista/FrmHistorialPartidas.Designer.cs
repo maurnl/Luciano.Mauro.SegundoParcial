@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.lblJuego = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnSerializar = new System.Windows.Forms.Button();
+            this.btnDeserializar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +49,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1071, 537);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(302, 230);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(480, 37);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "No hay partidas en el sistema.";
             // 
             // dgvHistorial
             // 
@@ -68,21 +80,35 @@
             this.lblJuego.TabIndex = 1;
             this.lblJuego.Text = "label1";
             // 
-            // label1
+            // btnSerializar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(302, 230);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(480, 37);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "No hay partidas en el sistema.";
+            this.btnSerializar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSerializar.Location = new System.Drawing.Point(806, 12);
+            this.btnSerializar.Name = "btnSerializar";
+            this.btnSerializar.Size = new System.Drawing.Size(126, 39);
+            this.btnSerializar.TabIndex = 2;
+            this.btnSerializar.Text = "Serializar...";
+            this.btnSerializar.UseVisualStyleBackColor = true;
+            this.btnSerializar.Click += new System.EventHandler(this.btnSerializar_Click);
+            // 
+            // btnDeserializar
+            // 
+            this.btnDeserializar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeserializar.Location = new System.Drawing.Point(957, 12);
+            this.btnDeserializar.Name = "btnDeserializar";
+            this.btnDeserializar.Size = new System.Drawing.Size(126, 39);
+            this.btnDeserializar.TabIndex = 3;
+            this.btnDeserializar.Text = "Deserializar...";
+            this.btnDeserializar.UseVisualStyleBackColor = true;
+            this.btnDeserializar.Click += new System.EventHandler(this.btnDeserializar_Click);
             // 
             // FrmHistorialPartidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1095, 615);
+            this.Controls.Add(this.btnDeserializar);
+            this.Controls.Add(this.btnSerializar);
             this.Controls.Add(this.lblJuego);
             this.Controls.Add(this.panel1);
             this.Name = "FrmHistorialPartidas";
@@ -102,5 +128,7 @@
         private System.Windows.Forms.DataGridView dgvHistorial;
         private System.Windows.Forms.Label lblJuego;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSerializar;
+        private System.Windows.Forms.Button btnDeserializar;
     }
 }

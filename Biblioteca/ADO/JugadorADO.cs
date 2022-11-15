@@ -103,14 +103,13 @@ namespace Biblioteca.ADO
 
             try
             {
-                string sql = "INSERT INTO dbo.Jugadores (id, nombre, apellido, esHumano, trucoGanadas, trucoPerdidas, piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas) " +
-                    "VALUES(@id, @nombre, @apellido, @esHumano, @trucoGanadas, @trucoPerdidas, @piedrapapeltijeraGanadas, @piedrapapeltijeraPerdidas)";
+                string sql = "INSERT INTO dbo.Jugadores (nombre, apellido, esHumano, trucoGanadas, trucoPerdidas, piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas) " +
+                    "VALUES(@nombre, @apellido, @esHumano, @trucoGanadas, @trucoPerdidas, @piedrapapeltijeraGanadas, @piedrapapeltijeraPerdidas)";
 
                 comando = new SqlCommand();
 
                 comando.CommandType = CommandType.Text;
                 comando.CommandText = sql;
-                comando.Parameters.AddWithValue("@id", param.Id);
                 comando.Parameters.AddWithValue("@esHumano", param.EsHumano);
                 comando.Parameters.AddWithValue("@nombre", param.Nombre);
                 comando.Parameters.AddWithValue("@apellido", param.Apellido);
@@ -155,8 +154,8 @@ namespace Biblioteca.ADO
                 comando = new SqlCommand();
 
                 comando.Parameters.AddWithValue("@id", param.Id);
-                comando.Parameters.AddWithValue("@esHumano", param.EsHumano);
                 comando.Parameters.AddWithValue("@nombre", param.Nombre);
+                comando.Parameters.AddWithValue("@esHumano", param.EsHumano);
                 comando.Parameters.AddWithValue("@apellido", param.Apellido);
                 comando.Parameters.AddWithValue("@trucoGanadas", param.CantidadVictoriasTruco);
                 comando.Parameters.AddWithValue("@trucoPerdidas", param.CantidadDerrotasTruco);
@@ -164,7 +163,7 @@ namespace Biblioteca.ADO
                 comando.Parameters.AddWithValue("@piedrapapeltijeraPerdidas", param.CantidadDerrotasJanKenPon);
 
                 string sql = "UPDATE dbo.Jugadores ";
-                sql += "SET esHumano = @esHumano, nombre = @nombre, apellido = @apellido, trucoGanadas = @trucoGanadas, trucoPerdidas = @trucoPerdidas, piedrapapeltijeraGanadas = @piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas = @piedrapapeltijeraPerdidas";
+                sql += "SET esHumano = @esHumano, nombre = @nombre, apellido = @apellido, trucoGanadas = @trucoGanadas, trucoPerdidas = @trucoPerdidas, piedrapapeltijeraGanadas = @piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas = @piedrapapeltijeraPerdidas ";
                 sql += "WHERE id = @id";
 
                 comando.CommandType = CommandType.Text;

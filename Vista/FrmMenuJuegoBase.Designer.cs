@@ -32,7 +32,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnHistorialPartidas = new System.Windows.Forms.Button();
-            this.btnGuardarPartidas = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkSimulada = new System.Windows.Forms.CheckBox();
             this.flowPanelPartidas = new System.Windows.Forms.FlowLayoutPanel();
@@ -74,7 +73,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.btnHistorialPartidas, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnGuardarPartidas, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 95);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -95,16 +93,6 @@
             this.btnHistorialPartidas.Text = "Historial Partidas";
             this.btnHistorialPartidas.UseVisualStyleBackColor = true;
             this.btnHistorialPartidas.Click += new System.EventHandler(this.btnHistorialPartidas_Click);
-            // 
-            // btnGuardarPartidas
-            // 
-            this.btnGuardarPartidas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGuardarPartidas.Location = new System.Drawing.Point(3, 75);
-            this.btnGuardarPartidas.Name = "btnGuardarPartidas";
-            this.btnGuardarPartidas.Size = new System.Drawing.Size(201, 64);
-            this.btnGuardarPartidas.TabIndex = 1;
-            this.btnGuardarPartidas.Text = "Administrar jugadores";
-            this.btnGuardarPartidas.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -159,6 +147,5 @@
         protected System.Windows.Forms.CheckBox chkSimulada;
         protected System.Windows.Forms.FlowLayoutPanel flowPanelPartidas;
         private System.Windows.Forms.Button btnHistorialPartidas;
-        private System.Windows.Forms.Button btnGuardarPartidas;
     }
 }

@@ -31,6 +31,8 @@ namespace Biblioteca.Modelos
         {
             Partida partidaDelEvento = (Partida)sender;
             new PartidasADO().AgregarPartidaTerminada(partidaDelEvento);
+            new JugadorADO().ModificarJugador(partidaDelEvento.JugadorA);
+            new JugadorADO().ModificarJugador(partidaDelEvento.JugadorB);
         }
 
         public List<PartidaTerminada> ObtenerHistorialPartidas(string nombreJuego)

@@ -98,5 +98,10 @@ namespace Vista
                 " justo al acabar la frase enseñarán las manos y verán quien gana. Si los dos jugadores sacan la \n" +
                 "misma figura hay empate, tablas, no gana nadie.";
         }
+
+        private void btnJugadores_Click(object sender, EventArgs e)
+        {
+            new FrmCrudJugadores().Show();
+        }
     }
 }

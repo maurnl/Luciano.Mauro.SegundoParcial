@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblBienvenido = new System.Windows.Forms.Label();
+            this.btnJugadores = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTruco
@@ -97,11 +98,22 @@
             this.lblBienvenido.TabIndex = 5;
             this.lblBienvenido.Text = "sadasd";
             // 
+            // btnJugadores
+            // 
+            this.btnJugadores.Location = new System.Drawing.Point(580, 247);
+            this.btnJugadores.Name = "btnJugadores";
+            this.btnJugadores.Size = new System.Drawing.Size(130, 130);
+            this.btnJugadores.TabIndex = 6;
+            this.btnJugadores.Text = "Administrar jugadores...";
+            this.btnJugadores.UseVisualStyleBackColor = true;
+            this.btnJugadores.Click += new System.EventHandler(this.btnJugadores_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(787, 567);
+            this.Controls.Add(this.btnJugadores);
             this.Controls.Add(this.lblBienvenido);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.label1);
@@ -124,5 +136,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label lblBienvenido;
+        private System.Windows.Forms.Button btnJugadores;
     }
 }

@@ -16,6 +16,7 @@ namespace Vista
     {
         private List<PartidaTerminada> partidas;
         private string juego;
+
         public FrmHistorialPartidas()
         {
             InitializeComponent();

@@ -13,6 +13,7 @@ namespace Biblioteca.Modelos
         private bool hayGanador;
         private bool hayGanadorDeRonda;
         private bool hayTrucoCantado;
+        private bool sePuedeCantarTruco;
         private EstadoTruco estadoTruco;
         private List<Jugador> jugadores;
         private Jugador ganador;
@@ -60,8 +61,16 @@ namespace Biblioteca.Modelos
             estadoTruco = EstadoTruco.NoDecidio;
             valorDeRonda = 1;
             tokenCancelacion = new CancellationTokenSource();
+            this.sePuedeCantarTruco = true;
         }
 
+        public bool SePuedeCantarTruco
+        {
+            get
+            {
+                return this.sePuedeCantarTruco;
+            }
+        }
         public CancellationToken TokenCancelacion
         {
             get
@@ -288,153 +297,123 @@ namespace Biblioteca.Modelos
             {
                 carta.EstaEnJuego = false;
             }
-            cartasQueSalieron.Clear();
-            cartasJugadorA.Clear();
-            cartasJugadorB.Clear();
-            cartasEnJuegoJugadorA.Clear();
-            cartasEnJuegoJugadorB.Clear();
-            cartasJugadorA = ObtenerCartasAleatorias();
-            cartasJugadorB = ObtenerCartasAleatorias();
-            hayGanadorDeRonda = false;
-            jugadorTurnoActual = jugadores[0];
-            hayTrucoCantado = false;
-            valorDeRonda = 1;
-            estadoTruco = EstadoTruco.NoDecidio;
+            this.cartasQueSalieron.Clear();
+            this.cartasJugadorA.Clear();
+            this.cartasJugadorB.Clear();
+            this.cartasEnJuegoJugadorA.Clear();
+            this.cartasEnJuegoJugadorB.Clear();
+            this.cartasJugadorA = ObtenerCartasAleatorias();
+            this.cartasJugadorB = ObtenerCartasAleatorias();
+            this.hayGanadorDeRonda = false;
+            this.jugadorTurnoActual = jugadores[0];
+            this.hayTrucoCantado = false;
+            this.valorDeRonda = 1;
+            this.estadoTruco = EstadoTruco.NoDecidio;
+            this.sePuedeCantarTruco = true;
         }
 
         public void Jugar()
         {
-            if (rondaActual == 3)
+            if (this.rondaActual == 3)
             {
-                if (banderaTurnoJugadorB)
+                if (this.banderaTurnoJugadorB)
                 {
                     banderaTurnoJugadorB = false;
                     return;
                 }
-                rondaActual = 0;
+                this.rondaActual = 0;
                 ReiniciarRonda();
                 return;
             }
-            banderaTurnoJugadorB = true;
-            logPartida = "";
+            this.banderaTurnoJugadorB = true;
+            this.logPartida = "";
             // Manejo en numero de ronda en base a los turnos jugados
-            jugadorTurnoActual = jugadorTurnoActual == jugadores[0] ? jugadores[1] : jugadores[0];
-            Carta cartaJugadorA = cartasJugadorA[seleccionJugadorA];
-            Carta cartaJugadorB = cartasJugadorB[seleccionJugadorB];
-            if (hayTrucoCantado)
+            this.jugadorTurnoActual = this.jugadorTurnoActual == this.jugadores[0] ? this.jugadores[1] : this.jugadores[0];
+            Carta cartaJugadorA = this.cartasJugadorA[seleccionJugadorA];
+            Carta cartaJugadorB = this.cartasJugadorB[seleccionJugadorB];
+            if (this.hayTrucoCantado)
             {
-                logPartida += "Se canto Truco!!\n";
-                if (estadoTruco == EstadoTruco.Querido)
+                this.sePuedeCantarTruco = false;
+                this.logPartida += "Se canto Truco!!\n";
+                if (this.estadoTruco == EstadoTruco.Querido)
                 {
-                    logPartida += "Se quiso el Truco!!\n";
-                    valorDeRonda += 1;
-                    estadoTruco = EstadoTruco.NoDecidio;
+                    this.logPartida += "Se quiso el Truco!!\n";
+                    this.valorDeRonda += 1;
+                    this.estadoTruco = EstadoTruco.NoDecidio;
                 }
-                else if (estadoTruco == EstadoTruco.NoQuerido)
+                else if (this.estadoTruco == EstadoTruco.NoQuerido)
                 {
-                    hayGanadorDeRonda = true;
-                    logPartida += "No se quiso el Truco!!\n";
-                    estadoTruco = EstadoTruco.NoDecidio;
+                    this.hayGanadorDeRonda = true;
+                    this.logPartida += "No se quiso el Truco!!\n";
+                    this.estadoTruco = EstadoTruco.NoDecidio;
                     rondaActual = 3;
                     ChequearGanadorDeRonda();
                 }
-                else if (estadoTruco == EstadoTruco.NoDecidio)
+                else if (this.estadoTruco == EstadoTruco.NoDecidio)
                 {
                     return;
                 }
-                hayTrucoCantado = false;
+                this.hayTrucoCantado = false;
                 return;
             }
-            //if (hayEnvidoCantado)
-            //{
-            //    this.logPartida += "Se canto Envido!!\n";
-            //    if (estadoTruco == EstadoTruco.Querido)
-            //    {
-            //        this.logPartida += "Se quiso el Envido!!\n";
-            //        valorDeRonda += 1;
-            //        estadoTruco = EstadoTruco.NoDecidio;
-            //    }
-            //    else if (estadoTruco == EstadoTruco.NoQuerido)
-            //    {
-            //        hayGanadorDeRonda = true;
-            //        this.logPartida += "No se quiso el Envido!!\n";
-            //        estadoTruco = EstadoTruco.NoDecidio;
-            //        if(JugadorTurnoActual == jugadores[0])
-            //        {
-            //            puntajeJugadorB++;
-            //        } else
-            //        {
-            //            puntajeJugadorA++;
-            //        }
-            //        //rondaActual = 3;
-            //        // sumarle un punto al contrario
-            //        //ChequearGanadorDeRonda();
-            //    }
-            //    else if (estadoTruco == EstadoTruco.NoDecidio)
-            //    {
-            //        return;
-            //    }
-            //    hayTrucoCantado = false;
-            //    return;
-            //}
-            if (!hayGanadorDeRonda && estadoTruco == EstadoTruco.NoDecidio)
+            if (!this.hayGanadorDeRonda && this.estadoTruco == EstadoTruco.NoDecidio)
             {
-                if (jugadorTurnoActual == jugadores[0])
+                if (this.jugadorTurnoActual == jugadores[0])
                 {
-                    cartasEnJuegoJugadorB.Add(cartaJugadorB);
-                    cartasJugadorB[SeleccionJugadorB].EstaEnJuego = true;
+                    this.cartasEnJuegoJugadorB.Add(cartaJugadorB);
+                    this.cartasJugadorB[SeleccionJugadorB].EstaEnJuego = true;
                 }
                 else
                 {
-                    cartasEnJuegoJugadorA.Add(cartaJugadorA);
-                    cartasJugadorA[SeleccionJugadorA].EstaEnJuego = true;
+                    this.cartasEnJuegoJugadorA.Add(cartaJugadorA);
+                    this.cartasJugadorA[SeleccionJugadorA].EstaEnJuego = true;
                 }
             }
-            if (contadorTurnos < 1)
+            if (this.contadorTurnos < 1)
             {
-                contadorTurnos++;
+                this.contadorTurnos++;
                 return;
             }
-            contadorTurnos = 0;
+            this.contadorTurnos = 0;
             // Cambio estado de las cartas en la mano
             // Evaluar quien gano la ronda...   
-            rondaActual++;
-            logPartida += $"Ronda: {rondaActual}.\n";
-            foreach (Jugador jugador in jugadores)
+            this.rondaActual++;
+            this.logPartida += $"Ronda: {this.rondaActual}.\n";
+            foreach (Jugador jugador in this.jugadores)
             {
-                logPartida += $"{(jugador.EsHumano ? "Elegiste" : $"{jugador.Nombre} eligio")} el {(jugador == jugadores[0] ? cartaJugadorA : cartaJugadorB)}.\n";
+                this.logPartida += $"{(jugador.EsHumano ? "Elegiste" : $"{jugador.Nombre} eligio")} el {(jugador == this.jugadores[0] ? cartaJugadorA : cartaJugadorB)}.\n";
             }
             if (cartaJugadorA - cartaJugadorB > 0)
             {
                 // Gana jugador A
-                rondasGanadasJugadorA++;
-                jugadorTurnoActual = jugadores[0];
-                logPartida += $"{jugadores[0].Nombre} mato al {cartaJugadorB} con su {cartaJugadorA}.\n";
+                this.rondasGanadasJugadorA++;
+                this.jugadorTurnoActual = this.jugadores[0];
+                this.logPartida += $"{this.jugadores[0].Nombre} mato al {cartaJugadorB} con su {cartaJugadorA}.\n";
             }
             else if (cartaJugadorB - cartaJugadorA > 0)
             {
                 // Gana jugador B
-                rondasGanadasJugadorB++;
-                jugadorTurnoActual = jugadores[1];
-                logPartida += $"{jugadores[1].Nombre} mato al {cartaJugadorA} con su {cartaJugadorB}.\n";
+                this.rondasGanadasJugadorB++;
+                this.jugadorTurnoActual = jugadores[1];
+                this.logPartida += $"{this.jugadores[1].Nombre} mato al {cartaJugadorA} con su {cartaJugadorB}.\n";
             }
             else
             {
-                logPartida += "Empate!\n";
+                this.logPartida += "Empate!\n";
             }
 
-            if (rondaActual == 1)
+            if (this.rondaActual == 1)
             {
 
             }
-            else if (rondaActual == 2)
+            else if (this.rondaActual == 2)
             {
-                if (rondasGanadasJugadorA == 2 || rondasGanadasJugadorB == 2)
+                if (this.rondasGanadasJugadorA == 2 || this.rondasGanadasJugadorB == 2)
                 {
-                    rondaActual = 3;
+                    this.rondaActual = 3;
                 }
             }
-            if (rondaActual == 3)
+            if (this.rondaActual == 3)
             {
                 // Si es ronda 3, chequear quien gano...
                 ChequearGanadorDeRonda();
@@ -443,23 +422,23 @@ namespace Biblioteca.Modelos
 
         private void ChequearGanadorDeRonda()
         {
-            hayGanadorDeRonda = true;
-            if (rondasGanadasJugadorA > rondasGanadasJugadorB)
+            this.hayGanadorDeRonda = true;
+            if (this.rondasGanadasJugadorA > this.rondasGanadasJugadorB)
             {
-                logPartida += $"{jugadores[0].Nombre} gano la ronda. Mezclando el mazo...\n";
-                puntajeJugadorA += valorDeRonda;
+                this.logPartida += $"{this.jugadores[0].Nombre} gano la ronda. Mezclando el mazo...\n";
+                this.puntajeJugadorA += this.valorDeRonda;
             }
             else
             {
-                logPartida += $"{jugadores[1].Nombre} gano la ronda. Mezclando el mazo...\n";
-                puntajeJugadorB += valorDeRonda;
+                this.logPartida += $"{this.jugadores[1].Nombre} gano la ronda. Mezclando el mazo...\n";
+                this.puntajeJugadorB += this.valorDeRonda;
             }
-            if (puntajeJugadorA == 4 || puntajeJugadorB == 4)
+            if (this.puntajeJugadorA == 4 || this.puntajeJugadorB == 4)
             {
-                Ganador = puntajeJugadorA > puntajeJugadorB ? jugadores[0] : jugadores[1];
+               this. Ganador = this.puntajeJugadorA > this.puntajeJugadorB ? this.jugadores[0] : this.jugadores[1];
             }
-            rondasGanadasJugadorA = 0;
-            rondasGanadasJugadorB = 0;
+            this.rondasGanadasJugadorA = 0;
+            this.rondasGanadasJugadorB = 0;
         }
     }
 }

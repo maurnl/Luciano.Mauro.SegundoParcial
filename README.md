@@ -42,7 +42,55 @@ Si se decide jugar vs la máquina el formulario se presentará con un diálogo a
 ## Excepciones
 
 ## Excepciones
+Se utilizaron excepciones para manejar los posibles errores en tiempo de ejecución a la hora de obtener jugadores desde la base de datos.
+```
+try
+{
+    comando = new SqlCommand();
+
+    comando.CommandType = CommandType.Text;
+    comando.CommandText = "SELECT id, nombre, apellido, esHumano, trucoGanadas, trucoPerdidas, piedrapapeltijeraGanadas, piedrapapeltijeraPerdidas FROM dbo.Jugadores";
+    comando.Connection = conexion;
+
+    conexion.Open();
+
+    lector = comando.ExecuteReader();
+    while (lector.Read())
+    {
+        Jugador item = new Jugador();
+
+        item.Id = lector.GetInt32(0);
+        item.Nombre = lector.GetString(1);
+        item.Apellido = lector.GetString(2);
+        item.EsHumano = lector.GetBoolean(3);
+        item.CantidadVictoriasTruco = lector.GetInt32(4);
+        item.CantidadDerrotasTruco = lector.GetInt32(5);
+        item.CantidadVictoriasJanKenPon = lector.GetInt32(6);
+        item.CantidadDerrotasJanKenPon = lector.GetInt32(7);
+
+        lista.Add(item);
+    }
+
+    lector.Close();
+
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.ToString());
+}
+finally
+{
+    if (conexion.State == ConnectionState.Open)
+    {
+        conexion.Close();
+    }
+}
+```
 ## Pruebas unitarias
+Se realizaron test unitarios para comprobar la funcionalidad del código y reducir los posibles errores al refactorizar e integrar con el resto del programa.
+
+
+![Código de test unitarios](docs/testunitarios.png)
 ## Tipos genéricos
 ## Interfaces
 ## Archivos

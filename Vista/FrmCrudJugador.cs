@@ -29,6 +29,7 @@ namespace Vista
         public FrmCrudJugador()
         {
             InitializeComponent();
+            this.Text = "Nuevo jugador...";
         }
 
         public FrmCrudJugador(Jugador jugador, bool editando) : this()
@@ -37,6 +38,7 @@ namespace Vista
             this.jugador = jugador;
             this.lblId.Text = $"ID {jugador.Id}";
             this.btnAceptar.Text = "Confirmar cambios";
+            this.Text = $"Modificando jugador {jugador.Nombre}...";
         }
 
         private void FrmCrudJugador_Load(object sender, EventArgs e)

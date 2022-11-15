@@ -27,6 +27,7 @@ namespace Vista
         {
             this.BackgroundImage = (Image)Resources.ResourceManager.GetObject("fondo_menu")!;
             this.BackgroundImageLayout = ImageLayout.Stretch;
+            this.Text = "CRUD Jugadores...";
             ActualizarDatagrid();
         }
 

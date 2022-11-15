@@ -62,14 +62,8 @@ namespace Biblioteca.Presentadores
         private void AbrirComponentePartida(object sender, EventArgs e)
         {
             int idPartida = int.Parse((string)sender);
-            foreach (Partida partida in this.manejadorPartidas.PartidasActivas)
-            {
-                if (partida.Id == idPartida)
-                {
-                    this.vistaMenuJuego.AbrirComponentePartida(partida);
-                    break;
-                }
-            }
+            Partida partida = this.manejadorPartidas.PartidasActivas.Find(partida => partida.Id == idPartida);
+            this.vistaMenuJuego.AbrirComponentePartida(partida);
         }
 
         private void ActualizarComponentePartida(object sender, EventArgs e)
@@ -94,10 +88,7 @@ namespace Biblioteca.Presentadores
 
         public void LimpiarEventosVista(object sender, EventArgs e)
         {
-            foreach (Partida partida in this.manejadorPartidas.PartidasActivas)
-            {
-                EliminarComponentePartida(partida, e);
-            }
+            this.manejadorPartidas.PartidasActivas.ForEach(partida => EliminarComponentePartida(partida, e));
             this.manejadorPartidas.CancelarPartidasEnCurso();
         }
     }

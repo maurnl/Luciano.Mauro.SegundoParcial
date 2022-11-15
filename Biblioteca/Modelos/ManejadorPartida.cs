@@ -29,10 +29,11 @@ namespace Biblioteca.Modelos
 
         private void GuardarPartidaFinalizada(object sender, EventArgs e)
         {
+            JugadorADO jugadorAdo = new JugadorADO();
             Partida partidaDelEvento = (Partida)sender;
             new PartidasADO().AgregarPartidaTerminada(partidaDelEvento);
-            new JugadorADO().ModificarJugador(partidaDelEvento.JugadorA);
-            new JugadorADO().ModificarJugador(partidaDelEvento.JugadorB);
+            jugadorAdo.ModificarJugador(partidaDelEvento.JugadorA);
+            jugadorAdo.ModificarJugador(partidaDelEvento.JugadorB);
         }
 
         public List<PartidaTerminada> ObtenerHistorialPartidas(string nombreJuego)

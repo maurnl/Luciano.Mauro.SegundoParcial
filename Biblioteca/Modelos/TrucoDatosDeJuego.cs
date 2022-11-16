@@ -460,7 +460,7 @@ namespace Biblioteca.Modelos
                 {
                     Jugadores[0].CantidadDerrotasTruco++;
                 }
-                AgregarAlLog($"{this.Ganador.Nombre} ganó la partida!! Bien jugado!!");
+                AgregarAlLog($"{this.Ganador.Nombre} ganó la partida!! Bien jugado!!\n");
             }
             this.rondasGanadasJugadorA = 0;
             this.rondasGanadasJugadorB = 0;

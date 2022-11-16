@@ -179,14 +179,13 @@ namespace Biblioteca.Modelos
             else if (seleccionJugadorA - seleccionJugadorB == -1 || seleccionJugadorA - seleccionJugadorB == 2)
             {
                 // Gana jugador B
-
-                this.logPartida += $"{jugadores[0].Nombre} gano! Obtiene 1 punto!\n";
+                this.logPartida += $"{jugadores[1].Nombre} gano! Obtiene 1 punto!\n";
                 puntajeJugadorB++;
             }
             else if (seleccionJugadorA - seleccionJugadorB == 1 || seleccionJugadorB - seleccionJugadorA == 2)
             {
                 // Gana jugador A
-                this.logPartida += $"{jugadores[1].Nombre} gano! Obtiene 1 punto!\n";
+                this.logPartida += $"{jugadores[0].Nombre} gano! Obtiene 1 punto!\n";
                 puntajeJugadorA++;
             }
             if (puntajeJugadorA == 3)

@@ -89,10 +89,10 @@ namespace Vista
                 this.lblJugadorA.Text = $"{datosDeJuego.Jugadores[0].Nombre}: {datosDeJuego.PuntajeJugadorA}";
                 this.lblJugadorB.Text = $"{datosDeJuego.Jugadores[1].Nombre}: {datosDeJuego.PuntajeJugadorB}";
                 // Turnos
-                if (panelJuegoJ2.Controls.Count < 3)
-                {
-                    this.rtbLog.Text = this.rtbLog.Text.Insert(0, datosDeJuego.LogPartida);
-                }
+                //if (panelJuegoJ2.Controls.Count < 3)
+                //{
+                   this.rtbLog.Text = this.rtbLog.Text.Insert(0, datosDeJuego.LogPartida);
+                //}
             }
         }
 

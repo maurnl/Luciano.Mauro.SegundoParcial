@@ -125,12 +125,12 @@ namespace Biblioteca.Modelos
             }
         }
 
-        public virtual void JugarTurno(IDatosDeJuego<Juego> datosDeJuego)
+        public void JugarTurno(IDatosDeJuego<Juego> datosDeJuego)
         {
+            // Jugar en base al tipo de juego...
             if (datosDeJuego is TrucoDatosDeJuego)
             {
                 TrucoDatosDeJuego datosDeTruco = (TrucoDatosDeJuego)datosDeJuego;
-                // Jugar en base al tipo de juego...
                 if (esHumano)
                 {
                     if (!datosDeTruco.HayGanadorDeRonda)
@@ -165,7 +165,6 @@ namespace Biblioteca.Modelos
                 {
                     Thread.Sleep(800);
                     datosPiedraPapelTijera.SetSeleccionJugador(this, new Random().Next(0, 3));
-
                 }
             }
         }

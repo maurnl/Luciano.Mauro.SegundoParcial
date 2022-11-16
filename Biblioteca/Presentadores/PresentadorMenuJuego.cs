@@ -17,6 +17,12 @@ namespace Biblioteca.Presentadores
         private List<Jugador> jugadoresSimulados;
         private Juego juego;
 
+        /// <summary>
+        /// Presentador para el menú de juegos. Necesita una vista, un tipo heredado de Juego y una fuente de datos de Jugadores.
+        /// </summary>
+        /// <param name="vistaMenuJuego">Vista a utilizar</param>
+        /// <param name="juego">Tipo del juego que se creearán las partidas</param>
+        /// <param name="jugadoresAdo">Fuente de datos de jugadores</param>
         public PresentadorMenuJuego(IPresentadorMenuJuego vistaMenuJuego, Juego juego, IDatosJugadores jugadoresAdo)
         {
             this.juego = juego;

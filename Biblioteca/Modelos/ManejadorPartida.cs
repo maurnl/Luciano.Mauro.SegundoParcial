@@ -15,6 +15,11 @@ namespace Biblioteca.Modelos
         private List<Partida> partidasActivas;
         private int cantidadPartidasActivas;
 
+        /// <summary>
+        /// Clase manejadora de entidades Partida. Recibe un tipo de Juego y lo usará para crear instancias a partir de Juego que implementen
+        /// IDatosDeJuego y correspondan al juego en cuestión. 
+        /// </summary>
+        /// <param name="juego">Tipo de juego del que se crearán partidas.</param>
         public ManejadorPartida(Juego juego)
         {
             this.juego = juego;
